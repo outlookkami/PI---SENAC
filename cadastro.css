@@ -1,48 +1,55 @@
-body{
+body {
     margin: 0;
     padding: 0;
     height: 100vh;
     font-family: "Raleway", sans-serif;
-    
-    background-image: linear-gradient(to bottom, #000F55, #6C0034 );
+
+    background-image: linear-gradient(to bottom, #000F55, #6C0034);
     background-repeat: no-repeat;
-    background-size: 50% 100% ;
+    background-size: 50% 100%;
 }
 
-.Logo{
+.Logo {
     margin-top: 200px;
 
 }
-.HE{
+
+.HE {
     color: white;
     font-family: "Quicksand", sans-serif;
-    font-size: 90px;    
+    font-size: 90px;
 }
-aside{
+
+aside {
     color: white;
 }
-.asidep{
+
+.asidep {
     font-size: 30px;
 }
-main{
+
+main {
 
     margin-left: 955px;
     margin-top: -900px;
 }
-form{
+
+form {
     border-radius: 5px;
     width: 450px;
     height: 650px;
     text-align: center;
     margin-left: 250px;
-    box-shadow:  5px 5px 10px 5px  rgba(0, 0, 0, 0.108);
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
 }
-.topo{
+
+.topo {
     margin-top: 10px;
     text-align: center;
 }
-h2{
+
+h2 {
     color: #000F55;
     margin-top: -40px;
     margin-left: -10px;
@@ -50,52 +57,58 @@ h2{
     font-size: 30px;
 }
 
-.bdv{
+.bdv {
     color: #000F55;
     padding: 20px;
     font-size: 20px;
 }
-.p1{
+
+.p1 {
     margin-top: -10px;
 }
-input{
+
+input {
     height: 40px;
-    width: 300px; 
+    width: 300px;
     border-radius: 8px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
 }
-.email{
-    margin-top: 30px;
-}
-.senha{
+
+.email {
     margin-top: 30px;
 }
 
-.logob{
+.senha {
+    margin-top: 30px;
+}
+
+.logob {
     width: 190px;
 }
 
-button{
+button {
     margin-top: 20px;
 }
-select{
+
+select {
     height: 43px;
-    width: 310px; 
+    width: 310px;
     border-radius: 8px;
     margin-top: 30px;
     color: rgb(128, 128, 128);
     border-color: black;
 }
-a{
+
+a {
     text-decoration: none;
     color: black;
 }
 
-button{
+button {
     height: 40px;
-    width: 300px; 
+    width: 300px;
     border-radius: 8px;
     border-style: none;
     background-color: #000F55;
