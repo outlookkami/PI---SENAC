@@ -1,0 +1,184 @@
+<?php
+    include("conexao.php");
+?>
+
+// HTML
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Colaborador</title>
+    <link rel="stylesheet" href="colabPortal.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="inícioHeader">
+            <button class="paginas"><img src="" alt="barrinhas de menu"></button>
+            <button class="paginas"><img src="" alt="logo"></button>
+        </div>
+        <div class="meioHeader">
+            <button class="paginas">Dashboard</button>
+            <button class="paginas">Eventos</button>
+            <button class="paginas">Calendário</button>
+        </div>
+        <div class="fimHeader">
+            <button class="paginas"><img src="" alt="notificações"></button>
+            <button class="paginas"><img src="" alt="perfil"></button>
+            <button class="paginas">Sair</button>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="TituloDashboard">Dashboard</h2>
+        <div class="Dashboard"> 
+            <br>
+            <div> <!-- Eventos Confirmados -->
+                <table class="TableDashboard Eventos">
+                    
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/calendar (1).png" alt="calendário"></td>
+                        <td>Eventos Confirmados</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0</b></td>
+                    </tr>  
+                </table>
+            </div>
+
+            <div> <!-- Presença Total -->
+                <table class="TableDashboard Presença">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/img/team.png" alt="pessoas"></td>
+                        <td>Presença Total</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0%</b></td>
+                    </tr>     
+                </table>
+            </div>
+
+            <div> <!-- Prêmios Disponíveis -->
+                <table class="TableDashboard Prêmios">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/gift.png" alt="presente"></td>
+                        <td>Prêmios Disponíveis</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>4</b></td>
+                    </tr>  
+                </table>
+            </div>
+            
+            <div> <!-- Pontos Acumulados -->
+                <table class="TableDashboard Pontos">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/star.png" alt="estrela"></td>
+                        <td>Pontos Acumulados</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>2.450</b></td>
+                    </tr>    
+                </table>
+            </div>
+        </div>
+
+        <br><br><br><br><br>
+
+        <h3>Próximos Eventos</h3>
+        <br><br>
+        <div class="ProximosEventos">
+            <table class="TableEventos">
+                <tr>
+                    <td><img class="imagensIlustrativasEventos" src="assets/img/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
+                </tr>
+                <tr>
+                    <td><h4>Reunião Estratégica Q4</h4></td>
+                    <td><!-- Tag indicando que é uma Reunião --></td>
+                </tr>
+                <tr>
+                    <td><p>Planejamento e  revisão de metas para o último trimestre do ano.</p></td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">  15 de Dezembro, 2025</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio">09:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos"  src="assets/img/pin.png" alt="ícone mapa">Auditório Principal</td>
+                </tr>
+                <tr>
+                    <td> 25 confirmados</td>
+                </tr>
+                <tr>
+                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                </tr>
+            </table>
+
+            <table class="TableEventos">
+                <tr><td><img class="imagensIlustrativasEventos" src="assets/img/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td></tr>
+                <tr>
+                    <td><h4>Workshop de inovação</h4></td>
+                    <td><!-- Tag indicando que é um treinamento--></td>
+                </tr>
+                <tr>
+                    <td><p>Metodologias ágeis e design thinking para projetos inovadores.</p></td>
+                </tr>
+                <tr>
+                    <td class="IconesEventos"><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">18 de Dezembro, 2025</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio">14:00 - 16:00</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/pin.png" alt="ícone mapa">Sala de conferência A</td>
+                </tr>
+                <tr>
+                    <td> +12 confirmados</td>
+                </tr>
+                <tr>
+                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                </tr>
+            </table>
+
+            <table class="TableEventos">
+                <tr><td><img class="imagensIlustrativasEventos" src="assets/img/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td></tr>
+                <tr>
+                    <td><h4>Festa de fim de ano</h4></td>
+                    <td><!-- Tag indicando que é um evento Social--></td>
+                </tr>
+                <tr>
+                    <td><p>Celebração anual com toda a equipe, premiações, e confraternização.</p></td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">22 de Dezembro, 2025</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio">18:00 - 22:00</td>
+                </tr>
+                <tr>
+                    <td><img class="IconesEventos" src="assets/img/pin.png" alt="ícone mapa">Salão de Eventos</td>
+                </tr>
+                <tr>
+                    <td> 87 confirmados</td>
+                </tr>
+                <tr>
+                    <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <br><br>
+
+        <h3>Calendário de Eventos</h3>
+        <br><br>
+        <!-- Inserir calendário de eventos com a API -->
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #FFEAEE;
+    font-family: 'Outfit', sans-serif;
+    /* background: linear-gradient (to bottom, #000f55, #6c0034); */
+}
+
+/* HEADER */
+header{
+    display:flex;
+    background-color: #4e598c;
+    width: 100vw;
+    height: 50px;
+    padding: 15px;
+    justify-content: space-between;
+    justify-content: center; 
+}
+
+.inícioHeader{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+.meioHeader{ 
+    display: flex;
+    justify-content: center;    
+}
+
+.fimHeader{
+    display: flex;
+    justify-content: center; 
+}
+.paginas{
+    background-color: transparent;
+    color: white;
+    border: none;
+    place-content: space-between;
+}
+.paginas:hover{
+    color: #D90368;
+    cursor: pointer;   
+}
+
+.Titulos{
+  margin:20px;
+  color: black;  
+}
+
+/* DASHBOARD */
+
+/* Grupo das Tabelas */
+.Dashboard{
+    display: flex;
+    gap: 40px;
+    justify-content: center; 
+}
+
+/* Elementos tabelas */
+.TableDashboard{
+    width: 360px;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #838691;
+}
+
+/* Borders específicas (esquerda) */
+.Eventos{border-left: 4px solid #4e598c; }
+.Presença{border-left: 4px solid #77A0A9;}
+.Prêmios{border-left: 4px solid #D90368;}
+.Pontos{border-left: 4px solid #4e598c;}
+
+/* ícones */
+.IconesDashboard{
+    margin-left:20px;
+    width:50px;
+}
+.iconeTeam{
+    width: 60px;
+}
+
+/* Tamanhos de fonte */
+.valor{font-size: 25px;}
+
+/* PRÓXIMOS EVENTOS:  */
+/* Grupo das tabelas */
+.ProximosEventos{
+    display: flex;
+    gap: 40px;
+    justify-content: center; 
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Elementos das tabelas */
+.TableEventos{
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 480px;
+    height: 100px; 
+    border-spacing: 15px; 
+}
+
+.imagensIlustrativasEventos{
+    width: 480px;
+    height: 300px;
+    border-radius: 12px;
+}
+
+/* ícones */
+.IconesEventos{
+    width:20px;
+    margin-right: 4px;
+}
+
+/* Botões Eventos */
+.ConfirmarPresença{
+    background-color:#D90368;
+    color:white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px;
+    width: 470px;
+    text-align: center;
+    cursor: pointer;
+    font-family:'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.PresençaConfirmada{
+    background-color: #77A0A9;
+    color:white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px;
+    width: 470px;
+    cursor: pointer;
+    font-family:'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+
+

@@ -1,0 +1,210 @@
+/* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #FFEAEE;
+    font-family: 'Outfit', sans-serif;
+}
+/* HEADER */
+header{
+    display:flex;
+    background-color: #4e598c;
+    width: 100vw;
+    height: 40px;
+    justify-content: space-between;
+}
+.inícioHeader{
+    padding-left:20px;
+    margin-top:10px;
+    gap: 40px;
+}
+.meioHeader{ 
+    margin-top: 10px;  
+    
+}
+.fimHeader{
+    padding-right:20px;
+    margin-top:10px;
+}
+
+button{
+    background-color: transparent;
+    color: white;
+    border: none;
+    place-content: space-between;
+}
+
+button:hover{
+    color: #D90368;
+    cursor: pointer;   
+}
+
+.TituloTabela{
+  margin:20px;
+  color: white;  
+}
+
+table{
+    background-color: white;
+    border-radius: 20px;
+    padding:10px;
+    margin-left: 20px;
+    width: 800px;
+    height: 80px;
+}
+
+/* DASHBOARD */
+.Titulos{
+  margin:20px;
+  color: black;  
+}
+
+/* Grupo das Tabelas */
+.Dashboard{
+    display: flex;
+    gap: 40px;
+    justify-content: center; 
+}
+
+/* Elementos tabelas */
+.TableDashboard{
+    width: 360px;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #838691;
+}
+
+/* Borders específicas (esquerda) */
+.Eventos{border-left: 4px solid #4e598c; }
+.Presença{border-left: 4px solid #77A0A9;}
+.Prêmios{border-left: 4px solid #D90368;}
+.Pontos{border-left: 4px solid #4e598c;}
+
+/* ícones */
+.IconesDashboard{
+    margin-left:20px;
+    width:50px;
+}
+.iconeTeam{
+    width: 60px;
+}
+
+/* Tamanhos de fonte */
+.valor{font-size: 25px;}
+
+/* Botão Cirar Evento */
+.criarEvento{
+    background-color:#4e598c;
+    color:white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    margin: 0 20px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/*  */
+.CriarEventoForm{
+    display: flex;
+    background-color: #FFEAEE;
+    border-radius: 40px;
+    display:none;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    font-family: 'Outfit', sans-serif;  
+    margin: 20px;
+    border-color: #838691;
+    border: 2px solid #838691;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.botoesForm{
+    display: flex;
+    gap: 12px;
+    justify-content: center;    
+}
+
+.botaoCriar{
+    background-color: #4e598c; 
+    color: white;
+    border-radius: 6px;
+    padding: 6px;
+    width: 50%;
+    border: 1px solid #4e598c;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+.botaoCancelar{
+    background-color: transparent; 
+    border: 1px solid #838691;
+    color: black;
+    border-radius: 6px;
+    padding: 6px;
+    width: 50%;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+::placeholder{
+    font-family: 'Outfit', sans-serif;
+}
+
+input{
+    width: 600px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #838691;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 8px
+}
+
+label{
+    font-weight: 450;
+    font-size: 16px;
+}
+
+select{
+    width: 620px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #838691;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 8px
+}
+
+option{
+    font-family: 'Outfit', sans-serif;
+}
+
+
+.blur{
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+    user-select: none;
+    pointer-events: none;
+}
+
+
+.TabelaColaboradores{
+    display: grid;
+    justify-items: center;
+    width: 80%;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
