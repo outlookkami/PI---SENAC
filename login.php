@@ -89,6 +89,7 @@
 
             aside {
                 color: white;
+                padding: 10px;
             }
 
             .asidep {
@@ -97,7 +98,7 @@
 
             main {
                 margin-left: 955px;
-                margin-top: -750px;
+                margin-top: -800px;
             }
 
             .textos {

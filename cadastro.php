@@ -90,6 +90,7 @@
       }
       aside {
          color: rgb(255, 255, 255);
+         padding: 10px;
       }
 
       .textos {
@@ -105,7 +106,7 @@
       main {
 
          margin-left: 955px;
-         margin-top: -700px;
+         margin-top: -750px;
       }
 
       form {
