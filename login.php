@@ -1,5 +1,5 @@
 <?php
-include("conexao.php");
+// include("conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -19,11 +19,13 @@ include("conexao.php");
     <aside>
         <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
         <p class="HE">HeyEvent</p>
+    <div class="texto">
         <p class="asidep">Bem-Vindo ao nosso portal!</p>
         <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
         <p>Vizualize eventos futuros</p>
         <p>Confirme sua presença rapidamente</p>
         <p>Participe dos eventos e concorra a prêmios</p>
+    </div>
     </aside>
     <main>
         <div class="topo">
@@ -44,19 +46,19 @@ include("conexao.php");
             <p><a class="npossuicnt" href="cadastro.html">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
         <?php
-        if ($_POST) {
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
+        // if ($_POST) {
+        //     $email = $_POST['email'];
+        //     $senha = $_POST['senha'];
 
-            $sql = "INSERT  INTO login (email, senha) VALUES ('$email', '$senha')";
+        //     $sql = "INSERT  INTO login (email, senha) VALUES ('$email', '$senha')";
 
-            if ($connection->query($sql)) {
-                echo "<script>alert('Dados cadastrados com sucesso');</script>";
-            } else {
-                echo "<p>Erro: Os Dados não foram cadastrados</p>";
-            }
-            $connection->close();
-        }
+        //     if ($connection->query($sql)) {
+        //         echo "<script>alert('Dados cadastrados com sucesso');</script>";
+        //     } else {
+        //         echo "<p>Erro: Os Dados não foram cadastrados</p>";
+        //     }
+        //     $connection->close();
+        // }
         ?>
 
     </main>
