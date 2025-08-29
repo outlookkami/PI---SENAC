@@ -1,0 +1,141 @@
+//CONEXÃO COM O BANCO DE DADOS
+<?php
+    include("conexao.php");
+?>
+
+// HTML
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Administrativo</title>
+    <link rel="stylesheet" href="AdmPortal.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <button><img src="" alt="barrinhas de menu"></button>
+        <button><img src="" alt="logo"></button>
+        <button>Calendário</button>
+        <button>Colaboradores</button>
+        <button><img src="" alt="notificações"></button>
+        <button><img src="" alt="perfil"></button>
+    </header>
+
+    <main>
+        <div class="conteudoPrincipal" id="conteudoPrincipal">
+        <h2 class="TituloDashboard">Dashboard</h2>
+        <div class="Dashboard"> 
+            <br>
+
+            <div> <!-- Eventos Confirmados -->
+                <table class="TableDashboard Eventos">
+                    
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/calendar (1).png" alt="calendário"></td>
+                        <td>Eventos Confirmados</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0</b></td>
+                    </tr>  
+                </table>
+            </div> 
+
+            <div> <!-- Presença Total -->
+                <table class="TableDashboard Presença">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/img/team.png" alt="pessoas"></td>
+                        <td>Presença Total</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0%</b></td>
+                    </tr>     
+                </table>
+            </div>
+
+            <div> <!-- Prêmios Disponíveis -->
+                <table class="TableDashboard Prêmios">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/gift.png" alt="presente"></td>
+                        <td>Prêmios Disponíveis</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>4</b></td>
+                    </tr>  
+                </table>
+            </div>
+            
+            <div> <!-- Pontos Acumulados -->
+                <table class="TableDashboard Pontos">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/star.png" alt="estrela"></td>
+                        <td>Pontos Acumulados</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>2.450</b></td>
+                    </tr>    
+                </table>
+            </div>
+        </div>
+        <br><br>
+        <button class="criarEvento" onclick="mostraForm()">&#43 Criar evento</button>
+    </main>
+        </div>
+        
+    <!-- Formulário de criação de eventos -->
+    <div class="CriarEventoForm" id="formCriarEvento">
+        <form method="post" class="CriarEventoForm"></form>
+            <h2>Criar Novo Evento</h2>
+            <br>
+                <label for="titulo_evento">Título do evento</label><br>
+                <input type="text" name="titulo_evento" placeholder="Digite o título do seu evento">
+            <br><br>
+                <label for="descricao_evento">Descrição</label><br>
+                <input type="text" name="descricao_evento" placeholder="Descreva o evento">
+            <br><br>
+                <label for="data_evento">Data</label><br>
+                <input type="date" name="descricao_evento">
+            <br><br>
+                <label for="horario_evento">Horário</label><br>
+                <input type="text" name="horario_evento" placeholder="Ex: 14:00 - 17:00">
+            <br><br>
+                <label for="local_evento">Local</label><br>
+                <input type="text" name="local_evento" placeholder="Digite o local do evento">
+            <br><br>
+                <label for="categoria_evento">Categoria</label><br>
+                <!-- <input type="text" name="categoria_evento" placeholder="Selecione uma categoria"> -->
+
+                <select name="seleciona_tipo_evento" id="categoria_evento">
+                    <option value="seleção" disabled selected>Selecione uma opção</option>
+                    <option value="Reunião">Reunião</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Festa">Festa</option>
+                    <option value="Palestra">Palestra</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            <br><br>
+                <label for="imagem_evento">Arquivo de imagem (opcional)</label><br>
+                <input type="file"><br><br>
+            <div class="botoesForm">
+                <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
+                <button class="botaoCriar" type="submit" onclick="escondeForm(), criaEvento()">Criar Evento</button>
+            </div>
+    </div>
+
+    <script>
+        function mostraForm(){
+            document.getElementById("formCriarEvento").style.display = "block";
+            document.getElementById("conteudoPrincipal").classList.add("blur");
+        }
+
+        function escondeForm(){
+            document.getElementById("formCriarEvento").style.display = "none";
+            document.getElementById("conteudoPrincipal").classList.remove("blur");
+        }
+    </script>
+</body>
+</html>
