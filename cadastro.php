@@ -41,7 +41,7 @@
          <div class="bdv">
             <h3>Bem-Vindo a HeyEvent</h3>
          </div>
-         <p class="p1">Preencha suas credênciais para acessar sua conta</p>
+         <p class="p1">Preencha suas credênciais para criar sua conta</p>
          <input class="nome" type="text" name="nome" placeholder="Nome Completo">
          <input class="email" type="email" name="email" placeholder="Email">
          <input class="senha" type="text" name="senha" placeholder="Senha"> <br>
@@ -51,11 +51,14 @@
          <select class="tipoconta" name="tipoconta">
             <option value="" disabled selected>Selecione o Tipo de Conta</option>
          </select> <br>
-         <button type="submit">Entrar</button>
+         <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
          <p><a href="empresa.html">É Empresa? Faça seu Cadastro aqui</a></p>
       </form>
+   <?php
+   
 
+   ?>
    </main>
    <style>
       body {
