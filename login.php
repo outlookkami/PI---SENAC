@@ -19,20 +19,21 @@ include("conexao.php");
         <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
         <p class="HE">HeyEvent</p>
 
-            <div class="textos">
-                <div class="pe1">
-                    <img src="assets\Evento.png" alt="">
-                    <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
-                </div>
-                <div class="pe2">
-                    <img src="assets\Calendario.png" alt="">
-                    <p>Vizualize eventos futuros</p>
-                </div>
-                <div class="pe3">
-                    <img src="assets\Confirmar.png" alt="">
-                    <p>Confirme sua presença rapidamente</p>
-                </div>
-</div>
+
+        <div class="pe1">
+            <img src="assets\Evento.png" alt="">
+            <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
+        </div>
+        <div class="pe2">
+            <img src="assets\Calendario.png" alt="">
+            <p>Vizualize eventos futuros</p>
+        </div>
+        <div class="pe3">
+            <img src="assets\Confirmar.png" alt="">
+            <p>Confirme sua presença rapidamente</p>
+        </div>
+
+
     </aside>
     <main>
         <div class="topo">
@@ -139,8 +140,6 @@ include("conexao.php");
             .textos {
                 margin-top: -50px;
                 font-size: 20px;
-                display: flex;
-            
 
             }
 
@@ -173,8 +172,25 @@ include("conexao.php");
                 font-size: 20px;
             }
 
-            .p1 {
-                margin-top: -10px;
+            .pe1 {
+                margin-top: -80px;
+                font-size: 20px;
+                display: flex;
+                padding: 5px;
+            }
+
+            .pe2 {
+                font-size: 20px;
+                display: flex;
+                padding: 5px;
+            }
+
+            .pe3 {
+                font-size: 20px;
+                padding: 25px;
+                gap: 20px;
+                display: flex;
+
             }
 
             input {
@@ -188,10 +204,6 @@ include("conexao.php");
                 margin-top: 30px;
             }
 
-            .pe {
-                display: flex;
-                
-            }
 
             .esqsenha {
                 margin-left: 150px;
