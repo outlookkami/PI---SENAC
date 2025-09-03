@@ -28,7 +28,6 @@
          <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
          <p>Vizualize eventos futuros</p>
          <p>Confirme sua presença rapidamente</p>
-         <p>Participe dos eventos e concorra a prêmios</p>
       </div>
    </aside>
    <main>
