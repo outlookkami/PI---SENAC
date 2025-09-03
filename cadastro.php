@@ -118,6 +118,7 @@
          height: 650px;
          text-align: center;
          margin-left: 250px;
+         
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
       }
