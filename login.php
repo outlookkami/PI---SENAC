@@ -8,7 +8,6 @@ include("conexao.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyEvent</title>
-    <link rel="stylesheet" href="login.css">
     <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,14 +18,21 @@ include("conexao.php");
     <aside>
         <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
         <p class="HE">HeyEvent</p>
-        <div class="texto">
-            <div class="textos">
-                <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
-                <p>Vizualize eventos futuros</p>
-                <p>Confirme sua presença rapidamente</p>
 
-            </div>
-        </div>
+            <div class="textos">
+                <div class="pe1">
+                    <img src="assets\Evento.png" alt="">
+                    <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
+                </div>
+                <div class="pe2">
+                    <img src="assets\Calendario.png" alt="">
+                    <p>Vizualize eventos futuros</p>
+                </div>
+                <div class="pe3">
+                    <img src="assets\Confirmar.png" alt="">
+                    <p>Confirme sua presença rapidamente</p>
+                </div>
+</div>
     </aside>
     <main>
         <div class="topo">
@@ -133,6 +139,8 @@ include("conexao.php");
             .textos {
                 margin-top: -50px;
                 font-size: 20px;
+                display: flex;
+            
 
             }
 
@@ -178,6 +186,11 @@ include("conexao.php");
 
             .senha {
                 margin-top: 30px;
+            }
+
+            .pe {
+                display: flex;
+                
             }
 
             .esqsenha {
