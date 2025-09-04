@@ -19,8 +19,6 @@ include("conexao.php");
     <aside>
         <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
         <p class="HE">HeyEvent</p>
-
-
         <div class="pe1">
             <img src="assets\Evento.png" alt="">
             <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
@@ -33,8 +31,6 @@ include("conexao.php");
             <img src="assets\Confirmar.png" alt="">
             <p>Confirme sua presença rapidamente</p>
         </div>
-
-
     </aside>
     <main>
         <div class="topo">
@@ -47,59 +43,12 @@ include("conexao.php");
             <div class="bdv">
                 <h3>Bem-Vindo de Volta</h3>
             </div>
-
-
             <input class="email" type="email" name="email" placeholder="Email"> <br>
             <input class="senha" type="senha" name="senha" placeholder="Senha">
             <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
             <button type="submit">Entrar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
-        <?php
-        if ($_POST) {
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $sql = "INSERT INTO usuarios_login (email, senha) VALUES ('$email', '$senha')";
-
-            if ($connection->query($sql)) {
-                echo "<script>alert('Dados cadastrados com sucesso');</script>";
-                Entrar();
-            } else {
-                echo "<p>Erro: Os Dados não foram cadastrados</p>";
-            }
-            $connection->close();
-        }
-        function Entrar()
-        {
-            $senha = $_POST['senha'];
-            $senha_cripto = password_hash($senha, PASSWORD_DEFAULT);
-            print_r($senha_cripto);
-            if (password_verify($senha, $senha_cripto)) {
-                echo "<script>alert('Redirecionando...');window.location.href='cadastro.php'</script>";
-            } else {
-                echo "Credenciais erradas.";
-            }
-        }
-
-
-
-
-        ?>
-        <?php
-        // if ($_POST) {
-        //     $email = $_POST['email'];
-        //     $senha = $_POST['senha'];
-
-        //     $sql = "INSERT  INTO login (email, senha) VALUES ('$email', '$senha')";
-
-        //     if ($connection->query($sql)) {
-        //         echo "<script>alert('Dados cadastrados com sucesso');</script>";
-        //     } else {
-        //         echo "<p>Erro: Os Dados não foram cadastrados</p>";
-        //     }
-        //     $connection->close();
-        // }
-        ?>
         <style>
             body {
                 margin: 0;
@@ -114,7 +63,6 @@ include("conexao.php");
 
             .Logo {
                 margin-top: 200px;
-
             }
 
             .HE {
@@ -139,8 +87,6 @@ include("conexao.php");
                 margin-top: -800px;
             }
 
-
-
             form {
                 border-radius: 5px;
                 width: 450px;
@@ -148,7 +94,6 @@ include("conexao.php");
                 text-align: center;
                 margin-left: 250px;
                 box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-
             }
 
             .topo {
@@ -174,7 +119,6 @@ include("conexao.php");
                 margin-top: -80px;
                 font-size: 20px;
                 display: flex;
-               
             }
 
             .pe2 {
@@ -202,11 +146,9 @@ include("conexao.php");
                 margin-top: 30px;
             }
 
-
             .esqsenha {
                 margin-left: 150px;
                 color: #6C0034;
-
             }
 
             .npossuicnt {
