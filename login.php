@@ -7,11 +7,12 @@ include("conexao.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeyEvent</title>
+    <title>Login</title>
     <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets\Icone.png">
 </head>
 
 <body>
@@ -47,10 +48,10 @@ include("conexao.php");
                 <h3>Bem-Vindo de Volta</h3>
             </div>
 
-            <p class="p1">Preencha suas credênciais para acessar sua conta</p>
+
             <input class="email" type="email" name="email" placeholder="Email"> <br>
             <input class="senha" type="senha" name="senha" placeholder="Senha">
-            <p><a class="esqsenha" href="">Esqueceu a senha?</a></p>
+            <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
             <button type="submit">Entrar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
@@ -121,6 +122,7 @@ include("conexao.php");
                 font-family: "Quicksand", sans-serif;
                 font-size: 90px;
                 margin-top: -20px;
+                padding: 20px;
             }
 
             aside {
@@ -137,16 +139,12 @@ include("conexao.php");
                 margin-top: -800px;
             }
 
-            .textos {
-                margin-top: -50px;
-                font-size: 20px;
 
-            }
 
             form {
                 border-radius: 5px;
                 width: 450px;
-                height: 500px;
+                height: 450px;
                 text-align: center;
                 margin-left: 250px;
                 box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
@@ -176,7 +174,7 @@ include("conexao.php");
                 margin-top: -80px;
                 font-size: 20px;
                 display: flex;
-                padding: 5px;
+               
             }
 
             .pe2 {

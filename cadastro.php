@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>HeyEvent</title>
+   <title>Cadastre-se</title>
    <link rel="stylesheet" href="cadastro.css">
    <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +12,7 @@
    <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet">
-      <link rel="shortcut icon" href="assets\Icone.png">
+   <link rel="shortcut icon" href="assets\Icone.png">
 </head>
 
 <body>
@@ -21,14 +21,20 @@
       <div class="HE">
          <p>HeyEvent</p>
       </div>
-      <div class="bvp">
-         <p>Bem-Vindo ao nosso portal!</p>
-      </div>
-      <div class="textos">
+      <div class="pe1">
+         <img src="assets\Evento.png" alt="">
          <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
+      </div>
+      <div class="pe2">
+         <img src="assets\Calendario.png" alt="">
          <p>Vizualize eventos futuros</p>
+      </div>
+      <div class="pe3">
+         <img src="assets\Confirmar.png" alt="">
          <p>Confirme sua presença rapidamente</p>
       </div>
+
+
    </aside>
    <main>
       <div class="topo">
@@ -53,12 +59,11 @@
          </select> <br>
          <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
-         <p><a href="empresa.html">É Empresa? Faça seu Cadastro aqui</a></p>
       </form>
-   <?php
-   
+      <?php
 
-   ?>
+
+      ?>
    </main>
    <style>
       body {
@@ -73,17 +78,18 @@
       }
 
       .Logo {
-         margin-top: 170px;
+            margin-top: 200px;
       }
 
       .HE {
          color: white;
          font-family: "Quicksand", sans-serif;
          font-size: 90px;
-         margin-top: -100px;
-
+         margin-top: -110px;
+         padding: 20px;
       }
-      .bvp{
+
+      .bvp {
          color: white;
          font-family: "Quicksand", sans-serif;
          font-size: 50px;
@@ -91,25 +97,39 @@
 
 
       }
+
+      .pe1 {
+         margin-top: -80px;
+         font-size: 20px;
+         display: flex;
+
+      }
+
+      .pe2 {
+         font-size: 20px;
+         display: flex;
+         padding: 5px;
+      }
+
+      .pe3 {
+         font-size: 20px;
+         padding: 25px;
+         gap: 20px;
+         display: flex;
+
+      }
+
       aside {
          color: rgb(255, 255, 255);
          padding: 10px;
       }
-
-      .textos {
-         margin-top: -40px;
-         font-size: 20px;
-
-      }
-
       .asidep {
          font-size: 40px;
       }
 
       main {
-
          margin-left: 955px;
-         margin-top: -750px;
+         margin-top: -850px;
       }
 
       form {
@@ -118,9 +138,8 @@
          height: 650px;
          text-align: center;
          margin-left: 250px;
-         
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-
+         
       }
 
       .topo {
