@@ -46,7 +46,7 @@ include("conexao.php");
             <input class="email" type="email" name="email" placeholder="Email"> <br>
             <input class="senha" type="senha" name="senha" placeholder="Senha">
             <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
-            <button type="submit">Entrar</button>
+            <button type="submit"><a href="ColabPortal.php">Entrar</a></button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
         <style>
@@ -156,7 +156,7 @@ include("conexao.php");
                 color: black;
             }
 
-            a {
+            a { color: white;
                 text-decoration: none;
             }
 

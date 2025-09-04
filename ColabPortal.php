@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Colaborador</title>
-    <link rel="stylesheet" href="colabPortal.css">
+    <!-- <link rel="stylesheet" href="colabPortal.css"> -->
+    <link rel="shortcut icon" href="assets\Icone.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- https://replit.com/@kamillyt/TeamConnect -->
 </head>
@@ -13,19 +19,19 @@
 <body>
     <header>
         <div class="inícioHeader">
-            <button class="paginas"><img src="" alt="barrinhas de menu"></button>
-            <button class="paginas"><img src="" alt="logo"></button>
+            <button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
+            <button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button>
         </div>
         <div class="meioHeader">
             <button class="paginas">Dashboard</button>
             <button class="paginas">Eventos</button>
-            <button class="paginas">Calendário</button>
+            <button class="paginas"><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</button>
             <button class="paginas">Prêmios</button>
         </div>
         <div class="fimHeader">
-            <button class="paginas"><img src="" alt="notificações"></button>
-            <button class="paginas"><img src="" alt="perfil"></button>
-            <button class="paginas">Sair</button>
+            <button class="paginas"><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">notificaçoes</button>
+            <button class="paginas"><img class="user" src="assets\user.png" alt="perfil">perfil</button>
+            <button class="paginas"><img class="sair" src="assets\sair.png" alt="">Sair</button>
         </div>
     </header>
 
@@ -107,10 +113,10 @@
                     <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário"> 15 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio"> 09:00 - 17:00</td>
+                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 09:00 - 17:00</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/pin.png" alt="ícone mapa">Auditório Principal</td>
+                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
                 </tr>
                 <tr>
                     <td> 25 confirmados</td>
@@ -139,10 +145,10 @@
                     <td class="IconesEventos"><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">18 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio">14:00 - 16:00</td>
+                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio">14:00 - 16:00</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/pin.png" alt="ícone mapa">Sala de conferência A</td>
+                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Sala de conferência A</td>
                 </tr>
                 <tr>
                     <td> +12 confirmados</td>
@@ -171,10 +177,10 @@
                     <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">22 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/time.png" alt="ícone relógio">18:00 - 22:00</td>
+                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio">18:00 - 22:00</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/pin.png" alt="ícone mapa">Salão de Eventos</td>
+                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Salão de Eventos</td>
                 </tr>
                 <tr>
                     <td> 87 confirmados</td>
@@ -200,14 +206,15 @@
         }
 
         body {
-            background-color: #FFEAEE;
+            background-color: #ffffffff;
             /* background: linear-gradient (to bottom, #000f55, #6c0034); */
         }
 
         /* HEADER */
         header {
             display: flex;
-            background-color: #4e598c;
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
             width: 100vw;
             height: 50px;
             padding: 15px;
@@ -313,6 +320,7 @@
             width: 480px;
             height: 100px;
             border-spacing: 15px;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
         }
 
         .imagensIlustrativasEventos {
@@ -355,6 +363,40 @@
             margin-left: 20px;
             width: 800px;
             height: 80px;
+        }
+
+
+
+        body {
+            font-family: "Raleway", sans-serif;
+        }
+
+        .menu {
+            width: 20px;
+        }
+
+        .Logo {
+            width: 30px;
+        }
+
+        .calendario {
+            width: 60px;
+        }
+
+        .sair {
+            width: 30px;
+        }
+
+        .notificaçoes {
+            width: 30px;
+        }
+
+        .user {
+            width: 40px;
+        }
+        .relogio{
+        
+            width: 18px;
         }
     </style>
 </body>

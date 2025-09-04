@@ -59,7 +59,7 @@
             <option value="">Administrador</option>
             <option value="">Colaborador</option>
          </select> <br>
-         <button type="submit">Cadastrar</button>
+         <button type="submit"><a class="acad" href="admPortal.php">Cadastrar</a></button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
       </form>
       <?php
@@ -158,6 +158,9 @@
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
       }
+      .possuicnt{
+         color: black;
+      }
 
       .topo {
          margin-top: 10px;
@@ -218,8 +221,9 @@
 
       a {
          text-decoration: none;
-         color: black;
+         color: white;
       }
+  
 
       button {
          height: 40px;
