@@ -110,7 +110,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário"> 15 de Dezembro, 2025</td>
+                    <td><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"> 15 de Dezembro, 2025</td>
                 </tr>
                 <tr>
                     <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 09:00 - 17:00</td>
@@ -142,10 +142,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="IconesEventos"><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">18 de Dezembro, 2025</td>
+                    <td class="IconesEventos"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">18 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio">14:00 - 16:00</td>
+                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
                 </tr>
                 <tr>
                     <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Sala de conferência A</td>
@@ -174,10 +174,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/img/calendar (2).png" alt="ícone calendário">22 de Dezembro, 2025</td>
+                    <td><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">22 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio">18:00 - 22:00</td>
+                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 18:00 - 22:00</td>
                 </tr>
                 <tr>
                     <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Salão de Eventos</td>
@@ -397,6 +397,9 @@
         .relogio{
         
             width: 18px;
+        }
+        .calendariop{
+            width: 25px;
         }
     </style>
 </body>
