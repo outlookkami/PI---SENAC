@@ -1,3 +1,6 @@
+<?php
+include("conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -48,18 +51,21 @@
             <h3>Bem-Vindo a HeyEvent</h3>
          </div>
          <p class="p1">Preencha suas credênciais para criar sua conta</p>
-         <input class="nome" type="text" name="nome" placeholder="Nome Completo" required>
-         <input class="email" type="email" name="email" placeholder="Email" required>
+         <input class="nome" type="text" name="nome_user" placeholder="Nome Completo" required>
+         <input class="email" type="email" name="email_user" placeholder="Email" required>
          <input class="senha" type="text" name="senha" placeholder="Senha" required> <br>
-         <select class="empresa" name="empresa">
-            <option value="" disabled selected>Selecione sua Empresa</option> <br>
+         <select class="empresa" name="id_empresa" >
+            <option value="" disabled selected>Selecione sua Empresa</option>
+            <!-- <option value="1">RP Info</option>
+            <option value="2">Hipe Innovation Center</option> -->
+
          </select>
-         <select class="tipoconta" name="tipoconta">
+         <select class="tipoconta" name="nivel" >
             <option value="" disabled selected>Selecione o Tipo de Conta</option>
-            <option value="">Administrador</option>
-            <option value="">Colaborador</option>
+            <option value="<?php echo $row['nome']; ?>">Administrador</option>
+            <option value="<?php echo $row['nome']; ?>">Colaborador</option>
          </select> <br>
-         <button type="submit"><a class="acad" href="admPortal.php">Cadastrar</a></button>
+         <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
       </form>
       <?php
@@ -67,7 +73,27 @@
 
       ?>
    </main>
-   <script>
+   <?php
+   if ($_POST) {
+      $nome = $_POST['nome_user'];
+      $email = $_POST['email_user'];
+      $senha = $_POST['senha'];
+      $empresa = $_POST['id_empresa'];
+      $conta = $_POST['nivel'];
+
+      $sql = "INSERT INTO usuarios_cadastro (nome_user, email_user, senha, empresa, nivel) VALUES ('$nome', '$email', '$senha', '$empresa', '$conta')";
+
+      if ($connection->query($sql)) {
+         echo "<script>alert('Dados cadastrados com sucesso');</script>";
+      } else {
+         echo "<p>Erro: Os Dados não foram cadastrados</p>";
+      }
+      $connection->close();
+   }
+
+   
+   ?>
+   <!-- <script>
       document.getElementById("FormCad").addEventListener("submit, function (MostrarAlerta{)");
       {
          const email = document.getElementById("email").value.trim();
@@ -80,7 +106,7 @@
       function MostrarAlerta() {
 
       }
-   </script>
+   </script> -->
    <style>
       body {
          margin: 0;
@@ -158,7 +184,8 @@
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
       }
-      .possuicnt{
+
+      .possuicnt {
          color: black;
       }
 
@@ -223,7 +250,7 @@
          text-decoration: none;
          color: white;
       }
-  
+
 
       button {
          height: 40px;
