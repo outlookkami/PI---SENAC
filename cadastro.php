@@ -67,6 +67,7 @@ if (!$result) {
                </option>
             <?php } ?>
          </select>
+         <p><a class="acharempresa" href="CriarEmpresa.php">Não achou sua Empresa?</a></p>
          <!-- <select class="tipoconta" name="nivel">
             <option value="" disabled selected>Selecione o Tipo de Conta</option>
             <option value="">Administrador</option>
