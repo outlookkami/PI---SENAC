@@ -87,27 +87,36 @@
     <!-- Formulário de criação de eventos -->
     <div class="CriarEventoForm" id="formCriarEvento">
         <form method="post" class="CriarEventoForm"></form>
-        <h2 class="CNE">Criar Novo Evento</h2>
+        <h2 class="CNE">Criar Novo Evento</h2><br>
         <label for="titulo_evento"><b>Título do evento</b></label><br>
-        <input class="inpt1" type="text" name="titulo_evento" placeholder="Digite o título do seu evento">
+        <input class="inpt1" type="text" name="titulo_evento" id="titulo_evento" placeholder="Digite o título do seu evento">
         <br><br>
         <label for="descricao_evento"><b>Descrição</b></label><br>
-        <input class="inpt1" type="text" name="descricao_evento" placeholder="Descreva o evento">
+        <input class="inpt1" type="text" name="descricao_evento" id="descricao_evento" placeholder="Descreva o evento">
         <br><br>
         <label for="data_evento"><b>Data</b></label><br>
-        <input class="inpt1" type="date" name="descricao_evento" id="ApiCalendario" >
+        <input class="inpt1" type="date" name="data_evento" id="data_evento" >
         <br><br>
         <label for="horario_evento"><b>Horário</b></label><br>
-        <input class="inpt1" type="text" name="horario_evento" placeholder="Ex: 14:00 - 16:00">
+        <input class="inpt1" type="text" name="horario_evento" id="horario_evento" placeholder="Ex: 14:00 - 16:00">
         <br><br>
         <label for="local_evento"><b>Local</b></label><br>
-        <input class="inpt1" type="text" name="local_evento" placeholder="Digite o local do evento">
+        <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
         <br><br>
         <label for="categoria_evento"><b>Categoria</b></label><br>
-        <input class="inpt1" type="text" name="categoria_evento" placeholder="Selecione uma categoria">
+            <select name="seleciona_tipo_evento" id="categoria_evento">
+                <option value="seleção" disabled selected>Selecione uma opção</option>
+                <option value="Reunião">Reunião</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Festa">Festa</option>
+                <option value="Palestra">Palestra</option>
+                <option value="Outros">Outros</option>
+            </select>
         <br><br>
         <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-        <input class="file" type="file"><br><br>
+        <input class="file" type="file" id="botaoArquivos">
+        <label for="botaoArquivos" class="estiloFile">Escolher arquivo</label>
+        <br><br>
         <button class="botaoCancelar" onclick="escondeForm()">Cancelar</button>
         <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
     </div>
@@ -124,25 +133,23 @@
             document.getElementById("formCriarEvento").style.display = "none";
         }
 
-
-
-
     </script>
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-color: #ffffffff;
+            font-family: 'Raleway', sans-serif;
         }
 
         /* HEADER */
         header {
             display: flex;
-
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
             background-repeat: no-repeat;
             width: 100vw;
@@ -283,8 +290,9 @@
             color: white;
             border-radius: 6px;
             padding: 6px;
-            width: 90px;
+            width: 120px;
             border: 1px solid #000F55;
+            font-size: 14px;
         }
 
         .botaoCancelar {
@@ -293,7 +301,8 @@
             color: black;
             border-radius: 6px;
             padding: 6px;
-            width: 90px;
+            width: 120px;
+            font-size: 14px;
         }
 
         .menu {
@@ -332,8 +341,34 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 20px;
+            padding: 40px;
 
+        }
+
+        select{
+            height: 40px;
+            width: 300px;
+            border-radius: 8px;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            font-family: "Raleway", sans-serif;
+            font-size: 14px;
+        }
+
+        .file{
+            display: none;
+        }
+
+        .estiloFile{
+            background-color: #4e598c;
+            color: white;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 4px;
+            padding: 6px;
+            font-size: 12px;
         }
 
         ::placeholder {

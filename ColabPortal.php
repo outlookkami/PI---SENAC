@@ -196,6 +196,9 @@
         <h3>Calendário de Eventos</h3>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
+        <script src='js/index.global.min.js'></script>
+
+
     </main>
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
@@ -203,11 +206,12 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-color: #ffffffff;
-            /* background: linear-gradient (to bottom, #000f55, #6c0034); */
+            font-family: 'Raleway', sans-serif;
         }
 
         /* HEADER */
