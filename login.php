@@ -1,5 +1,34 @@
 <?php
 include("conexao.php");
+session_start();
+
+
+if ($_POST) {
+    $email = $_POST['email_user'];
+    $senha = $_POST['senha_user'];
+
+  
+    $sql = "SELECT * FROM usuarios WHERE email_user = '$email' AND senha_user = '$senha'";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
+
+      
+        $_SESSION['ID_user'] = $usuario['ID_user'];
+        $_SESSION['nome_user'] = $usuario['nome_user'];
+        $_SESSION['niveis'] = $usuario['niveis'];
+
+        if ($usuario['niveis'] ===  "1" ) {
+            header("Location: admPortal.php");
+        } elseif ($usuario['niveis'] === "2") {
+            header("Location: ColabPortal.php");
+        }
+        exit;
+    } else {
+        echo "<script>alert('Email ou senha incorretos!');</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -43,10 +72,10 @@ include("conexao.php");
             <div class="bdv">
                 <h3>Bem-Vindo de Volta</h3>
             </div>
-            <input class="email" type="email" name="email" placeholder="Email"> <br>
-            <input class="senha" type="senha" name="senha" placeholder="Senha">
+            <input class="email" type="email" name="email_user" placeholder="Email"> <br>
+            <input class="senha" type="senha" name="senha_user" placeholder="Senha">
             <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
-            <button type="submit"><a href="ColabPortal.php">Entrar</a></button>
+            <button type="submit">Entrar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
         <style>
@@ -156,7 +185,8 @@ include("conexao.php");
                 color: black;
             }
 
-            a { color: white;
+            a {
+                color: white;
                 text-decoration: none;
             }
 

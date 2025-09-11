@@ -1,6 +1,14 @@
 <?php
 include("conexao.php");
+
+if ($_POST) {
+    $email = $_POST['email_user'];
+    $sql = "SELECT * FROM usuarios WHERE email_user = '$email'";
+    $result = $connection->query($sql);
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -26,54 +34,10 @@ include("conexao.php");
 
 
             <input class="email" type="email" name="email" placeholder="Email"> <br>
-            <button type="submit">Próximo</button>
+            <button type="submit">Avançar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
-        <?php
-        if ($_POST) {
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $sql = "INSERT INTO usuarios_login (email, senha) VALUES ('$email', '$senha')";
 
-            if ($connection->query($sql)) {
-                echo "<script>alert('Dados cadastrados com sucesso');</script>";
-                Entrar();
-            } else {
-                echo "<p>Erro: Os Dados não foram cadastrados</p>";
-            }
-            $connection->close();
-        }
-        function Entrar()
-        {
-            $senha = $_POST['senha'];
-            $senha_cripto = password_hash($senha, PASSWORD_DEFAULT);
-            print_r($senha_cripto);
-            if (password_verify($senha, $senha_cripto)) {
-                echo "<script>alert('Redirecionando...');window.location.href='cadastro.php'</script>";
-            } else {
-                echo "Credenciais erradas.";
-            }
-        }
-
-
-
-
-        ?>
-        <?php
-        // if ($_POST) {
-        //     $email = $_POST['email'];
-        //     $senha = $_POST['senha'];
-
-        //     $sql = "INSERT  INTO login (email, senha) VALUES ('$email', '$senha')";
-
-        //     if ($connection->query($sql)) {
-        //         echo "<script>alert('Dados cadastrados com sucesso');</script>";
-        //     } else {
-        //         echo "<p>Erro: Os Dados não foram cadastrados</p>";
-        //     }
-        //     $connection->close();
-        // }
-        ?>
         <style>
             body {
                 margin: 0;
@@ -113,7 +77,7 @@ include("conexao.php");
                 text-align: center;
                 box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
                 background-color: white;
-                margin-left: 750px;
+                margin-left: 740px;
                 margin-top: -20px;
 
             }
