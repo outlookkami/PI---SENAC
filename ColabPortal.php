@@ -30,7 +30,7 @@
         </div>
         <div class="fimHeader">
             <button class="paginas"><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">notificaçoes</button>
-            <button class="paginas"><img class="user" src="assets\user.png" alt="perfil">perfil</button>
+            <button class="paginas"><img class="user" src="assets\user.png" alt="perfil"><a href="Perfil.php">perfil</a></button>
             <button class="paginas"><img class="sair" src="assets\sair.png" alt="">Sair</button>
         </div>
     </header>

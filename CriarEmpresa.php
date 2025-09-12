@@ -1,18 +1,18 @@
 <?php
 include("conexao.php");
- if ($_POST) {
-        $nome_empresa = $_POST['nome_empresa'];
-        $cnpj = $_POST['cnpj'];
+if ($_POST) {
+    $nome_empresa = $_POST['nome_empresa'];
+    $cnpj = $_POST['cnpj'];
 
-        $sql = "INSERT INTO empresas (nome_empresa, cnpj) VALUES ('$nome_empresa', '$cnpj')";
+    $sql = "INSERT INTO empresas (nome_empresa, cnpj) VALUES ('$nome_empresa', '$cnpj')";
 
-        if ($connection->query($sql)) {
-            echo "<script>alert('Dados cadastrados com sucesso'); </script>";
-        } else {
-            echo "<p>Erro: Os Dados não foram cadastrados</p>";
-        }
-        $connection->close();
+    if ($connection->query($sql)) {
+        echo "<script>alert('Dados cadastrados com sucesso'); </script>";
+    } else {
+        echo "<p>Erro: Os Dados não foram cadastrados</p>";
     }
+    $connection->close();
+}
 
 
 ?>
@@ -31,17 +31,18 @@ include("conexao.php");
         rel="stylesheet">
     <link rel="shortcut icon" href="assets\Icone.png">
 </head>
+
 <body>
-     <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
-     <p class="HE">HeyEvent</p>
-         <form action="" method="post">
+    <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
+    <p class="HE">HeyEvent</p>
+    <form action="" method="post">
         <div class="bdv">
             <h3>Bem-Vindo a HeyEvent</h3>
         </div>
         <p class="p1">Preencha as Informações da sua Empresa</p>
         <input class="nome" type="text" name="nome_empresa" placeholder="Empresa" required><br>
-        <input class="cnpj"  name="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" 
-           placeholder="CNPJ" required> <br>
+        <input class="cnpj" name="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}"
+            placeholder="CNPJ" required> <br>
         <button type="submit">Cadastrar</button>
         <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
     </form>
@@ -52,94 +53,97 @@ include("conexao.php");
 
 </body>
 <style>
-    
-     body {
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                font-family: "Raleway", sans-serif;
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: "Raleway", sans-serif;
 
-                background-image: linear-gradient(to bottom, #000F55, #6C0034);
-                background-repeat: no-repeat;
-            }
+        background-image: linear-gradient(to bottom, #000F55, #6C0034);
+        background-repeat: no-repeat;
+    }
 
-            .Logo {
-                margin-top: 100px;
-                margin-left: 870px;
-            }
+    .Logo {
+        margin-top: 100px;
+        margin-left: 870px;
+    }
 
-            .HE {
-                color: white;
-                font-family: "Quicksand", sans-serif;
-                font-size: 60px;
-                margin-top: -20px;
-                text-align: center;
-            }
+    .HE {
+        color: white;
+        font-family: "Quicksand", sans-serif;
+        font-size: 60px;
+        margin-top: -20px;
+        text-align: center;
+    }
 
-            .textos {
-                margin-top: -50px;
-                font-size: 20px;
+    .textos {
+        margin-top: -50px;
+        font-size: 20px;
 
-            }
-            .nome{
-                margin-top: -70px;
-            }
-            .cnpj{
-                margin-top: 20px;
-            }
-            form {
-                border-radius: 5px;
-                width: 450px;
-                height: 400px;
-                text-align: center;
-                box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-                background-color: white;
-                margin-left: 740px;
-                margin-top: -20px;
+    }
 
-            }
-            .p1{
-                margin-top: -20px;
-            }
+    .nome {
+        margin-top: -70px;
+    }
 
-            h2 {
-                color: #000F55;
-                margin-top: -40px;
-                margin-left: -10px;
-                text-align: center;
-                font-size: 30px;
-            }
+    .cnpj {
+        margin-top: 20px;
+    }
 
-            .bdv {
-                color: #000F55;
-                padding: 20px;
-                font-size: 20px;
-            }
+    form {
+        border-radius: 5px;
+        width: 450px;
+        height: 400px;
+        text-align: center;
+        box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+        background-color: white;
+        margin-left: 740px;
+        margin-top: -20px;
 
+    }
 
-            input {
-                
-                height: 40px;
-                width: 300px;
-                border-radius: 8px;
-                border-style: solid;
-            }
+    .p1 {
+        margin-top: -20px;
+    }
+
+    h2 {
+        color: #000F55;
+        margin-top: -40px;
+        margin-left: -10px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .bdv {
+        color: #000F55;
+        padding: 20px;
+        font-size: 20px;
+    }
 
 
-            a {
-                text-decoration: none;
-                color: black;
-            }
+    input {
 
-            button {
-                height: 40px;
-                width: 300px;
-                border-radius: 8px;
-                border-style: none;
-                background-color: #000F55;
-                color: white;
-                margin-top: 20PX;
-            }
+        height: 40px;
+        width: 300px;
+        border-radius: 8px;
+        border-style: solid;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    button {
+        height: 40px;
+        width: 300px;
+        border-radius: 8px;
+        border-style: none;
+        background-color: #000F55;
+        color: white;
+        margin-top: 20PX;
+    }
 </style>
 
 </html>

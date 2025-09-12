@@ -242,8 +242,11 @@ if ($_POST) {
          border-style: solid;
          border-color: black;
          border-width: 1px;
+         font-family: "Raleway", sans-serif;
       }
-
+      select{
+         font-family: "Raleway", sans-serif;
+      }
       .email {
          margin-top: 30px;
       }

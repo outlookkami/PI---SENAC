@@ -22,7 +22,7 @@
         <button><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
         <button><img class="calendario" src="assets\Calendario.png" alt="">Calendário</button>
         <button><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</button>
-        <button><img class="user" src="assets\user.png" alt="perfil"></button>
+        <a href="Perfil.php"><button><img class="user" src="assets\user.png" alt="perfil"></button></a>
     </header>
 
     <main>

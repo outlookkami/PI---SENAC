@@ -184,6 +184,7 @@ if ($_POST) {
             width: 300px;
             border-radius: 8px;
             border-style: solid;
+            font-family: "Raleway", sans-serif;
         }
 
         .senha {
