@@ -40,7 +40,8 @@ include("conexao.php");
         </div>
         <p class="p1">Preencha as Informações da sua Empresa</p>
         <input class="nome" type="text" name="nome_empresa" placeholder="Empresa" required><br>
-        <input class="cnpj"  name="cnpj" placeholder="CNPJ" required> <br>
+        <input class="cnpj"  name="cnpj" pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}" 
+           placeholder="CNPJ" required> <br>
         <button type="submit">Cadastrar</button>
         <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
     </form>

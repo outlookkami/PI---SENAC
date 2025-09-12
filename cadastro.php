@@ -2,15 +2,37 @@
 include("conexao.php");
 $sql = "SELECT ID, nome_empresa FROM empresas";
 
-$resultempresa= $connection->query($sql);
+$resultempresa = $connection->query($sql);
 if (!$resultempresa) {
    die("Erro na consulta: " . $connection->error);
 }
 $sql = "SELECT ID_nivel, niveis FROM acessos";
 $result = $connection->query($sql);
+
 if (!$result) {
-    die("Erro na consulta de acessos: " . $connection->error);
+   die("Erro na consulta de acessos: " . $connection->error);
 }
+if ($_POST) {
+   $nome = $_POST['nome_user'];
+   $email = $_POST['email_user'];
+   $senha = $_POST['senha_user'];
+   $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+   // $ID = $_POST['nome_empresa'];
+   $ID_nivel = $_POST['niveis'];
+   // $conta = $_POST['nivel'];
+   
+
+   $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user,  niveis) VALUES ('$nome', '$email', '$senhaHash', $ID_nivel)";
+
+
+   if ($connection->query($sql)) {
+      echo "<script>alert('Dados cadastrados com sucesso');</script>";
+   } else {
+      echo "<p>Erro: Os Dados não foram cadastrados</p>";
+   }
+   $connection->close();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -47,8 +69,6 @@ if (!$result) {
          <img src="assets\Confirmar.png" alt="">
          <p>Confirme sua presença rapidamente</p>
       </div>
-
-
    </aside>
    <main>
       <div class="topo">
@@ -64,7 +84,7 @@ if (!$result) {
          <p class="p1">Preencha suas credênciais para criar sua conta</p>
          <input class="nome" type="text" name="nome_user" placeholder="Nome Completo" required>
          <input class="email" type="email" name="email_user" placeholder="Email" required>
-         <input class="senha" type="text" name="senha_user" placeholder="Senha" required> <br>
+         <input class="senha" id="senha" type="password" name="senha_user" placeholder="Senha" required> <img id="senhaimg" onclick="mudarimagem()" style="cursor: pointer;" class="senhaimg" src="assets\senhaesconder.png" alt=""> <br>
          <select class="empresa" name="nome_empresa">
             <option value="" disabled selected>Selecione sua Empresa</option>
             <?php while ($row = $resultempresa->fetch_assoc()) { ?>
@@ -73,7 +93,7 @@ if (!$result) {
                </option>
             <?php } ?>
          </select>
-         <select name="niveis" class="acessos">
+         <select name="niveis" class="acessos" required>
             <option value="" disabled selected>Selecione seu Nivel de Acesso</option>
             <?php while ($row = $result->fetch_assoc()) { ?>
                <option value="<?php echo $row['ID_nivel']; ?>">
@@ -81,35 +101,25 @@ if (!$result) {
                </option>
             <?php } ?>
          </select>
-
          <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
          <p><a class="nencempresa" href="CriarEmpresa.php">Não Encontra sua empresa? Cadastre ela aqui</a></p>
       </form>
-
    </main>
-   <?php
-   if ($_POST) {
-      $nome = $_POST['nome_user'];
-      $email = $_POST['email_user'];
-      $senha = $_POST['senha_user'];
-      $ID = $_POST['nome_empresa'];
-      $ID_nivel = $_POST['niveis'];
-      // $conta = $_POST['nivel'];
-      
-      $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, nome_empresa, niveis) VALUES ('$nome', '$email', '$senha', '$ID', $ID_nivel)"  ;
+   <script>
+      function mudarimagem() {
+         const senhaimg = document.getElementById('senhaimg');
+         const senhatxt = document.getElementById('senha');
 
-
-      if ($connection->query($sql)) {
-         echo "<script>alert('Dados cadastrados com sucesso');</script>";
-      } else {
-         echo "<p>Erro: Os Dados não foram cadastrados</p>";
+         if (senhaimg.getAttribute("src") === "assets/senhaesconder.png") {
+            senhaimg.setAttribute("src", "assets/senhaver.png");
+            senhatxt.type = "Text";
+         } else {
+            senhaimg.setAttribute("src", "assets/senhaesconder.png");
+            senhatxt.type = "password";
+         }
       }
-      $connection->close();
-   }
-
-
-   ?>
+   </script>
    <style>
       body {
          margin: 0;
@@ -120,6 +130,12 @@ if (!$result) {
          background-image: linear-gradient(to bottom, #000F55, #6C0034);
          background-repeat: no-repeat;
          background-size: 50% 100%;
+      }
+
+      .senhaimg {
+         display: flex;
+         margin-left: 340px;
+         margin-top: -35px;
       }
 
       .Logo {
@@ -269,5 +285,4 @@ if (!$result) {
       }
    </style>
 </body>
-
 </html>
