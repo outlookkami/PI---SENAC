@@ -18,11 +18,11 @@
 
 <body>
     <header>
-        <button><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
-        <button><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
-        <button><img class="calendario" src="assets\Calendario.png" alt="">Calendário</button>
-        <button><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</button>
-        <button><img class="user" src="assets\user.png" alt="perfil"></button>
+        <button><img class="menu" src="assets/menu.png" alt="barrinhas de menu"></button>
+        <button><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
+        <button><img class="calendario" src="assets/Calendario.png" alt="">Calendário</button>
+        <button><img class="notificaçoes" src="assets/notificacoes.png" alt="notificações">Notificações</button>
+        <button><img class="user" src="assets/user.png" alt="perfil"></button>
     </header>
 
     <main>
@@ -35,7 +35,7 @@
                     <table class="TableDashboard Eventos">
 
                         <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/img/calendar (1).png" alt="calendário"></td>
+                            <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
                             <td>Eventos Confirmados</td>
                         </tr>
                         <tr>
@@ -47,7 +47,7 @@
                 <div> <!-- Presença Total -->
                     <table class="TableDashboard Presença">
                         <tr>
-                            <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/img/team.png" alt="pessoas"></td>
+                            <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
                             <td>Presença Total</td>
                         </tr>
                         <tr>
@@ -59,7 +59,7 @@
                 <div> <!-- Prêmios Disponíveis -->
                     <table class="TableDashboard Prêmios">
                         <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/img/gift.png" alt="presente"></td>
+                            <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                             <td>Prêmios Disponíveis</td>
                         </tr>
                         <tr>
@@ -71,7 +71,7 @@
                 <div> <!-- Pontos Acumulados -->
                     <table class="TableDashboard Pontos">
                         <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/img/star.png" alt="estrela"></td>
+                            <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                             <td>Pontos Acumulados</td>
                         </tr>
                         <tr>
@@ -80,6 +80,7 @@
                     </table>
                 </div>
             </div>
+            <br><br>
 
             <button class="criarEvento" onclick="mostraForm()">&#43 Criar evento</button>
     </main>
@@ -97,8 +98,17 @@
         <label for="data_evento"><b>Data</b></label><br>
         <input class="inpt1" type="date" name="data_evento" id="data_evento" >
         <br><br>
-        <label for="horario_evento"><b>Horário</b></label><br>
-        <input class="inpt1" type="text" name="horario_evento" id="horario_evento" placeholder="Ex: 14:00 - 16:00">
+        <label><b>Horário</b></label><br>
+        <div class="horarios">
+            <div>
+                <label for="horario_inicio_evento"><b>Início</b></label><br>
+                <input class="inpt1" type="time" name="horario_inicio_evento" id="horario_inicio_evento" placeholder="Ex: 14:00">
+            </div>
+            <div>
+                <label for="horario_fim_evento"><b>Fim</b></label><br>
+                <input class="inpt1" type="time" name="horario_fim_evento" id="horario_fim_evento" placeholder="Ex: 16:00"></div>
+        </div>
+
         <br><br>
         <label for="local_evento"><b>Local</b></label><br>
         <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
@@ -256,7 +266,7 @@
             font-size: 25px;
         }
 
-        /* Botão Cirar Evento */
+        /* Botão Criar Evento */
         .criarEvento {
             background-color: #4e598c;
             color: white;
@@ -266,6 +276,7 @@
             width: 120px;
             text-align: center;
             cursor: pointer;
+            margin: 20px;
         }
 
         /* .CriarEventoForm {
@@ -342,7 +353,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 40px;
+        }
 
+        .horarios {
+            display: flex;
+            gap: 40px;
+        }
+
+        .horarios label {
+            font-size: 13px;
+        }
+
+        .horarios input {
+            display: flex;
+            flex-direction: row;
+            width: 130px;
         }
 
         select{

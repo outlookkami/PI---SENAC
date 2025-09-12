@@ -91,12 +91,12 @@
 
         <br><br><br><br><br>
 
-        <h3>Próximos Eventos</h3>
+        <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
         <div class="ProximosEventos">
             <table class="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
+                    <td><img class="imagensIlustrativasEventos" src="assets/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
                 </tr>
                 <tr>
                     <td>
@@ -128,7 +128,7 @@
 
             <table class="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
+                    <td><img class="imagensIlustrativasEventos" src="assets/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
                 </tr>
                 <tr>
                     <td>
@@ -158,9 +158,9 @@
                 </tr>
             </table>
 
-            <table class="TableEventos">
+            <table class="TableEventos" id="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
+                    <td><img class="imagensIlustrativasEventos" src="assets/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
                 </tr>
                 <tr>
                     <td>
@@ -193,10 +193,10 @@
 
         <br><br>
 
-        <h3>Calendário de Eventos</h3>
+        <h2>Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
-        <script src='js/index.global.min.js'></script>
+        
 
 
     </main>
@@ -220,7 +220,7 @@
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
             background-repeat: no-repeat;
             width: 100vw;
-            height: 50px;
+            height: 70px;
             padding: 15px;
             justify-content: space-between;
             justify-content: center;
@@ -309,6 +309,9 @@
         }
 
         /* PRÓXIMOS EVENTOS:  */
+        .tituloProxEven{
+            margin-left: 20px;
+        }
         /* Grupo das tabelas */
         .ProximosEventos {
             display: flex;

@@ -1,9 +1,15 @@
 <?php
 include("conexao.php");
 $sql = "SELECT ID, nome_empresa FROM empresas";
+
+$resultempresa= $connection->query($sql);
+if (!$resultempresa) {
+   die("Erro na consulta: " . $connection->error);
+}
+$sql = "SELECT ID_nivel, niveis FROM acessos";
 $result = $connection->query($sql);
 if (!$result) {
-   die("Erro na consulta: " . $connection->error);
+    die("Erro na consulta de acessos: " . $connection->error);
 }
 ?>
 <!DOCTYPE html>
@@ -56,40 +62,42 @@ if (!$result) {
             <h3>Bem-Vindo a HeyEvent</h3>
          </div>
          <p class="p1">Preencha suas credênciais para criar sua conta</p>
-         <input class="nome" type="text" name="nome" placeholder="Nome Completo" required>
-         <input class="email" type="email" name="email" placeholder="Email" required>
-         <input class="senha" type="text" name="senha" placeholder="Senha" required> <br>
-         <select class="empresa" name="ID">
+         <input class="nome" type="text" name="nome_user" placeholder="Nome Completo" required>
+         <input class="email" type="email" name="email_user" placeholder="Email" required>
+         <input class="senha" type="text" name="senha_user" placeholder="Senha" required> <br>
+         <select class="empresa" name="nome_empresa">
             <option value="" disabled selected>Selecione sua Empresa</option>
-            <?php while ($row = $result->fetch_assoc()) { ?>
+            <?php while ($row = $resultempresa->fetch_assoc()) { ?>
                <option value="<?php echo $row['ID']; ?>">
                   <?php echo $row['nome_empresa']; ?>
                </option>
             <?php } ?>
          </select>
-         <p><a class="acharempresa" href="CriarEmpresa.php">Não achou sua Empresa?</a></p>
-         <!-- <select class="tipoconta" name="nivel">
-            <option value="" disabled selected>Selecione o Tipo de Conta</option>
-            <option value="">Administrador</option>
-            <option value="">Colaborador</option>
-         </select> <br> -->
+         <select name="niveis" class="acessos">
+            <option value="" disabled selected>Selecione seu Nivel de Acesso</option>
+            <?php while ($row = $result->fetch_assoc()) { ?>
+               <option value="<?php echo $row['ID_nivel']; ?>">
+                  <?php echo $row['niveis']; ?>
+               </option>
+            <?php } ?>
+         </select>
+
          <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
+         <p><a class="nencempresa" href="CriarEmpresa.php">Não Encontra sua empresa? Cadastre ela aqui</a></p>
       </form>
-      <?php
 
-
-      ?>
    </main>
    <?php
    if ($_POST) {
-      $nome = $_POST['nome'];
-      $email = $_POST['email'];
-      $senha = $_POST['senha'];
-      $ID = $_POST['ID'];
+      $nome = $_POST['nome_user'];
+      $email = $_POST['email_user'];
+      $senha = $_POST['senha_user'];
+      $ID = $_POST['nome_empresa'];
+      $ID_nivel = $_POST['niveis'];
       // $conta = $_POST['nivel'];
-
-      $sql = "INSERT INTO usuarios(nome, email, senha, empresa_ID) VALUES ('$nome', '$email', '$senha', '$ID')";
+      
+      $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, nome_empresa, niveis) VALUES ('$nome', '$email', '$senha', '$ID', $ID_nivel)"  ;
 
 
       if ($connection->query($sql)) {
@@ -102,20 +110,6 @@ if (!$result) {
 
 
    ?>
-   <!-- <script>
-      document.getElementById("FormCad").addEventListener("submit, function (MostrarAlerta{)");
-      {
-         const email = document.getElementById("email").value.trim();
-         if (!email.includes("@")) {
-            alert("Por favor, insira um email válido.");
-            event.preventDefault();
-         }
-      };
-
-      function MostrarAlerta() {
-
-      }
-   </script> -->
    <style>
       body {
          margin: 0;
@@ -195,6 +189,10 @@ if (!$result) {
       }
 
       .possuicnt {
+         color: black;
+      }
+
+      .nencempresa {
          color: black;
       }
 
