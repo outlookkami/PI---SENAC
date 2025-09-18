@@ -1,30 +1,30 @@
 <?php
 include("conexao.php");
 session_start();
-
-
 if ($_POST) {
     $email = $_POST['email_user'];
     $senha = $_POST['senha_user'];
 
-  
-    $sql = "SELECT * FROM usuarios WHERE email_user = '$email' AND senha_user = '$senha'";
+    $sql = "SELECT * FROM usuarios WHERE email_user = '$email'";
     $result = $connection->query($sql);
 
     if ($result->num_rows > 0) {
         $usuario = $result->fetch_assoc();
+        if (password_verify($senha, $usuario['senha_user'])) {
 
-      
-        $_SESSION['ID_user'] = $usuario['ID_user'];
-        $_SESSION['nome_user'] = $usuario['nome_user'];
-        $_SESSION['niveis'] = $usuario['niveis'];
+            $_SESSION['ID_user'] = $usuario['ID_user'];
+            $_SESSION['nome_user'] = $usuario['nome_user'];
+            $_SESSION['niveis'] = $usuario['niveis'];
 
-        if ($usuario['niveis'] ===  "1" ) {
-            header("Location: admPortal.php");
-        } elseif ($usuario['niveis'] === "2") {
-            header("Location: ColabPortal.php");
+            if ($usuario['niveis'] === "1") {
+                header("Location: admPortal.php");
+            } elseif ($usuario['niveis'] === "2") {
+                header("Location: ColabPortal.php");
+            }
+            exit;
+        } else {
+            echo "<script>alert('Email ou senha incorretos!');</script>";
         }
-        exit;
     } else {
         echo "<script>alert('Email ou senha incorretos!');</script>";
     }
@@ -73,137 +73,158 @@ if ($_POST) {
                 <h3>Bem-Vindo de Volta</h3>
             </div>
             <input class="email" type="email" name="email_user" placeholder="Email"> <br>
-            <input class="senha" type="senha" name="senha_user" placeholder="Senha">
+            <input class="senha" id="senha" type="password" name="senha_user" required placeholder="Senha"> <img id="senhaimg" onclick="mudarimagem()" style="cursor: pointer;" class="senhaimg" src="assets\senhaesconder.png" alt="">
             <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
             <button type="submit">Entrar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                height: 100vh;
-                font-family: "Raleway", sans-serif;
-
-                background-image: linear-gradient(to bottom, #000F55, #6C0034);
-                background-repeat: no-repeat;
-                background-size: 50% 100%;
-            }
-
-            .Logo {
-                margin-top: 200px;
-            }
-
-            .HE {
-                color: white;
-                font-family: "Quicksand", sans-serif;
-                font-size: 90px;
-                margin-top: -20px;
-                padding: 20px;
-            }
-
-            aside {
-                color: white;
-                padding: 10px;
-            }
-
-            .asidep {
-                font-size: 30px;
-            }
-
-            main {
-                margin-left: 955px;
-                margin-top: -800px;
-            }
-
-            form {
-                border-radius: 5px;
-                width: 450px;
-                height: 450px;
-                text-align: center;
-                margin-left: 250px;
-                box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-            }
-
-            .topo {
-                margin-top: 100px;
-                text-align: center;
-            }
-
-            h2 {
-                color: #000F55;
-                margin-top: -40px;
-                margin-left: -10px;
-                text-align: center;
-                font-size: 30px;
-            }
-
-            .bdv {
-                color: #000F55;
-                padding: 20px;
-                font-size: 20px;
-            }
-
-            .pe1 {
-                margin-top: -80px;
-                font-size: 20px;
-                display: flex;
-            }
-
-            .pe2 {
-                font-size: 20px;
-                display: flex;
-                padding: 5px;
-            }
-
-            .pe3 {
-                font-size: 20px;
-                padding: 25px;
-                gap: 20px;
-                display: flex;
-
-            }
-
-            input {
-                height: 40px;
-                width: 300px;
-                border-radius: 8px;
-                border-style: solid;
-            }
-
-            .senha {
-                margin-top: 30px;
-            }
-
-            .esqsenha {
-                margin-left: 150px;
-                color: #6C0034;
-            }
-
-            .npossuicnt {
-                font-size: 15px;
-                color: black;
-            }
-
-            a {
-                color: white;
-                text-decoration: none;
-            }
-
-            .logob {
-                width: 150px;
-            }
-
-            button {
-                height: 40px;
-                width: 300px;
-                border-radius: 8px;
-                border-style: none;
-                background-color: #000F55;
-                color: white;
-            }
-        </style>
     </main>
-</body>
+    <script>
+        function mudarimagem() {
+            const senhaimg = document.getElementById('senhaimg');
+            const senhatxt = document.getElementById('senha');
 
+            if (senhaimg.getAttribute("src") === "assets/senhaesconder.png") {
+                senhaimg.setAttribute("src", "assets/senhaver.png");
+                senhatxt.type = "Text";
+            } else {
+                senhaimg.setAttribute("src", "assets/senhaesconder.png");
+                senhatxt.type = "password";
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: "Raleway", sans-serif;
+
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
+            background-size: 50% 100%;
+        }
+
+        .Logo {
+            margin-top: 200px;
+        }
+
+        .HE {
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            font-size: 90px;
+            margin-top: -20px;
+            padding: 20px;
+        }
+
+        aside {
+            color: white;
+            padding: 10px;
+        }
+
+        .asidep {
+            font-size: 30px;
+        }
+
+        main {
+            margin-left: 955px;
+            margin-top: -800px;
+        }
+
+        form {
+            border-radius: 5px;
+            width: 450px;
+            height: 450px;
+            text-align: center;
+            margin-left: 250px;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+        }
+
+        .topo {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #000F55;
+            margin-top: -40px;
+            margin-left: -10px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .bdv {
+            color: #000F55;
+            padding: 20px;
+            font-size: 20px;
+        }
+
+        .pe1 {
+            margin-top: -80px;
+            font-size: 20px;
+            display: flex;
+        }
+
+        .pe2 {
+            font-size: 20px;
+            display: flex;
+            padding: 5px;
+        }
+
+        .pe3 {
+            font-size: 20px;
+            padding: 25px;
+            gap: 20px;
+            display: flex;
+
+        }
+
+        input {
+            height: 40px;
+            width: 300px;
+            border-radius: 8px;
+            border-style: solid;
+            font-family: "Raleway", sans-serif;
+        }
+
+        .senha {
+            margin-top: 30px;
+        }
+
+        .esqsenha {
+            margin-left: 150px;
+            color: #6C0034;
+        }
+
+        .senhaimg {
+            display: flex;
+            margin-left: 340px;
+            margin-top: -35px;
+        }
+
+        .npossuicnt {
+            font-size: 15px;
+            color: black;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logob {
+            width: 150px;
+        }
+
+        button {
+            height: 40px;
+            width: 300px;
+            border-radius: 8px;
+            border-style: none;
+            background-color: #000F55;
+            color: white;
+        }
+    </style>
+
+</body>
 </html>

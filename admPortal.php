@@ -18,11 +18,19 @@
 
 <body>
     <header>
+
         <button><img class="menu" src="assets/menu.png" alt="barrinhas de menu"></button>
         <button><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
         <button><img class="calendario" src="assets/Calendario.png" alt="">Calendário</button>
         <button><img class="notificaçoes" src="assets/notificacoes.png" alt="notificações">Notificações</button>
         <button><img class="user" src="assets/user.png" alt="perfil"></button>
+
+        <button><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
+        <button><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
+        <button><img class="calendario" src="assets\Calendario.png" alt="">Calendário</button>
+        <button><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</button>
+        <a href="Perfil.php"><button><img class="user" src="assets\user.png" alt="perfil"></button></a>
+
     </header>
 
     <main>
@@ -86,8 +94,8 @@
     </main>
     </div>
     <!-- Formulário de criação de eventos -->
-    <div class="CriarEventoForm" id="formCriarEvento">
-        <form method="post" class="CriarEventoForm"></form>
+    <div class="CriarEventoForm" action="criar_evento.php" id="formCriarEvento">
+        <form method="post" class="CriarEventoForm">
         <h2 class="CNE">Criar Novo Evento</h2><br>
         <label for="titulo_evento"><b>Título do evento</b></label><br>
         <input class="inpt1" type="text" name="titulo_evento" id="titulo_evento" placeholder="Digite o título do seu evento">
@@ -113,8 +121,8 @@
         <label for="local_evento"><b>Local</b></label><br>
         <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
         <br><br>
-        <label for="categoria_evento"><b>Categoria</b></label><br>
-            <select name="seleciona_tipo_evento" id="categoria_evento">
+        <label for="tag_evento"><b>Categoria</b></label><br>
+            <select name="tag_evento" id="tag_evento">
                 <option value="seleção" disabled selected>Selecione uma opção</option>
                 <option value="Reunião">Reunião</option>
                 <option value="Workshop">Workshop</option>
@@ -124,11 +132,12 @@
             </select>
         <br><br>
         <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-        <input class="file" type="file" id="botaoArquivos">
-        <label for="botaoArquivos" class="estiloFile">Escolher arquivo</label>
+        <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
+        <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
         <br><br>
         <button class="botaoCancelar" onclick="escondeForm()">Cancelar</button>
         <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
+    </form>
     </div>
 
     <script>
@@ -414,6 +423,79 @@
             color: #000F55;
         }
     </style>
+
+    <!-- <script>
+        function lancarEvento(){
+            titulo = document.getElementById('titulo_evento').value;
+            descricao = document.getElementById('descricao_evento').value;
+            data_inicio = document.getElementById('data_evento').value;
+            horario_inicio = document.getElementById('horario_inicio_evento').value;
+            horario_fim = document.getElementById('horario_fim_evento').value;
+            local = document.getElementById('local_evento').value;
+            tag = document.getElementById('tag_evento').value;
+            imagem = document.getElementById('imagem_evento').value;
+
+            if(titulo == '' || descricao == '' || local == '' || data_inicio == '' || horario_inicio == ''){
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return false;
+            }
+
+        }
+    </script> -->
+    
 </body>
 
 </html>
+
+<!-- PHP - Conectando ao banco para receber os dados do formulário -->
+
+<?php
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "eventos";
+
+    $connection = new mysqli($server, $username, $password, $database);
+
+    if ($connection->connect_error) {
+
+    die("Erro de conexão" . $connection->connect_error);
+}
+
+
+        // Conexão com o banco de dados
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $titulo_evento = $_POST['titulo_evento'];
+        $descricao_evento = $_POST['descricao_evento'];
+        $data_evento = $_POST['data_evento'];
+        $horario_inicio_evento = $_POST['horario_inicio_evento'];
+        $horario_fim_evento = $_POST['horario_fim_evento'];
+        $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
+        $local_evento = $_POST['local_evento'];
+        $tag_evento = $_POST['tag_evento'];
+        $imagem_evento = $_FILES['imagem_evento'];
+        if (!empty($_FILES['imagem_evento']['name'])) {
+    $nome_arquivo = basename($_FILES['imagem_evento']['name']);
+    $caminho = "uploads/" . $nome_arquivo;
+    move_uploaded_file($_FILES['imagem_evento']['tmp_name'], $caminho);
+    $imagem_evento = $caminho;
+} else {
+    $imagem_evento = null;
+}
+    }
+
+        $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $connection->prepare($sql);
+
+        $stmt->bind_param("ssssssssb", $titulo_evento, $descricao_evento, $data_evento, $horario_inicio_evento, $horario_fim_evento, $horario_evento, $local_evento, $tag_evento, $imagem_evento);
+
+        if ($stmt->execute()) {
+            echo "Evento criado com sucesso!";
+        } else {
+            echo "Erro ao criar evento: " . $stmt->error;
+        }
+    
+        $stmt->close();
+        $connection->close();
+?>
