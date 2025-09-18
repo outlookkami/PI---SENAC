@@ -34,40 +34,92 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
 </head>
 
 <body>
-    <div class="sairb"><a href="logout.php"><img src="assets\sair.png" class="sair" alt="" ></a></div>
-    <p class="HE"> Olá <?php echo $primeiroNome; ?> !</p>
-    <img src="assets\perfiluser.png" class="perfiluser" alt="">
-    <form action="" method="$_POST">
-        <label for="nome">Nome</label> <br>
-        <input type="text" value=" <?php echo $usuario['nome_user']; ?>" readonly> <br>
-        <label for="email">E-mail</label> <br>
-        <input type="text" value="<?php echo $usuario['email_user'];  ?>" readonly> <br>
-        <label for="telefone">Telefone</label> <br>
-        <input type="text"> <br>
-        <label for="perfil">Perfil</label> <br>
-        <select name="niveis" id="niveis">
+    <header>
+        <div class="sairb"><a href="logout.php"><img src="assets\sair.png" class="sair" alt=""></a></div>
+    </header>
 
-        </select>
+    <p class="HE"> Olá <?php echo $primeiroNome; ?>!</p>
 
-
+    <img src="" class="perfiluser" id="preview" alt="" width="150" height="150">
+    <input type="file" id="fotoInput" accept="image/*" style="display: none;">
+    <button type="file" onclick="document.getElementById('fotoInput').click()"><img src="assets\editar.png" alt=""></button>
+    <br>
+    <form action="" method="$_GET">
+        <div class="conteudo">
+            <label for="nome">Nome</label> <br>
+            <input type="text" value=" <?php echo $usuario['nome_user']; ?>" readonly> <br>
+            <label for="email">E-mail</label> <br>
+            <input type="text" value="<?php echo $usuario['email_user'];  ?>" readonly> <br>
+            <label for="text">Sua Empresa</label> <br>
+            <select name="empresa" id="empresa">
+                <option value="<?php echo $usuario['nome_empresa']; ?>" selected>
+                    <?php echo $usuario['nome_empresa']; ?>
+                </option>
+            </select> <br>
+            <label for="text">Tipo de Conta</label> <br>
+            <select name="niveis" id="niveis">
+                <option value="<?php echo $usuario['niveis']; ?>">
+                    <?php echo $usuario['niveis']; ?>
+                </option>
+            </select>
+            <br>
+            <button type="submit" id="confirmBtn" class="confirmBtn">Confirmar</button>
+        </div>
     </form>
 
+    <script>
+        const input = document.getElementById('fotoInput');
+        const preview = document.getElementById('preview');
+
+        input.addEventListener('change', () => {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                    confirmBtn.style.display = "inline-block";
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.style.display = "none";
+                confirmBtn.style.display = "none";
+            }
+        });
+        confirmBtn.addEventListener('click', () => {
+            confirmBtn.style.display = "none";
+            input.value = "";
+        });
+    </script>
     <style>
         body {
             margin: 0;
             padding: 0;
-            height: 102vh;
-            font-family: "Raleway", sans-serif;
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            background-repeat: no-repeat;
         }
 
+        header {
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
+            height: 100px;
+        }
+
+        .perfiluser {
+            border-radius: 200px;
+            background-color: white;
+        }
+
+        .confirmBtn {
+            display: none;
+            margin-top: 70px;
+            margin-left: 1150px;
+            font-family: "Raleway", sans-serif;
+            border-radius: 10px;
+        }
 
         .HE {
-            color: white;
+            color: #000F55;
             font-family: "Quicksand", sans-serif;
-            font-size: 90px;
-            margin-top: -20px;
+            font-size: 30px;
+            margin-top: 20px;
             padding: 20px;
         }
 
@@ -77,11 +129,13 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
             margin-top: -50px;
 
         }
-        .sair{
+
+        .sair {
             width: 30px;
-        
+
         }
-        .sairb{
+
+        .sairb {
             text-align: right;
         }
 
@@ -92,14 +146,15 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
             padding: 10px;
             text-align: left;
             margin-left: 250px;
-            margin-top: -50px;
+            margin-top: -150px;
             background-color: white;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
         }
 
         label {
-
+    
+            
             color: #000F55;
             font-size: 20px;
             font-weight: bold;
@@ -114,15 +169,30 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
             border-color: black;
             border-width: 1px;
             font-family: "Raleway", sans-serif;
+            margin-top: 10px;
         }
-
-
+        .conteudo{
+            margin-top: 150px;
+            margin-left: 100px;
+        }
         select {
             height: 43px;
             width: 310px;
             border-radius: 8px;
             color: rgb(128, 128, 128);
             border-color: black;
+            margin-top: 10px;
+        }
+
+        button {
+            height: 33px;
+            border-radius: 20px;
+            border-style: none;
+            background-color: #000F55;
+            color: white;
+            margin-left: 940px;
+            cursor: pointer;
+
         }
     </style>
 </body>
