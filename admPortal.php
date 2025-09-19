@@ -1,3 +1,55 @@
+
+<?php
+// Conexão com o banco de dados
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "teste_eventos";
+
+$connection = new mysqli($host, $username, $password, $database);
+
+if ($connection -> connect_error){
+    die("Erro de conexão" . $connection -> connect_error);}
+// 
+$sql = "SELECT * FROM tabela_eventos";
+
+$result = $connection -> query($sql);
+
+$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+
+if(!$result){
+    die("Erro ao acessar dados." . $connection -> error);
+}
+
+if($_POST){
+    $titulo_evento = $_POST['titulo_evento'];
+    $descricao_evento = $_POST['descricao_evento'];
+    $data_evento = $_POST['data_evento'];
+    $horario_inicio_evento = $_POST['horario_inicio_evento'];
+    $horario_fim_evento = $_POST['horario_fim_evento'];
+    $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
+    $local_evento = $_POST['local_evento'];
+    $tag_evento = $_POST['tag_evento'] ?? null;
+    // $imagem_evento = $_FILES['imagem_evento'];
+
+    if (!empty($titulo_evento) && !empty($descricao_evento) && !empty($data_evento) && !empty($horario_inicio_evento) && !empty($local_evento)) {
+
+    $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
+
+    // echo $sql;
+    // $result = $connection->query($sql);
+}
+
+}
+
+if ($connection -> query($sql)){
+    echo "";
+} else {
+    echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
+}
+$connection -> close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,19 +70,15 @@
 
 <body>
     <header>
-
-        <button><img class="menu" src="assets/menu.png" alt="barrinhas de menu"></button>
-        <button><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
-        <button><img class="calendario" src="assets/Calendario.png" alt="">Calendário</button>
-        <button><img class="notificaçoes" src="assets/notificacoes.png" alt="notificações">Notificações</button>
-        <button><img class="user" src="assets/user.png" alt="perfil"></button>
-
-        <button><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
-        <button><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button>
-        <button><img class="calendario" src="assets\Calendario.png" alt="">Calendário</button>
-        <button><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</button>
-        <a href="Perfil.php"><button><img class="user" src="assets\user.png" alt="perfil"></button></a>
-
+        <nav>
+            <ul>
+                <li><a href=""><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></a></li>
+                <li><a><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</button></a></li>
+                <li><a><img class="calendario" src="assets\Calendario.png" alt="">Calendário</a></li>
+                <li><a><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</a></li>
+                <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil"></a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -91,52 +139,54 @@
             <br><br>
 
             <button class="criarEvento" onclick="mostraForm()">&#43 Criar evento</button>
-    </main>
-    </div>
-    <!-- Formulário de criação de eventos -->
-    <div class="CriarEventoForm" action="criar_evento.php" id="formCriarEvento">
-        <form method="post" class="CriarEventoForm">
-        <h2 class="CNE">Criar Novo Evento</h2><br>
-        <label for="titulo_evento"><b>Título do evento</b></label><br>
-        <input class="inpt1" type="text" name="titulo_evento" id="titulo_evento" placeholder="Digite o título do seu evento">
-        <br><br>
-        <label for="descricao_evento"><b>Descrição</b></label><br>
-        <input class="inpt1" type="text" name="descricao_evento" id="descricao_evento" placeholder="Descreva o evento">
-        <br><br>
-        <label for="data_evento"><b>Data</b></label><br>
-        <input class="inpt1" type="date" name="data_evento" id="data_evento" >
-        <br><br>
-        <label><b>Horário</b></label><br>
-        <div class="horarios">
-            <div>
-                <label for="horario_inicio_evento"><b>Início</b></label><br>
-                <input class="inpt1" type="time" name="horario_inicio_evento" id="horario_inicio_evento" placeholder="Ex: 14:00">
-            </div>
-            <div>
-                <label for="horario_fim_evento"><b>Fim</b></label><br>
-                <input class="inpt1" type="time" name="horario_fim_evento" id="horario_fim_evento" placeholder="Ex: 16:00"></div>
         </div>
+    </main>
+    
+    <!-- Formulário de criação de eventos -->
+    <div class="CriarEventoForm" id="formCriarEvento">
+        <form method="post" action="admPortal.php" enctype="multipart/form-data"" class="CriarEventoForm">
+            <h2 class="CNE">Criar Novo Evento</h2><br>
+            <label for="titulo_evento"><b>Título do evento</b></label><br>
+            <input class="inpt1" type="text" name="titulo_evento" id="titulo_evento" placeholder="Digite o título do seu evento">
+            <br><br>
+            <label for="descricao_evento"><b>Descrição</b></label><br>
+            <input class="inpt1" type="text" name="descricao_evento" id="descricao_evento" placeholder="Descreva o evento">
+            <br><br>
+            <label for="data_evento"><b>Data</b></label><br>
+            <input class="inpt1" type="date" name="data_evento" id="data_evento" >
+            <br><br>
+            <label><b>Horário</b></label><br>
+            <div class="horarios">
+                <div>
+                    <label for="horario_inicio_evento"><b>Início</b></label><br>
+                    <input class="inpt1" type="time" name="horario_inicio_evento" id="horario_inicio_evento" placeholder="Ex: 14:00">
+                </div>
+                <div>
+                    <label for="horario_fim_evento"><b>Fim</b></label><br>
+                    <input class="inpt1" type="time" name="horario_fim_evento" id="horario_fim_evento" placeholder="Ex: 16:00"></div>
+            </div>
 
-        <br><br>
-        <label for="local_evento"><b>Local</b></label><br>
-        <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
-        <br><br>
-        <label for="tag_evento"><b>Categoria</b></label><br>
-            <select name="tag_evento" id="tag_evento">
-                <option value="seleção" disabled selected>Selecione uma opção</option>
-                <option value="Reunião">Reunião</option>
-                <option value="Workshop">Workshop</option>
-                <option value="Festa">Festa</option>
-                <option value="Palestra">Palestra</option>
-                <option value="Outros">Outros</option>
-            </select>
-        <br><br>
-        <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-        <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
-        <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
-        <br><br>
-        <button class="botaoCancelar" onclick="escondeForm()">Cancelar</button>
-        <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
+            <br><br>
+            <label for="local_evento"><b>Local</b></label><br>
+            <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
+            <br><br>
+            <label for="tag_evento"><b>Categoria</b></label><br>
+                <select name="tag_evento" id="tag_evento">
+                    <option value="seleção" disabled selected>Selecione uma opção</option>
+                    <option value="Reunião">Reunião</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Festa">Festa</option>
+                    <option value="Palestra">Palestra</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            <br><br>
+            
+            <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
+            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
+            <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
+            <br><br>
+            <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
+            <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
     </form>
     </div>
 
@@ -174,6 +224,21 @@
             width: 100vw;
             height: 40px;
             justify-content: space-between;
+        }
+
+        nav {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            color: white; 
+            gap: 20px;
         }
 
         .inícioHeader {
@@ -232,6 +297,7 @@
             display: flex;
             gap: 40px;
             justify-content: center;
+            line-break: normal;
         }
 
         /* Elementos tabelas */
@@ -354,7 +420,7 @@
             background-color: #ffffffff;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
             border-radius: 40px;
-            display: none;
+            
             align-items: center;
             flex-direction: column;
             position: fixed;
@@ -389,10 +455,10 @@
             font-family: "Raleway", sans-serif;
             font-size: 14px;
         }
-
+ 
         .file{
             display: none;
-        }
+        } 
 
         .estiloFile{
             background-color: #4e598c;
@@ -450,52 +516,52 @@
 <!-- PHP - Conectando ao banco para receber os dados do formulário -->
 
 <?php
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "eventos";
+//     $server = "localhost";
+//     $username = "root";
+//     $password = "";
+//     $database = "eventos";
 
-    $connection = new mysqli($server, $username, $password, $database);
+//     $connection = new mysqli($server, $username, $password, $database);
 
-    if ($connection->connect_error) {
+//     if ($connection->connect_error) {
 
-    die("Erro de conexão" . $connection->connect_error);
-}
+//     die("Erro de conexão" . $connection->connect_error);
+// }
 
 
-        // Conexão com o banco de dados
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $titulo_evento = $_POST['titulo_evento'];
-        $descricao_evento = $_POST['descricao_evento'];
-        $data_evento = $_POST['data_evento'];
-        $horario_inicio_evento = $_POST['horario_inicio_evento'];
-        $horario_fim_evento = $_POST['horario_fim_evento'];
-        $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
-        $local_evento = $_POST['local_evento'];
-        $tag_evento = $_POST['tag_evento'];
-        $imagem_evento = $_FILES['imagem_evento'];
-        if (!empty($_FILES['imagem_evento']['name'])) {
-    $nome_arquivo = basename($_FILES['imagem_evento']['name']);
-    $caminho = "uploads/" . $nome_arquivo;
-    move_uploaded_file($_FILES['imagem_evento']['tmp_name'], $caminho);
-    $imagem_evento = $caminho;
-} else {
-    $imagem_evento = null;
-}
-    }
+//         // Conexão com o banco de dados
+//         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+//         $titulo_evento = $_POST['titulo_evento'];
+//         $descricao_evento = $_POST['descricao_evento'];
+//         $data_evento = $_POST['data_evento'];
+//         $horario_inicio_evento = $_POST['horario_inicio_evento'];
+//         $horario_fim_evento = $_POST['horario_fim_evento'];
+//         $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
+//         $local_evento = $_POST['local_evento'];
+//         $tag_evento = $_POST['tag_evento'];
+//         $imagem_evento = $_FILES['imagem_evento'];
+//         if (!empty($_FILES['imagem_evento']['name'])) {
+//     $nome_arquivo = basename($_FILES['imagem_evento']['name']);
+//     $caminho = "uploads/" . $nome_arquivo;
+//     move_uploaded_file($_FILES['imagem_evento']['tmp_name'], $caminho);
+//     $imagem_evento = $caminho;
+// } else {
+//     $imagem_evento = null;
+// }
+//     }
 
-        $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//         $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $stmt = $connection->prepare($sql);
+//         $stmt = $connection->prepare($sql);
 
-        $stmt->bind_param("ssssssssb", $titulo_evento, $descricao_evento, $data_evento, $horario_inicio_evento, $horario_fim_evento, $horario_evento, $local_evento, $tag_evento, $imagem_evento);
+//         $stmt->bind_param("ssssssssb", $titulo_evento, $descricao_evento, $data_evento, $horario_inicio_evento, $horario_fim_evento, $horario_evento, $local_evento, $tag_evento, $imagem_evento);
 
-        if ($stmt->execute()) {
-            echo "Evento criado com sucesso!";
-        } else {
-            echo "Erro ao criar evento: " . $stmt->error;
-        }
+//         if ($stmt->execute()) {
+//             echo "Evento criado com sucesso!";
+//         } else {
+//             echo "Erro ao criar evento: " . $stmt->error;
+//         }
     
-        $stmt->close();
-        $connection->close();
+//         $stmt->close();
+//         $connection->close();
 ?>

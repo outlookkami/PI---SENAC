@@ -2,19 +2,23 @@
 
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "eventos";
+// $host = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "eventos";
 
-$connection = new mysqli($host, $username, $password, $database);
+// $connection = new mysqli($host, $username, $password, $database);
 
-if ($connection -> connect_error){
-    die("Erro de conexão: " . $connection -> connect_error);
-}
+// $result = $connection -> query($sql);
 
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-$result = $connection -> query($sql);
+// if ($connection -> connect_error){
+//     die("Erro de conexão: " . $connection -> connect_error);
+// }
+
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+
+
+
 ?>
 
 
@@ -42,22 +46,23 @@ $result = $connection -> query($sql);
         <nav>
             <div class="inícioHeader">
                 <ul>
-                    <li><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
+                    <li class="paginas"><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
                     <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
                 </ul>
             </div>
             <div class="meioHeader">
                 <ul>
-                    <li><a href="">Dashboard</a></li>
+                    <li class="paginas"><a href="">Dashboard</a></li>
                     <li><a href="">Eventos</a></li>
                     <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
                     <li><a href="">Prêmios</a></li>
                 </ul>
             </div>
             <div class="fimHeader">
-                <a href=""><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</a>
-                <a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a>
-                <a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a>
+                <ul>
+                    <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a></li>
+                    <li><a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a></li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -70,7 +75,7 @@ $result = $connection -> query($sql);
                 <table class="TableDashboard Eventos">
 
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/calendar (1).png" alt="calendário"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
                         <td>Eventos Confirmados</td>
                     </tr>
                     <tr>
@@ -82,7 +87,7 @@ $result = $connection -> query($sql);
             <div> <!-- Presença Total -->
                 <table class="TableDashboard Presença">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/img/team.png" alt="pessoas"></td>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
                         <td>Presença Total</td>
                     </tr>
                     <tr>
@@ -94,7 +99,7 @@ $result = $connection -> query($sql);
             <div> <!-- Prêmios Disponíveis -->
                 <table class="TableDashboard Prêmios">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/gift.png" alt="presente"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                         <td>Prêmios Disponíveis</td>
                     </tr>
                     <tr>
@@ -106,7 +111,7 @@ $result = $connection -> query($sql);
             <div> <!-- Pontos Acumulados -->
                 <table class="TableDashboard Pontos">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/star.png" alt="estrela"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                         <td>Pontos Acumulados</td>
                     </tr>
                     <tr>
@@ -216,44 +221,6 @@ $result = $connection -> query($sql);
                     <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
                 </tr>
             </table>
-            
-            <?php if ($result-> num_rows >0): ?>
-    <?php while($row = $result -> fetch_assoc()):?>
-            <table class="TableEventos">
-                <tr>
-                    <td><?= $row['id_evento']?></td>
-                </tr>
-                <tr>
-                    <td><?= $row['imagem_evento']?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4><?= $row['titulo_evento']?></h4>
-                    </td>
-                    <td><?= $row['tag_evento']?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><?= $row['descricao_evento']?></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?= ['d/m/Y', strtodate($row['data_evento'])]?></td>
-                </tr>
-                <tr>
-                    <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?= $row['horario_evento']?></td>
-                </tr>
-                <tr>
-                    <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?= $row['local_evento']?></td>
-                </tr>
-                <tr>
-                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                </tr>
-            </table>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>Nenhum evento encontrado.</p>
-        <?php endif; ?>
         </div>
 
         <br><br>
@@ -298,22 +265,43 @@ $result = $connection -> query($sql);
         }
 
         nav {
-            width: 100vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 20px;
         }
 
         ul{
-            list-style: none;
             display: flex;
-            gap: 25px;
-            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li{
+            margin-left: 20px;
+
         }
 
         a{
             text-decoration: none;
             color: white;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                top: 20px; 
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
         }
 
         .inícioHeader {
@@ -417,7 +405,7 @@ $result = $connection -> query($sql);
         }
 
         .imagensIlustrativasEventos {
-            width: 480px;
+            width: fit-content;
             height: 300px;
             border-radius: 12px;
         }
@@ -521,9 +509,7 @@ $result = $connection -> query($sql);
 
 </html>
 <!-- PHP - Encerramento -->
-<?php
-    $connection -> close();
-?>
+
 
 
 
