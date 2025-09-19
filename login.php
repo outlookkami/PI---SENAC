@@ -14,11 +14,12 @@ if ($_POST) {
 
             $_SESSION['ID'] = $usuario['ID'];
             $_SESSION['nome_user'] = $usuario['nome_user'];
-            $_SESSION['tipo_conta'] = $usuario['tipo_conta'];
+            $_SESSION['nivel'] = $usuario['nivel'];
+            $_SESSION['foto_user'] = $usuario['foto']; 
 
-            if ($usuario['tipo_conta'] === "1") {
+            if ($usuario['ID_acesso'] === "1") {
                 header("Location: admPortal.php");
-            } elseif ($usuario['tipo_conta'] === "2") {
+            } elseif ($usuario['ID_acesso'] === "2") {
                 header("Location: ColabPortal.php");
             }
             exit;
