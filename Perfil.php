@@ -110,7 +110,7 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
         .confirmBtn {
             display: none;
             margin-top: 70px;
-            margin-left: 1150px;
+            margin-left: 300px;
             font-family: "Raleway", sans-serif;
             border-radius: 10px;
         }
@@ -141,12 +141,12 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
 
         form {
             border-radius: 5px;
-            width: 1400px;
+            width: 500px;
             height: 600px;
             padding: 10px;
             text-align: left;
-            margin-left: 250px;
-            margin-top: -150px;
+            margin-left: 690px;
+            margin-top: -100px;
             background-color: white;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
