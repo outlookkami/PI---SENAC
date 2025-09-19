@@ -1,3 +1,24 @@
+<!-- PHP - Conexão banco de dados e seleção dos dados por data -->
+
+<?php
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "eventos";
+
+$connection = new mysqli($host, $username, $password, $database);
+
+if ($connection -> connect_error){
+    die("Erro de conexão: " . $connection -> connect_error);
+}
+
+$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+$result = $connection -> query($sql);
+?>
+
+
+<!-- HTML - Portal do Colaborador -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,21 +39,27 @@
 
 <body>
     <header>
-        <div class="inícioHeader">
-            <button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
-            <button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button>
-        </div>
-        <div class="meioHeader">
-            <button class="paginas">Dashboard</button>
-            <button class="paginas">Eventos</button>
-            <button class="paginas"><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</button>
-            <button class="paginas">Prêmios</button>
-        </div>
-        <div class="fimHeader">
-            <button class="paginas"><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">notificaçoes</button>
-            <button class="paginas"><img class="user" src="assets\user.png" alt="perfil"><a href="Perfil.php">perfil</a></button>
-            <button class="paginas"><img class="sair" src="assets\sair.png" alt="">Sair</button>
-        </div>
+        <nav>
+            <div class="inícioHeader">
+                <ul>
+                    <li><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
+                    <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
+                </ul>
+            </div>
+            <div class="meioHeader">
+                <ul>
+                    <li><a href="">Dashboard</a></li>
+                    <li><a href="">Eventos</a></li>
+                    <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
+                    <li><a href="">Prêmios</a></li>
+                </ul>
+            </div>
+            <div class="fimHeader">
+                <a href=""><img class="notificaçoes" src="assets\notificacoes.png" alt="notificações">Notificações</a>
+                <a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a>
+                <a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -91,32 +118,32 @@
 
         <br><br><br><br><br>
 
-        <h3>Próximos Eventos</h3>
+        <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
         <div class="ProximosEventos">
             <table class="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
+                    <td><img class="imagensIlustrativasEventos" id="imagemEvento" src="assets/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
+                </tr>
+                <tr class="tituloTag">
+                    <td>
+                        <h4 id="tituloEvento">Reunião Estratégica Q4</h4>
+                    </td>
+                    <td class="tag" id="tagEvento">Reunião</td>
                 </tr>
                 <tr>
                     <td>
-                        <h4>Reunião Estratégica Q4</h4>
-                    </td>
-                    <td><!-- Tag indicando que é uma Reunião --></td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Planejamento e revisão de metas para o último trimestre do ano.</p>
+                        <p id="descricaoEvento">Planejamento e revisão de metas para o último trimestre do ano.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"> 15 de Dezembro, 2025</td>
+                    <td id="dataEvento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">15 de Dezembro, 2025</td>
                 </tr>
                 <tr>
-                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 09:00 - 17:00</td>
+                    <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 09:00 - 17:00</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
+                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Sala de conferência A</td>
                 </tr>
                 <tr>
                     <td> 25 confirmados</td>
@@ -128,13 +155,13 @@
 
             <table class="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
+                    <td><img class="imagensIlustrativasEventos" src="assets/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
                 </tr>
-                <tr>
+                <tr class="tituloTag">
                     <td>
                         <h4>Workshop de inovação</h4>
                     </td>
-                    <td><!-- Tag indicando que é um treinamento--></td>
+                    <td class="tag" id="tagEvento">Workshop</td>
                 </tr>
                 <tr>
                     <td>
@@ -148,7 +175,7 @@
                     <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
                 </tr>
                 <tr>
-                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Sala de conferência A</td>
+                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
                 </tr>
                 <tr>
                     <td> +12 confirmados</td>
@@ -158,15 +185,15 @@
                 </tr>
             </table>
 
-            <table class="TableEventos">
+            <table class="TableEventos" id="TableEventos">
                 <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/img/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
+                    <td><img class="imagensIlustrativasEventos" src="assets/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
                 </tr>
-                <tr>
+                <tr class="tituloTag">
                     <td>
                         <h4>Festa de fim de ano</h4>
                     </td>
-                    <td><!-- Tag indicando que é um evento Social--></td>
+                    <td class="tag">Social</td>
                 </tr>
                 <tr>
                     <td>
@@ -189,25 +216,73 @@
                     <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
                 </tr>
             </table>
+            
+            <?php if ($result-> num_rows >0): ?>
+    <?php while($row = $result -> fetch_assoc()):?>
+            <table class="TableEventos">
+                <tr>
+                    <td><?= $row['id_evento']?></td>
+                </tr>
+                <tr>
+                    <td><?= $row['imagem_evento']?></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4><?= $row['titulo_evento']?></h4>
+                    </td>
+                    <td><?= $row['tag_evento']?></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><?= $row['descricao_evento']?></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?= ['d/m/Y', strtodate($row['data_evento'])]?></td>
+                </tr>
+                <tr>
+                    <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?= $row['horario_evento']?></td>
+                </tr>
+                <tr>
+                    <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?= $row['local_evento']?></td>
+                </tr>
+                <tr>
+                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                </tr>
+            </table>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>Nenhum evento encontrado.</p>
+        <?php endif; ?>
         </div>
 
         <br><br>
 
-        <h3>Calendário de Eventos</h3>
+        <h2>Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
+        
+
+
     </main>
+
+    <footer>
+        <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
+    </footer>
+
+<!-- CSS -->
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
 
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-color: #ffffffff;
-            /* background: linear-gradient (to bottom, #000f55, #6c0034); */
+            font-family: 'Raleway', sans-serif;
         }
 
         /* HEADER */
@@ -216,27 +291,42 @@
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
             background-repeat: no-repeat;
             width: 100vw;
-            height: 50px;
+            height: 5%;
             padding: 15px;
+            align-items: center;
+           
+        }
+
+        nav {
+            width: 100vw;
+            display: flex;
             justify-content: space-between;
-            justify-content: center;
+            align-items: center;
+        }
+
+        ul{
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        a{
+            text-decoration: none;
+            color: white;
         }
 
         .inícioHeader {
-            display: flex;
-            justify-content: center;
             gap: 40px;
         }
 
-        .meioHeader {
-            display: flex;
-            justify-content: center;
+        /* .meioHeader {
+            
         }
 
         .fimHeader {
-            display: flex;
-            justify-content: center;
-        }
+            
+        } */
 
         .paginas {
             background-color: transparent;
@@ -305,6 +395,10 @@
         }
 
         /* PRÓXIMOS EVENTOS:  */
+        .tituloProxEven{
+            margin-left: 20px;
+        }
+
         /* Grupo das tabelas */
         .ProximosEventos {
             display: flex;
@@ -317,10 +411,9 @@
             background-color: white;
             border-radius: 20px;
             padding: 20px;
-            width: 480px;
-            height: 100px;
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            display: block;
         }
 
         .imagensIlustrativasEventos {
@@ -334,6 +427,21 @@
             width: 20px;
         }
 
+        .tituloTag{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag{
+            background-color:#000F55;
+            color: white;
+            border-radius: 16px;
+            padding: 7px 11px;
+            font-size: 14px;
+            text-align: center;
+        }
+
         /* Botões Eventos */
         .ConfirmarPresença {
             background-color: #D90368;
@@ -341,7 +449,7 @@
             border: none;
             padding: 10px;
             border-radius: 8px;
-            width: 420px;
+            width: 100%;
             text-align: center;
             cursor: pointer;
         }
@@ -352,20 +460,10 @@
             border: none;
             padding: 10px;
             border-radius: 8px;
-            width: 420px;
+            width: 100%;
+            text-align: center;
             cursor: pointer;
         }
-
-        .TableFormat {
-            background-color: white;
-            border-radius: 20px;
-            padding: 10px;
-            margin-left: 20px;
-            width: 800px;
-            height: 80px;
-        }
-
-
 
         body {
             font-family: "Raleway", sans-serif;
@@ -402,6 +500,63 @@
             width: 25px;
         }
     </style>
+
+<!-- JavaScript
+    <script>
+        function postarEvento(){
+            imagem = document.getElementById('imagemEvento').innerHTML;
+            titulo = document.getElementById('tituloEvento').innerHTML;
+            tag = document.getElementById('tagEvento').innerHTML;
+            descricao = document.getElementById('descricaoEvento').innerHTML;
+            data_inicio = document.getElementById('dataEvento').innerHTML;
+            horario = document.getElementById('horarioEvento').innerHTML;
+            local = document.getElementById('localEvento').innerHTML;
+            categoria = document.getElementById('categoria_evento').innerHTML;
+            
+
+            var tabela = document.getElementById('TableEventos');
+        }
+    </script> -->
 </body>
 
 </html>
+<!-- PHP - Encerramento -->
+<?php
+    $connection -> close();
+?>
+
+
+
+<!-- 
+<table class="TableEventos">
+                <tr>
+                    <td><img id="imagem_evento" class="imagensIlustrativasEventos" src="" width="400" alt=""></td>
+                </tr>
+                <tr class="tituloTag">
+                    <td>
+                        <h4 id="titulo_evento">Workshop de inovação</h4>
+                    </td>
+                    <td class="tag" id="tag_evento">Workshop</td>
+                </tr>
+                <tr>
+                    <td>
+                        <p id="descricao_evento">Metodologias ágeis e design thinking para projetos inovadores.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">18 de Dezembro, 2025</td>
+                </tr>
+                <tr>
+                    <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
+                </tr>
+                <tr>
+                    <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
+                </tr>
+                <tr>
+                    <td> +12 confirmados</td>
+                </tr>
+                <tr>
+                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                </tr>
+            </table>
+ -->
