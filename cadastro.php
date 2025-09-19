@@ -17,12 +17,12 @@ if ($_POST) {
    $email = $_POST['email_user'];
    $senha = $_POST['senha_user'];
    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-   // $ID = $_POST['nome_empresa'];
+   $ID = $_POST['nome_empresa'];
    $ID_nivel = $_POST['niveis'];
    // $conta = $_POST['nivel'];
    
 
-   $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user,  niveis) VALUES ('$nome', '$email', '$senhaHash', $ID_nivel)";
+   $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, nome_empresa,  niveis) VALUES ('$nome', '$email', '$senhaHash', $ID, $ID_nivel)";
 
 
    if ($connection->query($sql)) {
