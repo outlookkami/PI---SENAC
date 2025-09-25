@@ -41,7 +41,7 @@ $result = $connection->query($sql);
 <body>
     <header>
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-        <a href="HeyEvent.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
+        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
         <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
         <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
@@ -58,7 +58,7 @@ $result = $connection->query($sql);
                             }
                             ?>">Início</a>
             </li>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="Sobrenos.php">Sobre</a></li>
             <li><a href="#">Serviços</a></li>
             <li><a href="#">Contato</a></li>
         </ul>
@@ -312,14 +312,60 @@ $result = $connection->query($sql);
         /* HEADER */
         header {
             display: flex;
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            background-repeat: no-repeat;
-            width: 100vw;
-            height: 5%;
-            padding: 15px;
             align-items: center;
+            height: 100px;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            vertical-align: middle;
 
         }
+
+        header a {
+            text-decoration: none;
+            color: white;
+
+        }
+
+        .sair {
+            width: 30px;
+            margin-left: 100px;
+            vertical-align: middle;
+
+
+        }
+
+        .sairb {
+            text-align: right;
+        }
+
+        .menu {
+            width: 20px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .Logo {
+            width: 30px;
+            margin-left: 300px;
+            vertical-align: middle;
+        }
+
+        .calendario {
+            width: 60px;
+            margin-left: 400px;
+            vertical-align: middle;
+        }
+
+        .user {
+            width: 40px;
+            margin-left: 600px;
+            vertical-align: middle;
+        }
+
 
         .menubarra {
             position: fixed;
