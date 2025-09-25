@@ -10,7 +10,7 @@ Nossa solução centraliza todas as informações em um único ambiente digital,
 - Disponibilizar um **sistema especializado** em eventos corporativos.  
 - Evoluir para um modelo **SaaS (Software como Serviço)**.
   
-- ## 🎨 Identidade Visual  
+ ## 🎨 Identidade Visual  
 - **Paleta de Cores:**  
   - Preto `#0C0910` → elegância e profissionalismo  
   - Azul claro `#77A0A9` → confiança e clareza  
