@@ -12,22 +12,22 @@ if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
 }
 
-$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento FROM tabela_eventos ORDER BY data_evento ASC";
+$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_eventos ORDER BY data_evento ASC";
 
 $result = $connection -> query($sql);
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "banco_teste";
+// $host = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "banco_teste";
 
 
-if ($connection->connect_error) {
-    die("Erro de conexão: " . $connection->connect_error);
-}
+// if ($connection->connect_error) {
+//     die("Erro de conexão: " . $connection->connect_error);
+// }
 
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-$result = $connection->query($sql);
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+// $result = $connection->query($sql);
 
 ?>
 
@@ -155,7 +155,7 @@ $result = $connection->query($sql);
         <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
         <div class="ProximosEventos">
-            <table class="TableEventos">
+            <!-- <table class="TableEventos">
                 <tr>
                     <td><img class="imagensIlustrativasEventos" id="imagemEvento" src="assets/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
                 </tr>
@@ -185,9 +185,16 @@ $result = $connection->query($sql);
                 <tr>
                     <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
                 </tr>
-            </table>
 
-            <table class="TableEventos">
+                <tbody>
+                    <?php 
+                        //if ($result->num_rows > 0): 
+                            //while ($row = $result->fetch_assoc()):
+                    ?>
+                </tbody>
+            </table> -->
+
+            <!-- <table class="TableEventos">
                 <tr>
                     <td><img class="imagensIlustrativasEventos" src="assets/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
                 </tr>
@@ -217,9 +224,9 @@ $result = $connection->query($sql);
                 <tr>
                     <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
                 </tr>
-            </table>
+            </table> -->
 
-            <table class="TableEventos" id="TableEventos">
+            <!-- <table class="TableEventos" id="TableEventos">
                 <tr>
                     <td><img class="imagensIlustrativasEventos" src="assets/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
                 </tr>
@@ -249,40 +256,38 @@ $result = $connection->query($sql);
                 <tr>
                     <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
                 </tr>
-            </table>
+            </table> -->
 
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
+                    
                     <table class="TableEventos">
                         <tr>
-                            <td><?= $row,['id_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $row,['imagem_evento'] ?></td>
+                            <td><img src="<?php echo $row["imagem_evento"] ?>" alt="Imagem do evento"></td>
                         </tr>
                         <tr>
                             <td>
-                                <h4><?= $row,['titulo_evento'] ?></h4>
+                                <h4><?php echo $row["titulo_evento"] ?></h4>
                             </td>
-                            <td><?= $row,['tag_evento'] ?></td>
+                            <td><?php echo $row["tag_evento"] ?></td>
                         </tr>
                         <tr>
-                            <td>
-                                <p><?= $row,['descricao_evento'] ?></p>
+                            <td colspan="2">
+                                <p><?php echo $row["descricao_evento"] ?></p>
                             </td>
                         </tr>
                         <tr>
-                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?= ['d/m/Y', ($row['data_evento'])] ?></td>
+                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
                         </tr>
                         <tr>
-                            <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?= $row,['horario_evento'] ?></td>
+                            <td colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
                         </tr>
                         <tr>
-                            <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?= $row,['local_evento'] ?></td>
+                            <td id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
                         </tr>
                         <tr>
-                            <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                            <td colspan="2"><button class="ConfirmarPresença">Confirmar Presença</button></td>
                         </tr>
                     </table>
                 <?php endwhile; ?>
@@ -508,7 +513,10 @@ $result = $connection->query($sql);
             padding: 20px;
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            width: 400px;
             display: block;
+            height: fit-content;
+            
         }
 
         .imagensIlustrativasEventos {
@@ -529,16 +537,19 @@ $result = $connection->query($sql);
         }
 
         .tag {
+            display: flex;
             background-color: #000F55;
             color: white;
             border-radius: 16px;
             padding: 7px 11px;
             font-size: 14px;
-            text-align: center;
+            align-items: end;
+            justify-content:end;
         }
 
         /* Botões Eventos */
         .ConfirmarPresença {
+            display: block;
             background-color: #D90368;
             color: white;
             border: none;
@@ -596,6 +607,12 @@ $result = $connection->query($sql);
         .calendariop {
             width: 25px;
         }
+
+        footer{
+            text-align:center;
+            margin: 40px;
+            display: block;
+        }
     </style>
 
     <!-- JavaScript
@@ -621,36 +638,4 @@ $result = $connection->query($sql);
 <?php
 $connection->close();
 ?>
-
-    <table class="TableEventos">
-        <tr>
-            <td><img id="imagem_evento" class="imagensIlustrativasEventos" src="" width="400" alt=""></td>
-        </tr>
-        <tr class="tituloTag">
-            <td>
-                <h4 id="titulo_evento">Workshop de inovação</h4>
-            </td>
-            <td class="tag" id="tag_evento">Workshop</td>
-        </tr>
-        <tr>
-            <td>
-                <p id="descricao_evento">Metodologias ágeis e design thinking para projetos inovadores.</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">18 de Dezembro, 2025</td>
-        </tr>
-        <tr>
-            <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
-        </tr>
-        <tr>
-            <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
-        </tr>
-        <tr>
-            <td> +12 confirmados</td>
-        </tr>
-        <tr>
-            <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-        </tr>
-    </table>
 

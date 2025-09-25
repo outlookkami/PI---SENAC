@@ -30,24 +30,45 @@ if($_POST){
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
-    // $imagem_evento = $_FILES['imagem_evento'];
+    $nome_arquivo= $_FILES['imagem_evento']['name'];
+    $caminho = $_FILES['imagem_evento']['tmp_name'];
 
-    if (!empty($titulo_evento) && !empty($descricao_evento) && !empty($data_evento) && !empty($horario_inicio_evento) && !empty($local_evento)) {
 
-    $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
+    // $imagem_evento = "uploads/".basename($nome_arquivo);
 
-    // echo $sql;
-    // $result = $connection->query($sql);
+    // if(move_uploaded_file($caminho, $imagem_evento)){
+    //     $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$imagem_evento')";
+    // }
 }
 
-}
+if(isset($_FILES['imagem_evento']) && $_FILES['imagem_evento']['error'] == 0){
+    $imagem_evento = $_FILES['imagem_evento']['name'];
+    $caminho = $_FILES['imagem_evento']['tmp_name'];
 
-if ($connection -> query($sql)){
-    echo "";
-} else {
-    echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
-}
-$connection -> close();
+    if(!is_dir("uploads")){
+        mkdir("uploads", 0777, true);
+    }
+
+    $novoNome = uniqid() . "-" . basename($imagem_evento);
+    $destino = "uploads/" . $novoNome;
+
+    if(move_uploaded_file($caminho, $destino)){
+        $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$imagem_evento')";
+
+        if($connection -> query($sql) === TRUE && $titulo_evento != null){
+            echo "Evento criado com sucesso!";
+        } else {
+            echo "Erro ao criar evento: " . $connection -> error;
+        }
+            } else {
+                echo "Erro ao mover o arquivo para a pasta de uploads.";
+            }
+                } else {
+                    echo "Nenhuma imagem enviada.";
+                }
+
+    $connection -> close();
+
 ?>
 
 <!DOCTYPE html>
