@@ -16,7 +16,6 @@ Nossa solução centraliza todas as informações em um único ambiente digital,
   - Azul claro `#77A0A9` → confiança e clareza  
   - Azul escuro `#4E598C` → inovação  
   - Rosa pink `#D90368` → energia e engajamento  
-  - Rosa claro `#FFEAEE` → acolhimento  
 
 - **Tipografia:** Inter, Quicksand, Raleway  
 
