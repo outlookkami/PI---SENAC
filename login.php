@@ -12,13 +12,14 @@ if ($_POST) {
         $usuario = $result->fetch_assoc();
         if (password_verify($senha, $usuario['senha_user'])) {
 
-            $_SESSION['ID_user'] = $usuario['ID_user'];
+            $_SESSION['ID'] = $usuario['ID'];
             $_SESSION['nome_user'] = $usuario['nome_user'];
-            $_SESSION['niveis'] = $usuario['niveis'];
+            $_SESSION['nivel'] = $usuario['nivel'];
+            $_SESSION['foto_user'] = $usuario['foto']; 
 
-            if ($usuario['niveis'] === "1") {
+            if ($usuario['ID_acesso'] === "1") {
                 header("Location: admPortal.php");
-            } elseif ($usuario['niveis'] === "2") {
+            } elseif ($usuario['ID_acesso'] === "2") {
                 header("Location: ColabPortal.php");
             }
             exit;

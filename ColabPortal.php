@@ -2,6 +2,7 @@
 
 <?php
 
+<<<<<<< HEAD
 // $host = "localhost";
 // $username = "root";
 // $password = "";
@@ -16,9 +17,25 @@
 // }
 
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+=======
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "banco_teste";
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 
 
+<<<<<<< HEAD
 
+=======
+if ($connection->connect_error) {
+    die("Erro de conexão: " . $connection->connect_error);
+}
+
+$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+$result = $connection->query($sql);
+
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 ?>
 
 
@@ -43,6 +60,7 @@
 
 <body>
     <header>
+<<<<<<< HEAD
         <nav>
             <div class="inícioHeader">
                 <ul>
@@ -65,9 +83,35 @@
                 </ul>
             </div>
         </nav>
+=======
+        <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+        <a href="HeyEvent.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
+        <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
+        <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
+        <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
     </header>
+    <nav class="menubarra" id="menubarra">
+        <ul>
+            <li><a href="<?php
+                            if ($usuario['ID_acesso'] == 1) {
+                                echo 'admPortal.php';
+                            } elseif ($usuario['ID_acesso'] == 2) {
+                                echo 'ColabPortal.php';
+                            } else {
+                                echo 'HeyEvent.php';
+                            }
+                            ?>">Início</a>
+            </li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
 
-    <main>
+    </nav>
+
+
+    <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
         <div class="Dashboard">
             <br>
@@ -221,6 +265,47 @@
                     <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
                 </tr>
             </table>
+<<<<<<< HEAD
+=======
+
+            <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <table class="TableEventos">
+                        <tr>
+                            <td><?= $row['id_evento'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= $row['imagem_evento'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4><?= $row['titulo_evento'] ?></h4>
+                            </td>
+                            <td><?= $row['tag_evento'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><?= $row['descricao_evento'] ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?= ['d/m/Y', strtodate($row['data_evento'])] ?></td>
+                        </tr>
+                        <tr>
+                            <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?= $row['horario_evento'] ?></td>
+                        </tr>
+                        <tr>
+                            <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?= $row['local_evento'] ?></td>
+                        </tr>
+                        <tr>
+                            <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
+                        </tr>
+                    </table>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>Nenhum evento encontrado.</p>
+            <?php endif; ?>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
         </div>
 
         <br><br>
@@ -228,7 +313,7 @@
         <h2>Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
-        
+
 
 
     </main>
@@ -236,8 +321,28 @@
     <footer>
         <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
     </footer>
+    <script>
+        const menu = document.getElementById('menu');
+        const menubarra = document.getElementById('menubarra');
+        const main = document.getElementById('main');
 
-<!-- CSS -->
+        menu.addEventListener('click', () => {
+            if (menubarra.style.left === "0px") {
+                menubarra.style.left = "-250px";
+                main.style.marginLeft = "0";
+            } else {
+                menubarra.style.left = "0px";
+                main.style.marginLeft = "250px";
+            }
+        });
+        main.addEventListener('click', () => {
+            if (menubarra.style.left === "0px") {
+                menubarra.style.left = "-250px";
+                main.style.marginLeft = "0";
+            }
+        });
+    </script>
+    <!-- CSS -->
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
 
@@ -261,7 +366,25 @@
             height: 5%;
             padding: 15px;
             align-items: center;
-           
+
+        }
+
+        .menubarra {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffffff;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 2;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        main {
+            transition: margin-left 0.3s;
         }
 
         nav {
@@ -271,7 +394,12 @@
             padding: 10px 20px;
         }
 
+<<<<<<< HEAD
         ul{
+=======
+        ul {
+            list-style: none;
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
             display: flex;
             list-style: none;
             margin: 0;
@@ -283,7 +411,7 @@
 
         }
 
-        a{
+        a {
             text-decoration: none;
             color: white;
         }
@@ -383,7 +511,7 @@
         }
 
         /* PRÓXIMOS EVENTOS:  */
-        .tituloProxEven{
+        .tituloProxEven {
             margin-left: 20px;
         }
 
@@ -415,14 +543,14 @@
             width: 20px;
         }
 
-        .tituloTag{
-            display:flex;
+        .tituloTag {
+            display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .tag{
-            background-color:#000F55;
+        .tag {
+            background-color: #000F55;
             color: white;
             border-radius: 16px;
             padding: 7px 11px;
@@ -480,16 +608,18 @@
         .user {
             width: 40px;
         }
-        .relogio{
-        
+
+        .relogio {
+
             width: 18px;
         }
-        .calendariop{
+
+        .calendariop {
             width: 25px;
         }
     </style>
 
-<!-- JavaScript
+    <!-- JavaScript
     <script>
         function postarEvento(){
             imagem = document.getElementById('imagemEvento').innerHTML;
@@ -509,7 +639,13 @@
 
 </html>
 <!-- PHP - Encerramento -->
+<<<<<<< HEAD
 
+=======
+<?php
+$connection->close();
+?>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 
 
 

@@ -6,7 +6,7 @@ $resultempresa = $connection->query($sql);
 if (!$resultempresa) {
    die("Erro na consulta: " . $connection->error);
 }
-$sql = "SELECT ID_nivel, niveis FROM acessos";
+$sql = "SELECT ID, nivel FROM acessos";
 $result = $connection->query($sql);
 
 if (!$result) {
@@ -17,12 +17,12 @@ if ($_POST) {
    $email = $_POST['email_user'];
    $senha = $_POST['senha_user'];
    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-   $ID = $_POST['nome_empresa'];
-   $ID_nivel = $_POST['niveis'];
+   $empresa = $_POST['nome_empresa'];
+   $nivel = $_POST['nivel'];
    // $conta = $_POST['nivel'];
    
 
-   $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, nome_empresa,  niveis) VALUES ('$nome', '$email', '$senhaHash', $ID, $ID_nivel)";
+   $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, ID_empresa, ID_acesso ) VALUES ('$nome', '$email', '$senhaHash', '$empresa','$nivel')";
 
 
    if ($connection->query($sql)) {
@@ -93,11 +93,11 @@ if ($_POST) {
                </option>
             <?php } ?>
          </select>
-         <select name="niveis" class="acessos" required>
+         <select name="nivel" class="acessos" required>
             <option value="" disabled selected>Selecione seu Nivel de Acesso</option>
             <?php while ($row = $result->fetch_assoc()) { ?>
-               <option value="<?php echo $row['ID_nivel']; ?>">
-                  <?php echo $row['niveis']; ?>
+               <option value="<?php echo $row['ID']; ?>">
+                  <?php echo $row['nivel']; ?>
                </option>
             <?php } ?>
          </select>
