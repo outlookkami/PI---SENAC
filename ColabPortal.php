@@ -2,13 +2,32 @@
 
 <?php
 
+<<<<<<< HEAD
+// $host = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "eventos";
+
+// $connection = new mysqli($host, $username, $password, $database);
+
+// $result = $connection -> query($sql);
+
+// if ($connection -> connect_error){
+//     die("Erro de conexão: " . $connection -> connect_error);
+// }
+
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+=======
 $host = "localhost";
 $username = "root";
 $password = "";
 $database = "banco_teste";
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 
-$connection = new mysqli($host, $username, $password, $database);
 
+<<<<<<< HEAD
+
+=======
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
@@ -16,6 +35,7 @@ if ($connection->connect_error) {
 $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 $result = $connection->query($sql);
 
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 ?>
 
 
@@ -40,11 +60,36 @@ $result = $connection->query($sql);
 
 <body>
     <header>
+<<<<<<< HEAD
+        <nav>
+            <div class="inícioHeader">
+                <ul>
+                    <li class="paginas"><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
+                    <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
+                </ul>
+            </div>
+            <div class="meioHeader">
+                <ul>
+                    <li class="paginas"><a href="">Dashboard</a></li>
+                    <li><a href="">Eventos</a></li>
+                    <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
+                    <li><a href="">Prêmios</a></li>
+                </ul>
+            </div>
+            <div class="fimHeader">
+                <ul>
+                    <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a></li>
+                    <li><a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a></li>
+                </ul>
+            </div>
+        </nav>
+=======
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
         <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
         <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
         <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
     </header>
     <nav class="menubarra" id="menubarra">
         <ul>
@@ -74,7 +119,7 @@ $result = $connection->query($sql);
                 <table class="TableDashboard Eventos">
 
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/calendar (1).png" alt="calendário"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
                         <td>Eventos Confirmados</td>
                     </tr>
                     <tr>
@@ -86,7 +131,7 @@ $result = $connection->query($sql);
             <div> <!-- Presença Total -->
                 <table class="TableDashboard Presença">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/img/team.png" alt="pessoas"></td>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
                         <td>Presença Total</td>
                     </tr>
                     <tr>
@@ -98,7 +143,7 @@ $result = $connection->query($sql);
             <div> <!-- Prêmios Disponíveis -->
                 <table class="TableDashboard Prêmios">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/gift.png" alt="presente"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                         <td>Prêmios Disponíveis</td>
                     </tr>
                     <tr>
@@ -110,7 +155,7 @@ $result = $connection->query($sql);
             <div> <!-- Pontos Acumulados -->
                 <table class="TableDashboard Pontos">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/img/star.png" alt="estrela"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                         <td>Pontos Acumulados</td>
                     </tr>
                     <tr>
@@ -220,6 +265,8 @@ $result = $connection->query($sql);
                     <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
                 </tr>
             </table>
+<<<<<<< HEAD
+=======
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
@@ -258,6 +305,7 @@ $result = $connection->query($sql);
             <?php else: ?>
                 <p>Nenhum evento encontrado.</p>
             <?php endif; ?>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
         </div>
 
         <br><br>
@@ -386,22 +434,48 @@ $result = $connection->query($sql);
         }
 
         nav {
-            width: 100vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 10px 20px;
         }
 
+<<<<<<< HEAD
+        ul{
+=======
         ul {
             list-style: none;
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
             display: flex;
-            gap: 25px;
-            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li{
+            margin-left: 20px;
+
         }
 
         a {
             text-decoration: none;
             color: white;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                top: 20px; 
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
         }
 
         .inícioHeader {
@@ -505,7 +579,7 @@ $result = $connection->query($sql);
         }
 
         .imagensIlustrativasEventos {
-            width: 480px;
+            width: fit-content;
             height: 300px;
             border-radius: 12px;
         }
@@ -611,9 +685,13 @@ $result = $connection->query($sql);
 
 </html>
 <!-- PHP - Encerramento -->
+<<<<<<< HEAD
+
+=======
 <?php
 $connection->close();
 ?>
+>>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
 
 
 
