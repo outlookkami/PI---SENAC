@@ -8,4 +8,20 @@ Nossa solução centraliza todas as informações em um único ambiente digital,
 - Melhorar a **organização** e **gestão** de eventos internos.  
 - Proporcionar **engajamento** entre colaboradores.  
 - Disponibilizar um **sistema especializado** em eventos corporativos.  
-- Evoluir para um modelo **SaaS (Software como Serviço)**. 
+- Evoluir para um modelo **SaaS (Software como Serviço)**.
+  
+- ## 🎨 Identidade Visual  
+- **Paleta de Cores:**  
+  - Preto `#0C0910` → elegância e profissionalismo  
+  - Azul claro `#77A0A9` → confiança e clareza  
+  - Azul escuro `#4E598C` → inovação  
+  - Rosa pink `#D90368` → energia e engajamento  
+  - Rosa claro `#FFEAEE` → acolhimento  
+
+- **Tipografia:** Inter, Quicksand, Raleway  
+
+## ⚙️ Tecnologias Utilizadas  
+- **Front-end:** HTML, CSS, JavaScript  
+- **Back-end:** PHP (XAMPP)  
+- **Banco de Dados:** MySQL  
+- **Design/Protótipo:** Figma  
