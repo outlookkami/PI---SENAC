@@ -20,7 +20,7 @@ if ($_POST) {
    $empresa = $_POST['nome_empresa'];
    $nivel = $_POST['nivel'];
    // $conta = $_POST['nivel'];
-   
+
 
    $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, ID_empresa, ID_acesso ) VALUES ('$nome', '$email', '$senhaHash', '$empresa','$nivel')";
 
@@ -54,21 +54,26 @@ if ($_POST) {
 <body>
    <aside>
       <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
-      <div class="HE">
-         <p>HeyEvent</p>
-      </div>
-      <div class="pe1">
-         <img src="assets\Evento.png" alt="">
-         <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
-      </div>
-      <div class="pe2">
-         <img src="assets\Calendario.png" alt="">
-         <p>Vizualize eventos futuros</p>
-      </div>
-      <div class="pe3">
-         <img src="assets\Confirmar.png" alt="">
-         <p>Confirme sua presença rapidamente</p>
-      </div>
+      <p class="HE">HeyEvent</p>
+      <ul class="imagens">
+         <li>
+            <img src="assets/event.png" class="event" alt="Ícone de evento">
+            <span>Facilite a organização, comunicação e execução de eventos corporativos</span>
+         </li>
+         <li>
+            <img src="assets/calen.png" alt="Ícone de calendário">
+            <span>Visualize eventos futuros</span>
+         </li>
+         <li>
+            <img src="assets/check.png" alt="Ícone de confirmação">
+            <span>Confirme sua presença rapidamente</span>
+         </li>
+         <li>
+            <img src="assets/info.png" alt="Ícone de confirmação">
+            <span>Veja todos os detalhes em um só lugar</span>
+         </li>
+      </ul>
+
    </aside>
    <main>
       <div class="topo">
@@ -146,7 +151,7 @@ if ($_POST) {
          color: white;
          font-family: "Quicksand", sans-serif;
          font-size: 90px;
-         margin-top: -110px;
+         margin-top: -20px;
          padding: 20px;
       }
 
@@ -159,24 +164,35 @@ if ($_POST) {
 
       }
 
-      .pe1 {
-         margin-top: -80px;
-         font-size: 20px;
-         display: flex;
+      .imagens {
+         list-style: none;
+         padding: 0;
+         margin: 20px 0;
+         margin-top: -100px;
 
       }
 
-      .pe2 {
-         font-size: 20px;
+      .imagens li {
          display: flex;
-         padding: 5px;
+         align-items: center;
+         gap: 10px;
+         margin-bottom: 15px;
       }
 
-      .pe3 {
+      ul {
          font-size: 20px;
-         padding: 25px;
-         gap: 20px;
-         display: flex;
+
+      }
+
+
+      .imagens img {
+         width: 50px;
+         height: auto;
+      }
+
+      .event {
+         width: 100px;
+         height: auto;
 
       }
 
@@ -191,7 +207,7 @@ if ($_POST) {
 
       main {
          margin-left: 955px;
-         margin-top: -850px;
+         margin-top: -800px;
       }
 
       form {
@@ -244,9 +260,11 @@ if ($_POST) {
          border-width: 1px;
          font-family: "Raleway", sans-serif;
       }
-      select{
+
+      select {
          font-family: "Raleway", sans-serif;
       }
+
       .email {
          margin-top: 30px;
       }
@@ -288,4 +306,5 @@ if ($_POST) {
       }
    </style>
 </body>
+
 </html>

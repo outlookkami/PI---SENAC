@@ -2,7 +2,7 @@
 
 <?php
 
-<<<<<<< HEAD
+
 // $host = "localhost";
 // $username = "root";
 // $password = "";
@@ -17,25 +17,26 @@
 // }
 
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-=======
+
 $host = "localhost";
 $username = "root";
 $password = "";
 $database = "banco_teste";
->>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
+$connection = new mysqli($host, $username, $password, $database);
+
+$result = $connection -> query($sql);
 
 
-<<<<<<< HEAD
 
-=======
+
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 $result = $connection->query($sql);
 
->>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
+
 ?>
 
 
@@ -60,7 +61,7 @@ $result = $connection->query($sql);
 
 <body>
     <header>
-<<<<<<< HEAD
+
         <nav>
             <div class="inícioHeader">
                 <ul>
@@ -83,13 +84,13 @@ $result = $connection->query($sql);
                 </ul>
             </div>
         </nav>
-=======
+
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
         <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
         <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
         <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
->>>>>>> 441a89c1eeb1179cc41f96a1428b46a15afb659c
+
     </header>
     <nav class="menubarra" id="menubarra">
         <ul>

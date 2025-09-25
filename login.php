@@ -15,7 +15,7 @@ if ($_POST) {
             $_SESSION['ID'] = $usuario['ID'];
             $_SESSION['nome_user'] = $usuario['nome_user'];
             $_SESSION['nivel'] = $usuario['nivel'];
-            $_SESSION['foto_user'] = $usuario['foto']; 
+            $_SESSION['foto_user'] = $usuario['foto'];
 
             if ($usuario['ID_acesso'] === "1") {
                 header("Location: admPortal.php");
@@ -49,18 +49,25 @@ if ($_POST) {
     <aside>
         <img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="" width="150px">
         <p class="HE">HeyEvent</p>
-        <div class="pe1">
-            <img src="assets\Evento.png" alt="">
-            <p>Facilite a organização, comunicação e execução de eventos corporativos</p>
-        </div>
-        <div class="pe2">
-            <img src="assets\Calendario.png" alt="">
-            <p>Vizualize eventos futuros</p>
-        </div>
-        <div class="pe3">
-            <img src="assets\Confirmar.png" alt="">
-            <p>Confirme sua presença rapidamente</p>
-        </div>
+        <ul class="imagens">
+            <li>
+                <img class="event" src="assets/event.png" alt="Ícone de evento">
+                <span>Facilite a organização, comunicação e execução de eventos corporativos</span>
+            </li>
+            <li>
+                <img src="assets/calen.png" alt="Ícone de calendário">
+                <span>Visualize eventos futuros</span>
+            </li>
+            <li>
+                <img src="assets/check.png" alt="Ícone de confirmação">
+                <span>Confirme sua presença rapidamente</span>
+            </li>
+            <li>
+                <img src="assets/info.png" alt="Ícone de confirmação">
+                <span>Veja todos os detalhes em um só lugar</span>
+            </li>
+        </ul>
+
     </aside>
     <main>
         <div class="topo">
@@ -100,7 +107,6 @@ if ($_POST) {
             padding: 0;
             height: 100vh;
             font-family: "Raleway", sans-serif;
-
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
             background-repeat: no-repeat;
             background-size: 50% 100%;
@@ -118,6 +124,32 @@ if ($_POST) {
             padding: 20px;
         }
 
+        .imagens {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            margin-top: -100px;
+            
+        }
+
+        .imagens li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+
+        .imagens img {
+            width: 50px;
+            height: auto;
+        }
+        .event{
+            width: 100px;
+            height: auto;
+        
+        }
+
         aside {
             color: white;
             padding: 10px;
@@ -130,6 +162,10 @@ if ($_POST) {
         main {
             margin-left: 955px;
             margin-top: -800px;
+        }
+        ul{
+            font-size: 20px;
+            
         }
 
         form {
@@ -175,7 +211,6 @@ if ($_POST) {
         .pe3 {
             font-size: 20px;
             padding: 25px;
-            gap: 20px;
             display: flex;
 
         }
@@ -228,4 +263,5 @@ if ($_POST) {
     </style>
 
 </body>
+
 </html>
