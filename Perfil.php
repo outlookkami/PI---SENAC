@@ -2,8 +2,11 @@
 
 include("conexao.php");
 session_start();
-
-
+if (isset($_SESSION['foto_perfil'])) {
+    echo '<img src="'. $_SESSION['foto_perfil'] .'" alt="Foto de perfil" width="150">';
+} else {
+    echo 'Usuário não tem foto.';
+}
 if (!isset($_SESSION['ID'])) {
     header("Location: login.php");
     exit;
