@@ -59,22 +59,43 @@ if ($usuario['ID_acesso'] == 1) {
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
     </header>
     <nav class="menubarra" id="menubarra">
+        <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
+        <p class="MHE">HeyEvent</p>
         <ul>
-            <li><a href="<?php
-                        if ($usuario['ID_acesso'] == 1) {
-                            echo 'admPortal.php';
-                        } elseif ($usuario['ID_acesso'] == 2) {
-                            echo 'ColabPortal.php';
-                        } else {
-                            echo 'HeyEvent.php'; 
-                        }
-                        ?>">Início</a>
-            </li>
-            <li><a href="Sobrenos.php">Sobre nós</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
+        <div class="lihover">
+        <li><img src="assets\home.png" alt=""><a href="<?php
+        if ($usuario['ID_acesso'] == 1) {
+            echo 'admPortal.php';
+        } elseif ($usuario['ID_acesso'] == 2) {
+            echo 'ColabPortal.php';
+        } else {
+            echo 'HeyEvent.php'; 
+        }
+        ?>">Início</a>
+        </li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\info a.png" alt=""><a href="Sobrenos.php">Sobre nós</a></li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\prox.png" alt=""></i><a href="<?php
+        if ($usuario['ID_acesso'] == 1) {
+            echo 'admPortal.php';
+        } elseif ($usuario['ID_acesso'] == 2) {
+            echo 'ColabPortal.php';
+        } else {
+            echo 'HeyEvent.php'; 
+        }
+        ?>">Próximos eventos</a></li>
+        </div>
+            <div class="lihover">
+                <li><img src="assets\contato.png" alt=""><a href="Contato.php">Contato</a></li>
+            </div>
         </ul>
-
+        <p class="footermenu">
+            Todos os direitos reservados. <br>
+            © 2024 HeyEvent.
+        </p>
     </nav>
 
     <main id="main">
@@ -129,7 +150,7 @@ if ($usuario['ID_acesso'] == 1) {
         });
         confirmBtn.addEventListener('click', () => {
             confirmBtn.style.display = "none";
-            
+
         });
         const menu = document.getElementById('menu');
         const menubarra = document.getElementById('menubarra');
@@ -189,6 +210,54 @@ if ($usuario['ID_acesso'] == 1) {
             transition: 0.3s;
             z-index: 2;
             font-family: "Quicksand", sans-serif;
+
+        }
+
+        .MLogo {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .MHE {
+            color: #000F55;
+            font-family: Quicksand;
+            font-weight: 1000px;
+            font-size: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: lighter;
+
+        }
+
+        li img {
+            width: 40px;
+        }
+
+
+        ul {
+            list-style: none;
+
+        }
+
+        ul li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: #000F55;
+        }
+
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
         }
 
         main {
@@ -230,6 +299,17 @@ if ($usuario['ID_acesso'] == 1) {
 
 
         }
+
+        .lihover {
+            margin-left: -37px;
+            transition: transform 0.3s ease; 
+        }
+
+        .lihover:hover {
+            transform: scale(1.05);         
+            
+        }
+
 
         .sairb {
             text-align: right;
