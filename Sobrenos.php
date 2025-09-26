@@ -20,7 +20,7 @@
     <main>
         <p class="p1">A HeyEvent nasceu com o propósito de transformar a forma como as empresas organizam seus eventos internos. Nosso objetivo é oferecer uma solução simples, eficiente e especializada, que facilite a comunicação, a organização e a execução de eventos corporativos, garantindo mais engajamento e praticidade para todos os colaboradores. <br>
             Com a HeyEvent, os funcionários podem visualizar eventos em um calendário integrado, confirmar presença, acompanhar descrições, datas e locais, além de acessar banners e imagens que tornam a experiência mais dinâmica. Já os administradores têm total controle para cadastrar, editar e gerenciar eventos de forma rápida e organizada. <br>
-            A HeyEvent é conduzida por Gabrielle e Kamilly, que acreditam que a tecnologia pode ser uma grande aliada na criação de experiências corporativas mais conectadas, organizadas e memoráveis.
+            A HeyEvent é conduzida por Gabrielle e Kamilly, que acreditam que a tecnologia pode ser uma grande aliada na criação de experiências corporativas mais conectadas, organizadas e memoráveis. </p>
     </main>
     <footer>
         <p>Todos os direitos reservados.</p>

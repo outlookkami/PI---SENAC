@@ -31,8 +31,6 @@ if ($_POST) {
             <div class="bdv">
                 <h3>Recupere sua Senha</h3>
             </div>
-
-
             <input class="email" type="email" name="email" placeholder="Email"> <br>
             <button type="submit">Avançar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
