@@ -12,7 +12,15 @@ if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
 }
 
-$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_eventos ORDER BY data_evento ASC";
+// session_start();
+// if (isset($_FILES['imagem_evento'])) {
+//     echo '<img src="'. $_FILES['Imagem_evento'] .'" alt="Imagem do Evento" width="150">';
+// } else {
+//     echo 'Não há imagem para esse evento.';
+// }
+
+$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+
 
 $result = $connection -> query($sql);
 
@@ -28,6 +36,7 @@ $result = $connection -> query($sql);
 
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 // $result = $connection->query($sql);
+
 
 ?>
 
@@ -187,10 +196,9 @@ $result = $connection -> query($sql);
                 </tr>
 
                 <tbody>
-                    <?php 
                         //if ($result->num_rows > 0): 
                             //while ($row = $result->fetch_assoc()):
-                    ?>
+                
                 </tbody>
             </table> -->
 
@@ -261,20 +269,20 @@ $result = $connection -> query($sql);
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    
+                <div class="ProximosEventos">
                     <table class="TableEventos">
                         <tr>
-                            <td><img src="<?php echo $row["imagem_evento"] ?>" alt="Imagem do evento"></td>
+                            <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
                         </tr>
-                        <tr>
-                            <td>
+                        <tr class="tituloTag">
+                            <td id="tituloEvento">
                                 <h4><?php echo $row["titulo_evento"] ?></h4>
                             </td>
-                            <td><?php echo $row["tag_evento"] ?></td>
+                            <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <p><?php echo $row["descricao_evento"] ?></p>
+                            <td colspan="2" id="descricao_evento">
+                                <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -290,6 +298,7 @@ $result = $connection -> query($sql);
                             <td colspan="2"><button class="ConfirmarPresença">Confirmar Presença</button></td>
                         </tr>
                     </table>
+                </div>  
                 <?php endwhile; ?>
             <?php else: ?>
                 <p>Nenhum evento encontrado.</p>
@@ -513,10 +522,13 @@ $result = $connection -> query($sql);
             padding: 20px;
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-            width: 400px;
-            display: block;
-            height: fit-content;
-            
+            width: fit-content;
+            height: fit-content; 
+            /* display: flex; */
+            /* flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;   */
         }
 
         .imagensIlustrativasEventos {
@@ -532,11 +544,11 @@ $result = $connection -> query($sql);
 
         .tituloTag {
             display: flex;
-            justify-content: space-between;
+            justify-content:space-between;
             align-items: center;
         }
 
-        .tag {
+        .tagEvento {
             display: flex;
             background-color: #000F55;
             color: white;
@@ -549,7 +561,7 @@ $result = $connection -> query($sql);
 
         /* Botões Eventos */
         .ConfirmarPresença {
-            display: block;
+            display: flex;
             background-color: #D90368;
             color: white;
             border: none;
@@ -557,7 +569,9 @@ $result = $connection -> query($sql);
             border-radius: 8px;
             width: 100%;
             text-align: center;
+            align-items: center;
             cursor: pointer;
+            justify-content: center;
         }
 
         .PresençaConfirmada {

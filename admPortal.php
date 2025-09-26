@@ -11,15 +11,7 @@ $connection = new mysqli($host, $username, $password, $database);
 if ($connection -> connect_error){
     die("Erro de conexão" . $connection -> connect_error);}
 // 
-$sql = "SELECT * FROM tabela_eventos";
-
-$result = $connection -> query($sql);
-
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-
-if(!$result){
-    die("Erro ao acessar dados." . $connection -> error);
-}
+// session_start();
 
 if($_POST){
     $titulo_evento = $_POST['titulo_evento'];
@@ -27,9 +19,11 @@ if($_POST){
     $data_evento = $_POST['data_evento'];
     $horario_inicio_evento = $_POST['horario_inicio_evento'];
     $horario_fim_evento = $_POST['horario_fim_evento'];
-    $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
+    $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
+    $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
+
     // $imagem_evento = $_FILES['imagem_evento'];
 
     if (!empty($titulo_evento) && !empty($descricao_evento) && !empty($data_evento) && !empty($horario_inicio_evento) && !empty($local_evento)) {
@@ -48,6 +42,66 @@ if ($connection -> query($sql)){
     echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
 }
 $connection -> close();
+
+}
+
+$destino = "uploads/";
+
+if(!is_dir($destino)){
+        mkdir($destino, 0755, true);
+    }
+
+if(isset($_FILES["imagem_evento"]) && $_FILES["imagem_evento"]['error'] === 0){
+    $arquivoTmp = $_FILES['imagem_evento']['tmp_name'];
+    $nomeArquivo = basename($_FILES['imagem_evento']['name']);
+    
+    $arquivoExt = pathinfo($nomeArquivo, PATHINFO_EXTENSION);
+    $novoNomeArquivo = uniqid('evento_') . "." . $arquivoExt;
+
+    $caminhoArquivo = $destino . $novoNomeArquivo;
+    
+
+    if(move_uploaded_file($arquivoTmp, $caminhoArquivo)){
+        $sql = "INSERT INTO tabela_de_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$caminhoArquivo')";
+
+        $connection -> query($sql);
+
+        if($connection -> query($sql) === TRUE && $titulo_evento != null){
+            echo "Evento criado com sucesso!";
+        } else {
+            echo "Erro ao criar evento: " . $connection -> error;
+        }
+            } else {
+                    echo "Nenhuma imagem enviada.";
+                }
+                header("Location: eventos.php?msg=sucesso");
+        exit;
+}
+
+ 
+$sql = "SELECT * FROM tabela_de_eventos";
+
+$result = $connection -> query($sql);
+
+// $sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
+
+
+if(!$result){
+    die("Erro ao acessar dados." . $connection -> error);
+}
+
+
+
+
+    // $imagem_evento = "uploads/".basename($nome_arquivo);
+
+    // if(move_uploaded_file($caminho, $imagem_evento)){
+    //     $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$imagem_evento')";
+    // }
+
+
+   $connection -> close();
+>>>>>>> c9ef50a7cc63c0a72e68054bda661c53b3287622
 ?>
 
 <!DOCTYPE html>
@@ -155,7 +209,7 @@ $connection -> close();
             <label for="data_evento"><b>Data</b></label><br>
             <input class="inpt1" type="date" name="data_evento" id="data_evento" >
             <br><br>
-            <label><b>Horário</b></label><br>
+            <label><b>Horário</b></label><br><br>
             <div class="horarios">
                 <div>
                     <label for="horario_inicio_evento"><b>Início</b></label><br>
@@ -166,7 +220,7 @@ $connection -> close();
                     <input class="inpt1" type="time" name="horario_fim_evento" id="horario_fim_evento" placeholder="Ex: 16:00"></div>
             </div>
 
-            <br><br>
+            <br>
             <label for="local_evento"><b>Local</b></label><br>
             <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
             <br><br>
@@ -182,27 +236,35 @@ $connection -> close();
             <br><br>
             
             <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
+            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*"><br>
             <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
             <br><br>
             <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
-            <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
-    </form>
-    </div>
+            <button class="botaoCriar" type="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
 
-    <script>
+            <script>
         function mostraForm() {
             document.getElementById("formCriarEvento").style.display = "block";
             document.getElementById("conteudoPrincipal").classList.add("blur");
         }
-    </script>
 
-    <script>
         function escondeForm() {
             document.getElementById("formCriarEvento").style.display = "none";
         }
 
+        function limparFormulario(){
+            document.getElementById("formCriarEvento").addEventListener('submit', function(){
+                this.reset();
+            });
+        }
+
     </script>
+    </form>
+
+    
+    </div>
+
+    
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
         * {
@@ -416,11 +478,10 @@ $connection -> close();
         }
 
         .CriarEventoForm {
-            display: flex;
+            display: block;
             background-color: #ffffffff;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
             border-radius: 40px;
-            
             align-items: center;
             flex-direction: column;
             position: fixed;
@@ -466,7 +527,7 @@ $connection -> close();
             border-radius: 6px;
             text-align: center;
             cursor: pointer;
-            margin-top: 4px;
+            margin-top: 40px;
             padding: 6px;
             font-size: 12px;
         }
