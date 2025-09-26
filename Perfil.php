@@ -2,8 +2,11 @@
 
 include("conexao.php");
 session_start();
-
-
+if (isset($_SESSION['foto_perfil'])) {
+    echo '<img src="'. $_SESSION['foto_perfil'] .'" alt="Foto de perfil" width="150">';
+} else {
+    echo 'Usuário não tem foto.';
+}
 if (!isset($_SESSION['ID'])) {
     header("Location: login.php");
     exit;
@@ -50,7 +53,7 @@ if ($usuario['ID_acesso'] == 1) {
 
     <header>
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-        <a href="HeyEvent.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
+        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
         <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
         <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
@@ -67,7 +70,7 @@ if ($usuario['ID_acesso'] == 1) {
                         }
                         ?>">Início</a>
             </li>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="Sobrenos.php">Sobre nós</a></li>
             <li><a href="#">Serviços</a></li>
             <li><a href="#">Contato</a></li>
         </ul>

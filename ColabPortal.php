@@ -6,7 +6,15 @@ $username = "root";
 $password = "";
 $database = "teste_eventos";
 
+<<<<<<< HEAD
 $connection = new mysqli($host, $username, $password, $database);
+=======
+
+// $host = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "eventos";
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 
 if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
@@ -16,19 +24,38 @@ $sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_e
 
 $result = $connection -> query($sql);
 
+<<<<<<< HEAD
+=======
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 $host = "localhost";
 $username = "root";
 $password = "";
 $database = "banco_teste";
+<<<<<<< HEAD
 
 
+=======
+$connection = new mysqli($host, $username, $password, $database);
+
+$result = $connection -> query($sql);
+
+
+
+
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 $result = $connection->query($sql);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 ?>
 
 
@@ -53,6 +80,10 @@ $result = $connection->query($sql);
 
 <body>
     <header>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
         <nav>
             <div class="inícioHeader">
                 <ul>
@@ -75,6 +106,16 @@ $result = $connection->query($sql);
                 </ul>
             </div>
         </nav>
+<<<<<<< HEAD
+=======
+
+        <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
+        <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
+        <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
+        <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
+
+>>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
     </header>
     <nav class="menubarra" id="menubarra">
         <ul>
@@ -88,7 +129,7 @@ $result = $connection->query($sql);
                             }
                             ?>">Início</a>
             </li>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="Sobrenos.php">Sobre</a></li>
             <li><a href="#">Serviços</a></li>
             <li><a href="#">Contato</a></li>
         </ul>
@@ -341,14 +382,60 @@ $result = $connection->query($sql);
         /* HEADER */
         header {
             display: flex;
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            background-repeat: no-repeat;
-            width: 100vw;
-            height: 5%;
-            padding: 15px;
             align-items: center;
+            height: 100px;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            vertical-align: middle;
 
         }
+
+        header a {
+            text-decoration: none;
+            color: white;
+
+        }
+
+        .sair {
+            width: 30px;
+            margin-left: 100px;
+            vertical-align: middle;
+
+
+        }
+
+        .sairb {
+            text-align: right;
+        }
+
+        .menu {
+            width: 20px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .Logo {
+            width: 30px;
+            margin-left: 300px;
+            vertical-align: middle;
+        }
+
+        .calendario {
+            width: 60px;
+            margin-left: 400px;
+            vertical-align: middle;
+        }
+
+        .user {
+            width: 40px;
+            margin-left: 600px;
+            vertical-align: middle;
+        }
+
 
         .menubarra {
             position: fixed;
