@@ -6,15 +6,8 @@ $username = "root";
 $password = "";
 $database = "teste_eventos";
 
-<<<<<<< HEAD
 $connection = new mysqli($host, $username, $password, $database);
-=======
 
-// $host = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "eventos";
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 
 if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
@@ -24,38 +17,26 @@ $sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_e
 
 $result = $connection -> query($sql);
 
-<<<<<<< HEAD
-=======
+
+
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
+
 $host = "localhost";
 $username = "root";
 $password = "";
 $database = "banco_teste";
-<<<<<<< HEAD
 
-
-=======
 $connection = new mysqli($host, $username, $password, $database);
 
 $result = $connection -> query($sql);
 
-
-
-
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
-
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 $result = $connection->query($sql);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
 ?>
 
 
@@ -80,10 +61,9 @@ $result = $connection->query($sql);
 
 <body>
     <header>
-<<<<<<< HEAD
-=======
 
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
+
+
         <nav>
             <div class="inícioHeader">
                 <ul>
@@ -106,8 +86,8 @@ $result = $connection->query($sql);
                 </ul>
             </div>
         </nav>
-<<<<<<< HEAD
-=======
+
+
 
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
         <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
@@ -115,7 +95,6 @@ $result = $connection->query($sql);
         <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
         <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
 
->>>>>>> e047d9895d9368fc0369e92940a3bb4def73590e
     </header>
     <nav class="menubarra" id="menubarra">
         <ul>
