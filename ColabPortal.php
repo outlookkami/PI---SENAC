@@ -6,10 +6,10 @@ $username = "root";
 $password = "";
 $database = "teste_eventos";
 
-<<<<<<< HEAD
+
 $connection = new mysqli($host, $username, $password, $database);
 
-=======
+
 
 $connection = new mysqli($host, $username, $password, $database);
 
@@ -19,7 +19,7 @@ $connection = new mysqli($host, $username, $password, $database);
 // $password = "";
 // $database = "eventos";
 
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
+
 
 if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
@@ -39,32 +39,20 @@ $username = "root";
 $password = "";
 $database = "banco_teste";
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
 $connection = new mysqli($host, $username, $password, $database);
 
 $result = $connection -> query($sql);
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 // $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
 $result = $connection->query($sql);
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
+
 ?>
 
 
@@ -90,11 +78,6 @@ $result = $connection->query($sql);
 <body>
     <header>
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
         <nav>
             <div class="inícioHeader">
                 <ul>
@@ -118,11 +101,7 @@ $result = $connection->query($sql);
             </div>
         </nav>
 
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> f8a23b031dad841d4b3ab1718eb294b6732b1fe7
 
         <img class="menu" src="assets/menu.png" alt="menu" id="menu">
         <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
