@@ -272,42 +272,17 @@ $result = $connection -> query($sql);
         }
 
         nav li{
-            margin-left: 20px;
+            margin: 10px 0;
         }
 
-        a {
+        a{
             text-decoration: none;
             color: white;
+            display:flex;
+            text-align: center;
+            align-items: center;
         }
-
-        @media (max-width: 768px) {
-            nav ul {
-                display: flex;
-                flex-direction: row;
-                position: relative;
-                top: 20px; 
-                justify-content: space-between;
-                align-items: flex-start;
-            }
-
-            nav ul li {
-                margin-left: 0;
-                margin-bottom: 10px;
-            }
-        }
-
-        .inícioHeader {
-            gap: 40px;
-        }
-
-        /* .meioHeader {
-            
-        }
-
-        .fimHeader {
-            
-        } */
-
+        
         .paginas {
             background-color: transparent;
             color: white;
@@ -330,6 +305,8 @@ $result = $connection -> query($sql);
             display: flex;
             gap: 40px;
             justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         /* Elementos tabelas */
@@ -382,7 +359,10 @@ $result = $connection -> query($sql);
         .ProximosEventos {
             display: flex;
             gap: 40px;
-            justify-content: center;
+            justify-content:center;
+            align-items: center;
+            flex-wrap:wrap;  
+            min-width: 300px;
         }
 
         /* Elementos das tabelas */
@@ -496,6 +476,87 @@ $result = $connection -> query($sql);
             text-align:center;
             margin: 40px;
             display: block;
+        }
+
+        @media (max-width: 768px) {
+           nav {
+            align-items: flex-start;
+           }
+
+           .inícioHeader button {
+            display: block;
+            }
+
+            .meioHeader {
+            display: block; 
+            }
+
+            .fimHeader {
+            margin-top: 10px
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .ProximosEventos {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+        }
+
+        @media (max-width: 1200px) {
+           nav {
+            align-items: flex-start;
+           }
+
+           .inícioHeader button {
+            display: block;
+            }
+
+            .meioHeader {
+            display: block; 
+            }
+
+            .fimHeader {
+            margin-top: 10px
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .ProximosEventos {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            .Dashboard {
+                display: flex;
+                align-self: center;
+                align-content: center;
+                justify-content:center;
+            }
         }
     </style>
 

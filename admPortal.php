@@ -11,11 +11,11 @@ $connection = new mysqli($host, $username, $password, $database);
 if ($connection -> connect_error){
     die("Erro de conexão" . $connection -> connect_error);}
 // 
-$sql = "SELECT * FROM tabela_eventos";
+$sql = "SELECT * FROM tabela_de_eventos";
 
 $result = $connection -> query($sql);
 
-$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+$sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
 
 if(!$result){
     die("Erro ao acessar dados." . $connection -> error);
@@ -55,11 +55,8 @@ if (isset($_POST['submit'])) {
     $data_evento = $_POST['data_evento'];
     $horario_inicio_evento = $_POST['horario_inicio_evento'];
     $horario_fim_evento = $_POST['horario_fim_evento'];
-<<<<<<< HEAD
+
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
-=======
-    $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
     // $imagem_evento = $_FILES['imagem_evento'];
@@ -67,7 +64,6 @@ if (isset($_POST['submit'])) {
 
     $destino = "uploads/";
 
-<<<<<<< HEAD
     if(!is_dir($destino)){
         mkdir($destino, 0755, true);
     }
@@ -151,9 +147,6 @@ if (isset($_POST['submit'])) {
 // }
 
 
-    
-
- 
 // $sql = "SELECT * FROM tabela_de_eventos";
 
 // $result = $connection -> query($sql);
@@ -164,24 +157,9 @@ if (isset($_POST['submit'])) {
 // if(!$result){
 //     die("Erro ao acessar dados." . $connection -> error);
 // }
-   $connection -> close();
 
-=======
-    $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
-
-    // echo $sql;
-    // $result = $connection->query($sql);
-}
-
-}
-
-if ($connection -> query($sql)){
-    echo "";
-} else {
-    echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
-}
 $connection -> close();
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
+
 ?>
 
 <!DOCTYPE html>
@@ -272,12 +250,12 @@ $connection -> close();
             </div>
             <br><br>
 
-            <button class="criarEvento" onclick="mostraForm()">&#43 Criar evento</button>
+            <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
         </div>
     </main>
     
     <!-- Formulário de criação de eventos -->
-    <div class="CriarEventoForm" id="formCriarEvento">
+    <div class="CriarEventoForm" id="formCriarEvento" style="display: none;">
         <form method="post" action="admPortal.php" enctype="multipart/form-data"" class="CriarEventoForm">
             <h2 class="CNE">Criar Novo Evento</h2><br>
             <label for="titulo_evento"><b>Título do evento</b></label><br>
@@ -319,25 +297,22 @@ $connection -> close();
             <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
             <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
             <br><br>
-            <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
-<<<<<<< HEAD
+            <div class="botoes">
+            <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button><br>
             <button class="botaoCriar" type="submit" name="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
-=======
-            <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
+            </div>
+
     </form>
     </div>
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
-
     <script>
         function mostraForm() {
-            document.getElementById("formCriarEvento").style.display = "block";
+            document.getElementById("formCriarEvento").style.display = "flex";
             document.getElementById("conteudoPrincipal").classList.add("blur");
         }
-    </script>
-
-    <script>
+   
         function escondeForm() {
             document.getElementById("formCriarEvento").style.display = "none";
+            document.getElementById("conteudoPrincipal").classList.remove("blur");
         }
 
     </script>
@@ -395,19 +370,15 @@ $connection -> close();
             margin-top: 10px;
         }
 
-        button {
-            background-color: transparent;
-            color: white;
-            border: none;
-            place-content: space-between;
-
-            font-family: "Raleway", sans-serif;
+        a{
+            display:flex;
+            text-align: center;
+            align-items: center;
         }
 
-        button:hover {
+        a:hover {
             color: #D90368;
             cursor: pointer;
-
         }
 
         .TituloTabela {
@@ -480,6 +451,21 @@ $connection -> close();
         }
 
         /* Botão Criar Evento */
+
+        button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            place-content: space-between;
+            font-family: "Raleway", sans-serif;
+        }
+
+        button:hover{
+            color:#D90368;
+            background-color: #000F55;
+            cursor: pointer;
+        }
+
         .criarEvento {
             background-color: #4e598c;
             color: white;
@@ -490,6 +476,16 @@ $connection -> close();
             text-align: center;
             cursor: pointer;
             margin: 20px;
+        }
+
+        .criarEvento:hover {
+            background-color: #000F55;
+            color: #D90368;
+        }
+
+        .blur{
+            filter: blur(5px);
+            transition: filter 0.3s ease
         }
 
         /* .CriarEventoForm {
@@ -507,15 +503,13 @@ $connection -> close();
 
         } */
 
-
-
         .botaoCriar {
-            background-color: #000F55;
+            background-color: #4e598c;
             color: white;
             border-radius: 6px;
             padding: 6px;
             width: 120px;
-            border: 1px solid #000F55;
+            border: 1px solid #4e598c;
             font-size: 14px;
         }
 
@@ -558,14 +552,14 @@ $connection -> close();
             background-color: #ffffffff;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
             border-radius: 40px;
-            
             align-items: center;
             flex-direction: column;
-            position: fixed;
+            position: absolute;  
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 40px;
+            transform: translate(-50%, -50%);  
+            margin: 40px;
+            padding: 40px;            
         }
 
         .horarios {
@@ -609,8 +603,18 @@ $connection -> close();
             font-size: 12px;
         }
 
+        .estiloFile:hover{
+            background-color: #000F55;
+            color:#D90368;
+        }
+
         ::placeholder {
             font-family: "Raleway", sans-serif;
+        }
+
+        .botoes{
+            display:flex;
+            gap: 20px;
         }
 
         .inpt1 {
@@ -623,83 +627,75 @@ $connection -> close();
         }
 
         .CNE {
-
             color: #000F55;
         }
-    </style>
 
-    <!-- <script>
-        function lancarEvento(){
-            titulo = document.getElementById('titulo_evento').value;
-            descricao = document.getElementById('descricao_evento').value;
-            data_inicio = document.getElementById('data_evento').value;
-            horario_inicio = document.getElementById('horario_inicio_evento').value;
-            horario_fim = document.getElementById('horario_fim_evento').value;
-            local = document.getElementById('local_evento').value;
-            tag = document.getElementById('tag_evento').value;
-            imagem = document.getElementById('imagem_evento').value;
+        @media screen and (max-width: 768px) {
+           nav {
+            align-items: flex-start;
+           }
 
-            if(titulo == '' || descricao == '' || local == '' || data_inicio == '' || horario_inicio == ''){
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return false;
+           .inícioHeader button {
+            display: block;
             }
 
+            .meioHeader {
+            display: block; 
+            }
+
+            .fimHeader {
+            margin-top: 10px
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            #CriarEventoForm{
+                width: 90%;
+                padding: 20px;
+            }
+
+            #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
+        font-size: 14px; /* Diminui o tamanho da fonte para se ajustar melhor */
+        padding: 8px;
+    }
         }
-    </script> -->
+
+        @media screen and (max-width: 480px) {
+            .horarios {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .horarios div {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #CriarEventoForm{
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+    </style>
     
 </body>
 
 </html>
-
-<!-- PHP - Conectando ao banco para receber os dados do formulário -->
-
-<?php
-//     $server = "localhost";
-//     $username = "root";
-//     $password = "";
-//     $database = "eventos";
-
-//     $connection = new mysqli($server, $username, $password, $database);
-
-//     if ($connection->connect_error) {
-
-//     die("Erro de conexão" . $connection->connect_error);
-// }
-
-
-//         // Conexão com o banco de dados
-//         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-//         $titulo_evento = $_POST['titulo_evento'];
-//         $descricao_evento = $_POST['descricao_evento'];
-//         $data_evento = $_POST['data_evento'];
-//         $horario_inicio_evento = $_POST['horario_inicio_evento'];
-//         $horario_fim_evento = $_POST['horario_fim_evento'];
-//         $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
-//         $local_evento = $_POST['local_evento'];
-//         $tag_evento = $_POST['tag_evento'];
-//         $imagem_evento = $_FILES['imagem_evento'];
-//         if (!empty($_FILES['imagem_evento']['name'])) {
-//     $nome_arquivo = basename($_FILES['imagem_evento']['name']);
-//     $caminho = "uploads/" . $nome_arquivo;
-//     move_uploaded_file($_FILES['imagem_evento']['tmp_name'], $caminho);
-//     $imagem_evento = $caminho;
-// } else {
-//     $imagem_evento = null;
-// }
-//     }
-
-//         $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-//         $stmt = $connection->prepare($sql);
-
-//         $stmt->bind_param("ssssssssb", $titulo_evento, $descricao_evento, $data_evento, $horario_inicio_evento, $horario_fim_evento, $horario_evento, $local_evento, $tag_evento, $imagem_evento);
-
-//         if ($stmt->execute()) {
-//             echo "Evento criado com sucesso!";
-//         } else {
-//             echo "Erro ao criar evento: " . $stmt->error;
-//         }
-    
-//         $stmt->close();
-//         $connection->close();
-?>

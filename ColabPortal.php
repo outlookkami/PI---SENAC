@@ -470,9 +470,12 @@ $result = $connection->query($sql);
 
         }
 
-        a {
+        a{
             text-decoration: none;
             color: white;
+            display:flex;
+            text-align: center;
+            align-items: center;
         }
 
         @media (max-width: 768px) {
