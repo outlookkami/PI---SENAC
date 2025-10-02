@@ -4,18 +4,18 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "teste_eventos";
-
+$database = "banco_teste";
+session_start();
 $connection = new mysqli($host, $username, $password, $database);
 
-if ($connection -> connect_error){
-    die("Erro de conexão: " . $connection -> connect_error);
+if ($connection->connect_error) {
+    die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
 
-$result = $connection -> query($sql);
+$result = $connection->query($sql);
 
 ?>
 
@@ -146,36 +146,42 @@ $result = $connection -> query($sql);
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="ProximosEventos">
-                    <table class="TableEventos">
-                        <tr>
-                            <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
-                        </tr>
-                        <tr class="tituloTag">
-                            <td id="tituloEvento">
-                                <h4><?php echo $row["titulo_evento"] ?></h4>
-                            </td>
-                            <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" id="descricao_evento">
-                                <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                        </tr>
-                    </table>
-                </div>  
+                    <div class="ProximosEventos">
+                        <table class="TableEventos">
+                            <tr>
+                                <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
+                            </tr>
+                            <tr class="tituloTag">
+                                <td id="tituloEvento">
+                                    <h4><?php echo $row["titulo_evento"] ?></h4>
+                                </td>
+                                <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="descricao_evento">
+                                    <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <form method="POST" action="confirmar.php">
+                                        <input type="hidden" name="id_evento" value="<?php echo $row['id_evento']; ?>">
+                                        <input type="hidden" name="acao" value="confirmar_presenca">
+                                        <button type="submit" class="ConfirmarPresença">Confirmar Presença</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 <?php endwhile; ?>
             <?php else: ?>
                 <p>Nenhum evento encontrado.</p>
@@ -271,7 +277,7 @@ $result = $connection -> query($sql);
             padding: 0;
         }
 
-        nav li{
+        nav li {
             margin-left: 20px;
         }
 
@@ -285,7 +291,7 @@ $result = $connection -> query($sql);
                 display: flex;
                 flex-direction: row;
                 position: relative;
-                top: 20px; 
+                top: 20px;
                 justify-content: space-between;
                 align-items: flex-start;
             }
@@ -312,7 +318,7 @@ $result = $connection -> query($sql);
             background-color: transparent;
             color: white;
             border: none;
-            cursor: pointer;         
+            cursor: pointer;
         }
 
         .paginas:hover {
@@ -393,7 +399,7 @@ $result = $connection -> query($sql);
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
             width: fit-content;
-            height: fit-content; 
+            height: fit-content;
             /* display: flex; */
             /* flex-direction: row;
             flex-wrap: wrap;
@@ -414,7 +420,7 @@ $result = $connection -> query($sql);
 
         .tituloTag {
             display: flex;
-            justify-content:space-between;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -426,7 +432,7 @@ $result = $connection -> query($sql);
             padding: 7px 11px;
             font-size: 14px;
             align-items: end;
-            justify-content:end;
+            justify-content: end;
         }
 
         /* Botões Eventos */
@@ -492,8 +498,8 @@ $result = $connection -> query($sql);
             width: 25px;
         }
 
-        footer{
-            text-align:center;
+        footer {
+            text-align: center;
             margin: 40px;
             display: block;
         }
@@ -507,4 +513,3 @@ $result = $connection -> query($sql);
 <?php
 $connection->close();
 ?>
-

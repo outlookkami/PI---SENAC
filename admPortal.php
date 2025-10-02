@@ -55,19 +55,17 @@ if (isset($_POST['submit'])) {
     $data_evento = $_POST['data_evento'];
     $horario_inicio_evento = $_POST['horario_inicio_evento'];
     $horario_fim_evento = $_POST['horario_fim_evento'];
-<<<<<<< HEAD
+
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
-=======
+
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
+
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
-    // $imagem_evento = $_FILES['imagem_evento'];
-    //  $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
+    $imagem_evento = $_FILES['imagem_evento'];
+     $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
 
     $destino = "uploads/";
-
-<<<<<<< HEAD
     if(!is_dir($destino)){
         mkdir($destino, 0755, true);
     }
@@ -166,14 +164,14 @@ if (isset($_POST['submit'])) {
 // }
    $connection -> close();
 
-=======
+
     $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
 
     // echo $sql;
     // $result = $connection->query($sql);
-}
 
-}
+
+
 
 if ($connection -> query($sql)){
     echo "";
@@ -181,7 +179,6 @@ if ($connection -> query($sql)){
     echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
 }
 $connection -> close();
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
 ?>
 
 <!DOCTYPE html>
@@ -278,7 +275,7 @@ $connection -> close();
     
     <!-- Formulário de criação de eventos -->
     <div class="CriarEventoForm" id="formCriarEvento">
-        <form method="post" action="admPortal.php" enctype="multipart/form-data"" class="CriarEventoForm">
+        <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm">
             <h2 class="CNE">Criar Novo Evento</h2><br>
             <label for="titulo_evento"><b>Título do evento</b></label><br>
             <input class="inpt1" type="text" name="titulo_evento" id="titulo_evento" placeholder="Digite o título do seu evento">
@@ -320,13 +317,13 @@ $connection -> close();
             <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
             <br><br>
             <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
-<<<<<<< HEAD
+
             <button class="botaoCriar" type="submit" name="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
-=======
+
             <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
     </form>
     </div>
->>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
+
 
     <script>
         function mostraForm() {
