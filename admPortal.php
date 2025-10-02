@@ -13,95 +13,146 @@ if ($connection -> connect_error){
 // 
 // session_start();
 
-if($_POST){
+// if($_POST){
+//     $titulo_evento = $_POST['titulo_evento'];
+//     $descricao_evento = $_POST['descricao_evento'];
+//     $data_evento = $_POST['data_evento'];
+//     $horario_inicio_evento = $_POST['horario_inicio_evento'];
+//     $horario_fim_evento = $_POST['horario_fim_evento'];
+//     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
+//     $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
+//     $local_evento = $_POST['local_evento'];
+//     $tag_evento = $_POST['tag_evento'] ?? null;
+
+//     // $imagem_evento = $_FILES['imagem_evento'];
+
+// //     if (!empty($titulo_evento) && !empty($descricao_evento) && !empty($data_evento) && !empty($horario_inicio_evento) && !empty($local_evento)) {
+
+// //     $sql = "INSERT INTO tabela_de_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
+
+// //     // echo $sql;
+// //     // $result = $connection->query($sql);
+
+// //     if ($connection -> query($sql)){
+// //     echo "";
+// // } else {
+// //     echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
+// // }
+// // }
+// }
+
+if (isset($_POST['submit'])) {
     $titulo_evento = $_POST['titulo_evento'];
     $descricao_evento = $_POST['descricao_evento'];
     $data_evento = $_POST['data_evento'];
     $horario_inicio_evento = $_POST['horario_inicio_evento'];
     $horario_fim_evento = $_POST['horario_fim_evento'];
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
-    $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
-
     // $imagem_evento = $_FILES['imagem_evento'];
+    //  $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
 
-    if (!empty($titulo_evento) && !empty($descricao_evento) && !empty($data_evento) && !empty($horario_inicio_evento) && !empty($local_evento)) {
+    $destino = "uploads/";
 
-    $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
-
-    // echo $sql;
-    // $result = $connection->query($sql);
-}
-
-}
-
-if ($connection -> query($sql)){
-    echo "";
-} else {
-    echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
-}
-$connection -> close();
-
-}
-
-$destino = "uploads/";
-
-if(!is_dir($destino)){
+    if(!is_dir($destino)){
         mkdir($destino, 0755, true);
     }
 
-if(isset($_FILES["imagem_evento"]) && $_FILES["imagem_evento"]['error'] === 0){
+    $caminhoArquivo = null;
+
+    if(isset($_FILES["imagem_evento"]) && $_FILES["imagem_evento"]['error'] === 0){
     $arquivoTmp = $_FILES['imagem_evento']['tmp_name'];
     $nomeArquivo = basename($_FILES['imagem_evento']['name']);
-    
-    $arquivoExt = pathinfo($nomeArquivo, PATHINFO_EXTENSION);
-    $novoNomeArquivo = uniqid('evento_') . "." . $arquivoExt;
-
+    $extensao = pathinfo($nomeArquivo, PATHINFO_EXTENSION);
+    $novoNomeArquivo = uniqid('evento_', true) . "." . $extensao;
     $caminhoArquivo = $destino . $novoNomeArquivo;
+
+    if(!move_uploaded_file($arquivoTmp, $caminhoArquivo)){
+        die("Erro ao mover o arquivo enviado.");
+    }
+}
+
+    $sql = "INSERT INTO tabela_de_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $connection -> prepare($sql);
+    $stmt -> bind_param("sssssssss", $titulo_evento, $descricao_evento, $data_evento, $horario_inicio_evento, $horario_fim_evento, $horario_evento, $local_evento, $tag_evento, $caminhoArquivo);
+
+    if ($stmt -> execute()){
+        header("Location: admPortal.php?msg=sucesso");
+        exit;
+    } else {
+        echo "Erro ao criar evento: " . $connection -> error;
+    }
+}
+
+
+//     $connection = new mysqli($host, $username, $password, $database);
+
+//     $check_query = "SELECT * FROM tabela_de_eventos WHERE imagem_evento = '$imagem_evento'";
+//     $result = mysqli_query($connection, $check_query);
+//     $num_rows = mysqli_num_rows($result);
+
+//     if ($num_rows > 0) {
+//         echo "Já existe um evento com essa imagem.";
+//     } else {
+//         $insert_query = "INSERT INTO tabela_de_eventos (imagem_evento) VALUES ('$imagem_evento')";
+//         mysqli_query($connection, $insert_query);
+//         echo "Evento criado com sucesso!";
+//     }
+//     mysqli_close($connection);
+// }
+
+
+// $destino = "uploads/";
+
+// if(!is_dir($destino)){
+//         mkdir($destino, 0755, true);
+//     }
+
+// if(isset($_FILES["imagem_evento"]) && $_FILES["imagem_evento"]['error'] === 0){
+//     $arquivoTmp = $_FILES['imagem_evento']['tmp_name'];
+//     $nomeArquivo = basename($_FILES['imagem_evento']['name']);
+    
+//     $arquivoExt = pathinfo($nomeArquivo, PATHINFO_EXTENSION);
+//     $novoNomeArquivo = uniqid('evento_') . "." . $arquivoExt;
+
+//     $caminhoArquivo = $destino . $novoNomeArquivo;
     
 
-    if(move_uploaded_file($arquivoTmp, $caminhoArquivo)){
-        $sql = "INSERT INTO tabela_de_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$caminhoArquivo')";
+//     if(move_uploaded_file($arquivoTmp, $caminhoArquivo)){
+//         $sql = "INSERT INTO tabela_de_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$caminhoArquivo')";
 
-        $connection -> query($sql);
+//         $connection -> query($sql);
 
-        if($connection -> query($sql) === TRUE && $titulo_evento != null){
-            echo "Evento criado com sucesso!";
-        } else {
-            echo "Erro ao criar evento: " . $connection -> error;
-        }
-            } else {
-                    echo "Nenhuma imagem enviada.";
-                }
-                header("Location: eventos.php?msg=sucesso");
-        exit;
-}
+//         if($connection -> query($sql) === TRUE && $titulo_evento != null){
+//             echo "Evento criado com sucesso!";
+//         } else {
+//             echo "Erro ao criar evento: " . $connection -> error;
+//         }
+//             } else {
+//                     echo "Nenhuma imagem enviada.";
+//                 }
+//                 header("Location: eventos.php?msg=sucesso");
+//         exit;
+// }
+
+
+    
 
  
-$sql = "SELECT * FROM tabela_de_eventos";
+// $sql = "SELECT * FROM tabela_de_eventos";
 
-$result = $connection -> query($sql);
+// $result = $connection -> query($sql);
 
-// $sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
-
-
-if(!$result){
-    die("Erro ao acessar dados." . $connection -> error);
-}
+// // $sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
 
 
-
-
-    // $imagem_evento = "uploads/".basename($nome_arquivo);
-
-    // if(move_uploaded_file($caminho, $imagem_evento)){
-    //     $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento, imagem_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento', '$imagem_evento')";
-    // }
-
-
+// if(!$result){
+//     die("Erro ao acessar dados." . $connection -> error);
+// }
    $connection -> close();
->>>>>>> c9ef50a7cc63c0a72e68054bda661c53b3287622
+
 ?>
 
 <!DOCTYPE html>
@@ -240,7 +291,7 @@ if(!$result){
             <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
             <br><br>
             <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
-            <button class="botaoCriar" type="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
+            <button class="botaoCriar" type="submit" name="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
 
             <script>
         function mostraForm() {

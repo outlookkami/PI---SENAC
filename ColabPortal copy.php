@@ -12,31 +12,10 @@ if ($connection -> connect_error){
     die("Erro de conexão: " . $connection -> connect_error);
 }
 
-// session_start();
-// if (isset($_FILES['imagem_evento'])) {
-//     echo '<img src="'. $_FILES['Imagem_evento'] .'" alt="Imagem do Evento" width="150">';
-// } else {
-//     echo 'Não há imagem para esse evento.';
-// }
-
 $sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
 
 $result = $connection -> query($sql);
-
-// $host = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "banco_teste";
-
-
-// if ($connection->connect_error) {
-//     die("Erro de conexão: " . $connection->connect_error);
-// }
-
-// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-// $result = $connection->query($sql);
-
 
 ?>
 
@@ -164,108 +143,6 @@ $result = $connection -> query($sql);
         <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
         <div class="ProximosEventos">
-            <!-- <table class="TableEventos">
-                <tr>
-                    <td><img class="imagensIlustrativasEventos" id="imagemEvento" src="assets/reunião estratégica-pexels.jpg" width="420" alt="Imagem da reunião"></td>
-                </tr>
-                <tr class="tituloTag">
-                    <td>
-                        <h4 id="tituloEvento">Reunião Estratégica Q4</h4>
-                    </td>
-                    <td class="tag" id="tagEvento">Reunião</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p id="descricaoEvento">Planejamento e revisão de metas para o último trimestre do ano.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="dataEvento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">15 de Dezembro, 2025</td>
-                </tr>
-                <tr>
-                    <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 09:00 - 17:00</td>
-                </tr>
-                <tr>
-                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Sala de conferência A</td>
-                </tr>
-                <tr>
-                    <td> 25 confirmados</td>
-                </tr>
-                <tr>
-                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                </tr>
-
-                <tbody>
-                        //if ($result->num_rows > 0): 
-                            //while ($row = $result->fetch_assoc()):
-                
-                </tbody>
-            </table> -->
-
-            <!-- <table class="TableEventos">
-                <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/workshop de inovação - pexels.jpg" width="400" alt="Workshop de inovação"></td>
-                </tr>
-                <tr class="tituloTag">
-                    <td>
-                        <h4>Workshop de inovação</h4>
-                    </td>
-                    <td class="tag" id="tagEvento">Workshop</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Metodologias ágeis e design thinking para projetos inovadores.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="IconesEventos"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">18 de Dezembro, 2025</td>
-                </tr>
-                <tr>
-                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
-                </tr>
-                <tr>
-                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
-                </tr>
-                <tr>
-                    <td> +12 confirmados</td>
-                </tr>
-                <tr>
-                    <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                </tr>
-            </table> -->
-
-            <!-- <table class="TableEventos" id="TableEventos">
-                <tr>
-                    <td><img class="imagensIlustrativasEventos" src="assets/festa de fim de ano-pexels.jpg" alt="Festa de Fim de Ano"></td>
-                </tr>
-                <tr class="tituloTag">
-                    <td>
-                        <h4>Festa de fim de ano</h4>
-                    </td>
-                    <td class="tag">Social</td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Celebração anual com toda a equipe, premiações, e confraternização.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">22 de Dezembro, 2025</td>
-                </tr>
-                <tr>
-                    <td><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 18:00 - 22:00</td>
-                </tr>
-                <tr>
-                    <td><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Salão de Eventos</td>
-                </tr>
-                <tr>
-                    <td> 87 confirmados</td>
-                </tr>
-                <tr>
-                    <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
-                </tr>
-            </table> -->
-
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
@@ -629,21 +506,6 @@ $result = $connection -> query($sql);
         }
     </style>
 
-    <!-- JavaScript
-    <script>
-        function postarEvento(){
-            imagem = document.getElementById('imagemEvento').innerHTML;
-            titulo = document.getElementById('tituloEvento').innerHTML;
-            tag = document.getElementById('tagEvento').innerHTML;
-            descricao = document.getElementById('descricaoEvento').innerHTML;
-            data_inicio = document.getElementById('dataEvento').innerHTML;
-            horario = document.getElementById('horarioEvento').innerHTML;
-            local = document.getElementById('localEvento').innerHTML;
-            categoria = document.getElementById('categoria_evento').innerHTML;
-
-            var tabela = document.getElementById('TableEventos');
-        }
-    </script> -->
 </body>
 
 </html>
