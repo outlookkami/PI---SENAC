@@ -11,7 +11,15 @@ $connection = new mysqli($host, $username, $password, $database);
 if ($connection -> connect_error){
     die("Erro de conexão" . $connection -> connect_error);}
 // 
-// session_start();
+$sql = "SELECT * FROM tabela_eventos";
+
+$result = $connection -> query($sql);
+
+$sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
+
+if(!$result){
+    die("Erro ao acessar dados." . $connection -> error);
+}
 
 // if($_POST){
 //     $titulo_evento = $_POST['titulo_evento'];
@@ -47,7 +55,11 @@ if (isset($_POST['submit'])) {
     $data_evento = $_POST['data_evento'];
     $horario_inicio_evento = $_POST['horario_inicio_evento'];
     $horario_fim_evento = $_POST['horario_fim_evento'];
+<<<<<<< HEAD
     $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'] . "";
+=======
+    $horario_evento = $_POST['horario_inicio_evento'] . " - " . $_POST['horario_fim_evento'];
+>>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
     // $imagem_evento = $_FILES['imagem_evento'];
@@ -55,6 +67,7 @@ if (isset($_POST['submit'])) {
 
     $destino = "uploads/";
 
+<<<<<<< HEAD
     if(!is_dir($destino)){
         mkdir($destino, 0755, true);
     }
@@ -153,6 +166,22 @@ if (isset($_POST['submit'])) {
 // }
    $connection -> close();
 
+=======
+    $sql = "INSERT INTO tabela_eventos (titulo_evento, descricao_evento, data_evento, horario_inicio_evento, horario_fim_evento, horario_evento, local_evento, tag_evento) VALUES ('$titulo_evento', '$descricao_evento', '$data_evento', '$horario_inicio_evento', '$horario_fim_evento', '$horario_evento', '$local_evento', '$tag_evento')";
+
+    // echo $sql;
+    // $result = $connection->query($sql);
+}
+
+}
+
+if ($connection -> query($sql)){
+    echo "";
+} else {
+    echo "<script>alert('Erro ao salvar evento. Tente novamente');</script>";
+}
+$connection -> close();
+>>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
 ?>
 
 <!DOCTYPE html>
@@ -260,7 +289,7 @@ if (isset($_POST['submit'])) {
             <label for="data_evento"><b>Data</b></label><br>
             <input class="inpt1" type="date" name="data_evento" id="data_evento" >
             <br><br>
-            <label><b>Horário</b></label><br><br>
+            <label><b>Horário</b></label><br>
             <div class="horarios">
                 <div>
                     <label for="horario_inicio_evento"><b>Início</b></label><br>
@@ -271,7 +300,7 @@ if (isset($_POST['submit'])) {
                     <input class="inpt1" type="time" name="horario_fim_evento" id="horario_fim_evento" placeholder="Ex: 16:00"></div>
             </div>
 
-            <br>
+            <br><br>
             <label for="local_evento"><b>Local</b></label><br>
             <input class="inpt1" type="text" name="local_evento" id="local_evento" placeholder="Digite o local do evento">
             <br><br>
@@ -287,35 +316,31 @@ if (isset($_POST['submit'])) {
             <br><br>
             
             <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*"><br>
+            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
             <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
             <br><br>
             <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
+<<<<<<< HEAD
             <button class="botaoCriar" type="submit" name="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
+=======
+            <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
+    </form>
+    </div>
+>>>>>>> aa47d84ab5d82af5dfbdd5e06b5ad7f49016190b
 
-            <script>
+    <script>
         function mostraForm() {
             document.getElementById("formCriarEvento").style.display = "block";
             document.getElementById("conteudoPrincipal").classList.add("blur");
         }
+    </script>
 
+    <script>
         function escondeForm() {
             document.getElementById("formCriarEvento").style.display = "none";
         }
 
-        function limparFormulario(){
-            document.getElementById("formCriarEvento").addEventListener('submit', function(){
-                this.reset();
-            });
-        }
-
     </script>
-    </form>
-
-    
-    </div>
-
-    
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
         * {
@@ -529,10 +554,11 @@ if (isset($_POST['submit'])) {
         }
 
         .CriarEventoForm {
-            display: block;
+            display: flex;
             background-color: #ffffffff;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
             border-radius: 40px;
+            
             align-items: center;
             flex-direction: column;
             position: fixed;
@@ -578,7 +604,7 @@ if (isset($_POST['submit'])) {
             border-radius: 6px;
             text-align: center;
             cursor: pointer;
-            margin-top: 40px;
+            margin-top: 4px;
             padding: 6px;
             font-size: 12px;
         }

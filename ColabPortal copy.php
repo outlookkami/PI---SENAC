@@ -231,14 +231,11 @@ $result = $connection -> query($sql);
 
         /* HEADER */
         header {
-            display: flex;
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
             background-repeat: no-repeat;
-            width: 100vw;
-            height: 5%;
-            padding: 15px;
-            align-items: center;
-
+            width: 100%;
+            min-height: 60px;
+            padding: 10px 20px;
         }
 
         .menubarra {
@@ -263,22 +260,19 @@ $result = $connection -> query($sql);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            flex-wrap: wrap;
         }
 
 
         ul {
             list-style: none;
-
             display: flex;
-            list-style: none;
             margin: 0;
             padding: 0;
         }
 
-        li{
+        nav li{
             margin-left: 20px;
-
         }
 
         a {
@@ -289,7 +283,7 @@ $result = $connection -> query($sql);
         @media (max-width: 768px) {
             nav ul {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 position: relative;
                 top: 20px; 
                 justify-content: space-between;
@@ -318,12 +312,11 @@ $result = $connection -> query($sql);
             background-color: transparent;
             color: white;
             border: none;
-            place-content: space-between;
+            cursor: pointer;         
         }
 
         .paginas:hover {
             color: #D90368;
-            cursor: pointer;
         }
 
         /* DASHBOARD */
