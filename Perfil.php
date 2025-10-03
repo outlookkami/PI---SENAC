@@ -4,14 +4,12 @@ include("conexao.php");
 session_start();
 if (isset($_SESSION['foto_perfil'])) {
     echo '<img src="'. $_SESSION['foto_perfil'] .'" alt="Foto de perfil" width="150">';
-} else {
-    echo 'Usuário não tem foto.';
 }
-if (!isset($_SESSION['ID'])) {
+if (!isset($_SESSION['ID_USER'])) {
     header("Location: login.php");
     exit;
 }
-$idUser = $_SESSION['ID'];
+$idUser = $_SESSION['ID_USER'];
 $sql = "SELECT u.*, e.nome_empresa, a.nivel 
         FROM usuarios u
         JOIN empresas e ON u.ID_empresa = e.ID
@@ -29,7 +27,7 @@ $primeiroNome = strtok($usuario['nome_user'], " ");
 if ($usuario['ID_acesso'] == 1) {
     $inicio = 'admPortal.php';
 } elseif ($usuario['ID_acesso'] == 2) {
-    $inicio = 'ColabPortal.php';
+    $inicio = 'ColabPortal copy.php';
 }
 ?>
 <!DOCTYPE html>
@@ -67,7 +65,7 @@ if ($usuario['ID_acesso'] == 1) {
         if ($usuario['ID_acesso'] == 1) {
             echo 'admPortal.php';
         } elseif ($usuario['ID_acesso'] == 2) {
-            echo 'ColabPortal.php';
+            echo 'ColabPortal copy.php';
         } else {
             echo 'HeyEvent.php'; 
         }
@@ -82,7 +80,7 @@ if ($usuario['ID_acesso'] == 1) {
         if ($usuario['ID_acesso'] == 1) {
             echo 'admPortal.php';
         } elseif ($usuario['ID_acesso'] == 2) {
-            echo 'ColabPortal.php';
+            echo 'ColabPortal copy.php';
         } else {
             echo 'HeyEvent.php'; 
         }

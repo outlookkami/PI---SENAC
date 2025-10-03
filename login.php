@@ -82,7 +82,7 @@ if ($_POST) {
             </div>
             <input class="email" type="email" name="email_user" placeholder="Email"> <br>
             <input class="senha" id="senha" type="password" name="senha_user" required placeholder="Senha"> <img id="senhaimg" onclick="mudarimagem()" style="cursor: pointer;" class="senhaimg" src="assets\senhaesconder.png" alt="">
-            <p><a class="esqsenha" href="EsqSenha.php">Esqueceu a senha?</a></p>
+            <p><a class="esqsenha" href="EsqSenha.php"></a></p>
             <button type="submit">Entrar</button>
             <p><a class="npossuicnt" href="cadastro.php">Não possuí uma conta? Faça o cadastro aqui</a></p>
         </form>

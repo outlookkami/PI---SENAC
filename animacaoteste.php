@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
-  /* margin: 0;
+  margin: 0;
   height: 100vh;
   display: flex;
   justify-content: flex-start; 
   align-items: stretch; 
   overflow: hidden;
   background-color: #f0f0f0;
-  position: relative;  */
+  position: relative;  
 }
 
 .bolha {
