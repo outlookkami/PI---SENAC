@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "banco_teste";
+$database = "hey_event";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
 
@@ -30,7 +30,7 @@ $result = $stmt->get_result();
 
 <!-- HTML - Portal do Colaborador -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -49,46 +49,50 @@ $result = $stmt->get_result();
 
 <body>
     <header>
-        <nav>
-            <div class="inícioHeader">
-                <ul>
-                    <li class="paginas"><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
-                    <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
-                </ul>
-            </div>
-            <div class="meioHeader">
-                <ul>
-                    <li class="paginas"><a href="">Dashboard</a></li>
-                    <li><a href="">Eventos</a></li>
-                    <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
-                    <li><a href="">Prêmios</a></li>
-                </ul>
-            </div>
-            <div class="fimHeader">
-                <ul>
-                    <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a></li>
-                    <li><a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a></li>
-                </ul>
-            </div>
-        </nav>
+        <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
+        <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
+        <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
+        <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
     </header>
     <nav class="menubarra" id="menubarra">
+        <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
+        <p class="MHE">HeyEvent</p>
         <ul>
-            <li><a href="<?php
-                            if ($usuario['ID_acesso'] == 1) {
-                                echo 'admPortal.php';
-                            } elseif ($usuario['ID_acesso'] == 2) {
-                                echo 'ColabPortal.php';
-                            } else {
-                                echo 'HeyEvent.php';
-                            }
-                            ?>">Início</a>
-            </li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
+            <div class="lihover">
+                <li><img src="assets\home.png" alt=""><a href="<?php
+                                                                if ($usuario['ID_acesso'] == 1) {
+                                                                    echo 'admPortal.php';
+                                                                } elseif ($usuario['ID_acesso'] == 2) {
+                                                                    echo 'ColabPortal copy.php';
+                                                                } else {
+                                                                    echo 'HeyEvent.php';
+                                                                }
+                                                                ?>">Início</a>
+                </li>
+            </div>
+            <div class="lihover">
+                <li><img src="assets\info a.png" alt=""><a href="Sobrenos.php">Sobre nós</a></li>
+            </div>
+            <div class="lihover">
+                <li><img src="assets\prox.png" alt=""></i><a href="<?php
+                                                                    if ($usuario['ID_acesso'] == 1) {
+                                                                        echo 'admPortal.php';
+                                                                    } elseif ($usuario['ID_acesso'] == 2) {
+                                                                        echo 'ColabPortal copy.php';
+                                                                    } else {
+                                                                        echo 'HeyEvent.php';
+                                                                    }
+                                                                    ?>">Próximos eventos</a></li>
+            </div>
+            <div class="lihover">
+                <li><img src="assets\contato.png" alt=""><a href="Contato.php">Contato</a></li>
+            </div>
         </ul>
-
+        <p class="footermenu">
+            Todos os direitos reservados. <br>
+            © 2024 HeyEvent.
+        </p>
     </nav>
 
 
@@ -230,12 +234,13 @@ $result = $stmt->get_result();
             }
         });
 
+
         function confPresenca(botao) {
             const idEvento = botao.getAttribute('data-evento');
             const acao = botao.classList.contains('clicado') ? "desconfirmar" : "confirmar";
 
             if (!confirm(`Deseja realmente ${acao} sua presença neste evento?`)) {
-                return; 
+                return;
             }
 
             fetch('confirmar.php', {
@@ -300,32 +305,55 @@ $result = $stmt->get_result();
             font-family: "Quicksand", sans-serif;
         }
 
-        main {
-            transition: margin-left 0.3s;
+        .MLogo {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        .MHE {
+            color: #000F55;
+            font-family: Quicksand;
+            font-weight: 1000px;
+            font-size: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: lighter;
+
+        }
+
+        li img {
+            width: 40px;
         }
 
 
         ul {
             list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
+
         }
 
-        nav li {
-            margin-left: 20px;
+        ul li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
         }
 
         a {
             text-decoration: none;
-            color: white;
+            color: #000F55;
+        }
+
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+
+        main {
+            transition: margin-left 0.3s;
         }
 
         @media (max-width: 768px) {
