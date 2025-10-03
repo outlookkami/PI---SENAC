@@ -12,7 +12,7 @@ if ($_POST) {
         $usuario = $result->fetch_assoc();
         if (password_verify($senha, $usuario['senha_user'])) {
 
-            $_SESSION['ID'] = $usuario['ID'];
+            $_SESSION['ID_USER'] = $usuario['ID'];
             $_SESSION['nome_user'] = $usuario['nome_user'];
             $_SESSION['nivel'] = $usuario['nivel'];
             $_SESSION['foto_user'] = $usuario['foto'];
@@ -20,7 +20,7 @@ if ($_POST) {
             if ($usuario['ID_acesso'] === "1") {
                 header("Location: admPortal.php");
             } elseif ($usuario['ID_acesso'] === "2") {
-                header("Location: ColabPortal.php");
+                header("Location: ColabPortal copy.php");
             }
             exit;
         } else {

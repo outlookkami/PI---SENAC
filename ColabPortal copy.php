@@ -5,17 +5,17 @@ $host = "localhost";
 $username = "root";
 $password = "";
 $database = "teste_eventos";
-
+session_start();
 $connection = new mysqli($host, $username, $password, $database);
 
-if ($connection -> connect_error){
-    die("Erro de conexão: " . $connection -> connect_error);
+if ($connection->connect_error) {
+    die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
 
-$result = $connection -> query($sql);
+$result = $connection->query($sql);
 
 ?>
 
@@ -41,48 +41,41 @@ $result = $connection -> query($sql);
 
 <body>
     <header>
+        <div class="logo-container">
+            <button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button>
+            <button class="logo"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
+        </div>
+        
         <nav>
-            <div class="inícioHeader">
-                <ul>
-                    <li class="paginas"><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
-                    <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
-                </ul>
-            </div>
-            <div class="meioHeader">
-                <ul>
-                    <li class="paginas"><a href="">Dashboard</a></li>
-                    <li><a href="">Eventos</a></li>
-                    <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
-                    <li><a href="">Prêmios</a></li>
-                </ul>
-            </div>
-            <div class="fimHeader">
-                <ul>
-                    <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a></li>
-                    <li><a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a></li>
-                </ul>
-            </div>
+            <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a>
+            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a>
         </nav>
-    </header>
-    <nav class="menubarra" id="menubarra">
-        <ul>
-            <li><a href="<?php
-                            if ($usuario['ID_acesso'] == 1) {
-                                echo 'admPortal.php';
-                            } elseif ($usuario['ID_acesso'] == 2) {
-                                echo 'ColabPortal.php';
-                            } else {
-                                echo 'HeyEvent.php';
-                            }
-                            ?>">Início</a>
-            </li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
 
-    </nav>
+        <div class="opcoesUsuario">
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
+            <a href=""><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+        </div>
+   
+            <nav class="menubarra" id="menubarra">
+                <ul>
+                    <li><a href="<?php
+                                if ($usuario['ID_acesso'] == 1) {
+                                    echo 'admPortal.php';
+                                } elseif ($usuario['ID_acesso'] == 2) {
+                                    echo 'ColabPortal.php';
+                                } else {
+                                    echo 'HeyEvent.php';
+                                }
+                                ?>">Início</a>
+                    </li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Contato</a></li>
+            </ul>
 
+            </nav>
+        </header>
 
     <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
@@ -113,8 +106,8 @@ $result = $connection -> query($sql);
                 </table>
             </div>
 
-            <div> <!-- Prêmios Disponíveis -->
-                <table class="TableDashboard Prêmios">
+            <!-- <div> Prêmios Disponíveis -->
+                <!-- <table class="TableDashboard Prêmios">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                         <td>Prêmios Disponíveis</td>
@@ -122,11 +115,11 @@ $result = $connection -> query($sql);
                     <tr>
                         <td class="valor"><b>4</b></td>
                     </tr>
-                </table>
-            </div>
+                </table> -->
+            <!-- </div> -->
 
-            <div> <!-- Pontos Acumulados -->
-                <table class="TableDashboard Pontos">
+            <!-- <div> Pontos Acumulados -->
+                <!-- <table class="TableDashboard Pontos">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                         <td>Pontos Acumulados</td>
@@ -134,8 +127,8 @@ $result = $connection -> query($sql);
                     <tr>
                         <td class="valor"><b>2.450</b></td>
                     </tr>
-                </table>
-            </div>
+                </table> -->
+            <!-- </div>  -->
         </div>
 
         <br><br><br><br><br>
@@ -146,36 +139,42 @@ $result = $connection -> query($sql);
 
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="ProximosEventos">
-                    <table class="TableEventos">
-                        <tr>
-                            <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
-                        </tr>
-                        <tr class="tituloTag">
-                            <td id="tituloEvento">
-                                <h4><?php echo $row["titulo_evento"] ?></h4>
-                            </td>
-                            <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" id="descricao_evento">
-                                <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                        </tr>
-                    </table>
-                </div>  
+                    <div class="ProximosEventos">
+                        <table class="TableEventos">
+                            <tr>
+                                <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
+                            </tr>
+                            <tr class="tituloTag">
+                                <td id="tituloEvento">
+                                    <h4><?php echo $row["titulo_evento"] ?></h4>
+                                </td>
+                                <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="descricao_evento">
+                                    <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <form method="POST" action="confirmar.php">
+                                        <input type="hidden" name="id_evento" value="<?php echo $row['id_evento']; ?>">
+                                        <input type="hidden" name="acao" value="confirmar_presenca">
+                                        <button type="submit" class="ConfirmarPresença">Confirmar Presença</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 <?php endwhile; ?>
             <?php else: ?>
                 <p>Nenhum evento encontrado.</p>
@@ -235,7 +234,11 @@ $result = $connection -> query($sql);
             background-repeat: no-repeat;
             width: 100%;
             min-height: 60px;
-            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 0.75rem 1.5rem;
         }
 
         .menubarra {
@@ -250,48 +253,97 @@ $result = $connection -> query($sql);
             transition: 0.3s;
             z-index: 2;
             font-family: "Quicksand", sans-serif;
+        }  
+        
+        .logo-container{
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo{
+            font-size: 1.5rem;
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav {
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;  
+        }
+
+        a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        a:hover{
+            color: #D90368;
+        }
+
+        .opcoesUsuario{
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            nav, .opcoesUsuario{
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                top: 100%;
+                width: 100%;
+                gap: 1rem; 
+            }
+
+            .opcoesUsuario{
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+
+            .logo-container{
+                display: flex;
+                margin-right: 1rem;
+                justify-content: flex-start;
+            }
+
+            header{
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                justify-content: space-between;  
+                align-content: center;    
+                gap: 1rem;
+            }
+
+            nav img{
+                display: none;
+            }
+
+            .opcoesUsuario img{
+                display: none;
+            }
+            
+            .TableEventos{
+                max-width: 180px;
+                justify-content: center;
+
+            }
+
         }
 
         main {
             transition: margin-left 0.3s;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-
-        ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li{
-            margin: 10px 0;
-        }
-
-        a{
-            text-decoration: none;
-            color: white;
-            display:flex;
-            text-align: center;
-            align-items: center;
-        }
-        
-        .paginas {
-            background-color: transparent;
-            color: white;
-            border: none;
-            cursor: pointer;         
-        }
-
-        .paginas:hover {
-            color: #D90368;
         }
 
         /* DASHBOARD */
@@ -359,10 +411,10 @@ $result = $connection -> query($sql);
         .ProximosEventos {
             display: flex;
             gap: 40px;
-            justify-content:center;
-            align-items: center;
-            flex-wrap:wrap;  
-            min-width: 300px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap; 
+            min-width: 400px;
         }
 
         /* Elementos das tabelas */
@@ -372,19 +424,23 @@ $result = $connection -> query($sql);
             padding: 20px;
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-            width: fit-content;
-            height: fit-content; 
-            /* display: flex; */
-            /* flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;   */
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
         }
 
         .imagensIlustrativasEventos {
-            width: fit-content;
-            height: 300px;
-            border-radius: 12px;
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            max-height: 800px; 
+            border-radius: 8px;
+        }
+
+        .tdInfo{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* ícones */
@@ -394,7 +450,7 @@ $result = $connection -> query($sql);
 
         .tituloTag {
             display: flex;
-            justify-content:space-between;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -406,7 +462,7 @@ $result = $connection -> query($sql);
             padding: 7px 11px;
             font-size: 14px;
             align-items: end;
-            justify-content:end;
+            justify-content: end;
         }
 
         /* Botões Eventos */
@@ -447,10 +503,6 @@ $result = $connection -> query($sql);
             width: 30px;
         }
 
-        .calendario {
-            width: 60px;
-        }
-
         .sair {
             width: 30px;
         }
@@ -472,8 +524,8 @@ $result = $connection -> query($sql);
             width: 25px;
         }
 
-        footer{
-            text-align:center;
+        footer {
+            text-align: center;
             margin: 40px;
             display: block;
         }
@@ -568,4 +620,3 @@ $result = $connection -> query($sql);
 <?php
 $connection->close();
 ?>
-
