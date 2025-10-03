@@ -12,10 +12,18 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+$sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
+        IF(c.ID_USER IS NULL, 0, 1) AS confirmado
+        FROM tabela_de_eventos e
+        LEFT JOIN clientes_eventos c 
+        ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
+        ORDER BY e.data_evento ASC
+        LIMIT 3";
 
-
-$result = $connection->query($sql);
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $_SESSION['ID_USER']);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
 
@@ -173,11 +181,13 @@ $result = $connection->query($sql);
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <form method="POST" action="confirmar.php">
-                                        <input type="hidden" name="id_evento" value="<?php echo $row['id_evento']; ?>">
-                                        <input type="hidden" name="acao" value="confirmar_presenca">
-                                        <button type="submit" class="ConfirmarPresença" onclick="mudarCor(this)" id="btn">Confirmar Presença</button>
-                                    </form>
+                                    <button
+                                        class="ConfirmarPresença <?php echo ($row['confirmado'] ? 'clicado' : ''); ?>"
+                                        data-evento="<?php echo $row['id_evento']; ?>"
+                                        data-usuario="<?php echo $_SESSION['ID_USER']; ?>"
+                                        onclick="confPresenca(this)">
+                                        <?php echo ($row['confirmado'] ? 'Confirmado' : 'Confirmar Presença'); ?>
+                                    </button>
                                 </td>
                             </tr>
                         </table>
@@ -220,13 +230,36 @@ $result = $connection->query($sql);
             }
         });
 
-        function mudarCor(botao) {
-            botao.classList.toggle("clicado");
-            if (botao.classList.contains("clicado")) {
-                botao.textContent = "Confirmado";
-            } else {
-                botao.textContent = "Confirmar";
+        function confPresenca(botao) {
+            const idEvento = botao.getAttribute('data-evento');
+            const acao = botao.classList.contains('clicado') ? "desconfirmar" : "confirmar";
+
+            if (!confirm(`Deseja realmente ${acao} sua presença neste evento?`)) {
+                return; 
             }
+
+            fetch('confirmar.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id_evento=${idEvento}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        if (data.confirmado) {
+                            botao.classList.add('clicado');
+                            botao.textContent = 'Confirmado';
+                        } else {
+                            botao.classList.remove('clicado');
+                            botao.textContent = 'Confirmar Presença';
+                        }
+                    } else {
+                        alert(data.msg);
+                    }
+                })
+                .catch(err => console.error(err));
         }
     </script>
     <!-- CSS -->
