@@ -176,7 +176,7 @@ $result = $connection->query($sql);
                                     <form method="POST" action="confirmar.php">
                                         <input type="hidden" name="id_evento" value="<?php echo $row['id_evento']; ?>">
                                         <input type="hidden" name="acao" value="confirmar_presenca">
-                                        <button type="submit" class="ConfirmarPresença">Confirmar Presença</button>
+                                        <button type="submit" class="ConfirmarPresença" onclick="mudarCor(this)" id="btn">Confirmar Presença</button>
                                     </form>
                                 </td>
                             </tr>
@@ -219,6 +219,15 @@ $result = $connection->query($sql);
                 main.style.marginLeft = "0";
             }
         });
+
+        function mudarCor(botao) {
+            botao.classList.toggle("clicado");
+            if (botao.classList.contains("clicado")) {
+                botao.textContent = "Confirmado";
+            } else {
+                botao.textContent = "Confirmar";
+            }
+        }
     </script>
     <!-- CSS -->
     <style>
@@ -450,7 +459,8 @@ $result = $connection->query($sql);
             justify-content: center;
         }
 
-        .PresençaConfirmada {
+
+        .clicado {
             background-color: #77A0A9;
             color: white;
             border: none;
