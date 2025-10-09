@@ -101,9 +101,9 @@ $connection -> close();
         </div>
 
         <nav>
-            <a><img class="sobre" src="assets\sobreNos.png" alt="Sobre Nós" width="28px">Sobre Nós</a>
-            <a><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a>
-            <a><img class="notificaçoes" src="assets\notificacoes.png" alt="Notificações" width="28px">Notificações</a>
+            <a href="Sobrenos.php"><img class="sobre" src="assets\sobreNos.png" alt="Sobre Nós" width="28px">Sobre Nós</a>
+            <!-- <a><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
+            <!-- <a><img class="notificaçoes" src="assets\notificacoes.png" alt="Notificações" width="28px">Notificações</a> -->
         </nav>
 
         <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
