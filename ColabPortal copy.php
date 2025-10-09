@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "teste_eventos";
+$database = "hey_event";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
 
