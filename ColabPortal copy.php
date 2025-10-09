@@ -62,9 +62,8 @@ $result = $stmt->get_result();
 
         <div class="opcoesUsuario">
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
-            <a href=""><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
         </div>
-   
             <nav class="menubarra" id="menubarra">
                 <ul>
                     <li><a href="<?php
