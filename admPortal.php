@@ -272,12 +272,94 @@ $connection -> close();
             position: relative;
             padding: 0.75rem 1.5rem;
         }
+        
+        .menubarra {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffffff;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 2;
+            font-family: "Quicksand", sans-serif;
+
+        }
+
+        .MLogo {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .MHE {
+            color: #000F55;
+            font-family: Quicksand;
+            font-weight: 1000px;
+            font-size: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: lighter;
+
+        }
+
+        li img {
+            width: 40px;
+        }
+
+
+        .ulmenu {
+            list-style: none;
+
+        }
+
+        .lihover {
+            transition: transform 0.3s ease;
+        }
+
+        .lihover:hover {
+            transform: scale(1.05);
+
+        }
+
+        .ulmenu li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
+        }
+
+        .amenu {
+            text-decoration: none;
+            color: #000F55;
+        }
+
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+
+        main {
+            transition: margin-left 0.3s;
+        }
+
+        menunav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
 
         .logo-container{
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
+        
 
         .logo{
             font-size: 1.5rem;

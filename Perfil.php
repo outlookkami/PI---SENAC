@@ -49,59 +49,67 @@ if ($usuario['ID_acesso'] == 1) {
 
 <body>
 
-    <header>
-        <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
-        <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
-        <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
-        <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
+   <header>
+        <div class="logo-container">
+            <a href="Sobrenos.php"><button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></a>
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+        </div>
+
+        <nav class="menunav">
+            <!-- <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a> -->
+            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <!-- <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
+        </nav>
+        <div class="opcoesUsuario">
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
+            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+        </div>
     </header>
-    <nav class="menubarra" id="menubarra">
-        <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
-        <p class="MHE">HeyEvent</p>
-        <ul>
+<nav class="menubarra" id="menubarra">
+    <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
+    <p class="MHE">HeyEvent</p>
+    <ul class="ulmenu">
         <div class="lihover">
-        <li><img src="assets\home.png" alt=""><a href="<?php
-        if ($usuario['ID_acesso'] == 1) {
-            echo 'admPortal.php';
-        } elseif ($usuario['ID_acesso'] == 2) {
-            echo 'ColabPortal copy.php';
-        } else {
-            echo 'HeyEvent.php'; 
-        }
-        ?>">Início</a>
-        </li>
+            <li><img src="assets\home.png" alt=""><a class="amenu" href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>">Início</a>
+            </li>
         </div>
         <div class="lihover">
-        <li><img src="assets\info a.png" alt=""><a href="Sobrenos.php">Sobre nós</a></li>
+        <li><img src="assets\info a.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\prox.png" alt=""></i><a href="<?php
-        if ($usuario['ID_acesso'] == 1) {
-            echo 'admPortal.php';
-        } elseif ($usuario['ID_acesso'] == 2) {
-            echo 'ColabPortal copy.php';
-        } else {
-            echo 'HeyEvent.php'; 
-        }
-        ?>">Próximos eventos</a></li>
+            <li>
+                <img src="assets\prox.png" alt=""></i><a class="amenu" href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>">Próximos eventos</a>
+            </li>
         </div>
-            <div class="lihover">
-                <li><img src="assets\contato.png" alt=""><a href="Contato.php">Contato</a></li>
-            </div>
-        </ul>
-        <p class="footermenu">
-            Todos os direitos reservados. <br>
-            © 2024 HeyEvent.
-        </p>
-    </nav>
+        <div class="lihover">
+        <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        </div>
+    </ul>
+    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+</nav>
 
     <main id="main">
 
         <p class="HE"> Olá <?php echo $primeiroNome; ?>!</p>
 
         <img src="" class="perfiluser" id="preview" alt="" width="150" height="150">
-        <button type="file" onclick="document.getElementById('fotoInput').click()"><img src="assets\editar.png" alt=""></button>
+        <button class="btn1" type="file" onclick="document.getElementById('fotoInput').click()"><img src="assets\editar.png" alt=""></button>
         <br>
         <form action="" method="$_GET">
             <div class="conteudo">
@@ -123,7 +131,7 @@ if ($usuario['ID_acesso'] == 1) {
                     </option>
                 </select>
                 <br>
-                <button type="submit" id="confirmBtn" class="confirmBtn">Confirmar</button>
+                <button class="btn" type="submit" id="confirmBtn" class="confirmBtn">Confirmar</button>
             </div>
         </form>
     </main>
@@ -171,32 +179,17 @@ if ($usuario['ID_acesso'] == 1) {
         });
     </script>
     <style>
-        body {
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        header {
-            display: flex;
-            align-items: center;
-            height: 100px;
-            gap: 8px;
-            background: none;
-            border: none;
-            color: white;
-            font-family: "Quicksand", sans-serif;
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            vertical-align: middle;
 
-        }
 
-        header a {
-            text-decoration: none;
-            color: white;
-
-        }
-
-        .menubarra {
+        /* menu */
+       .menubarra {
             position: fixed;
             top: 0;
             left: -250px;
@@ -229,7 +222,156 @@ if ($usuario['ID_acesso'] == 1) {
             font-weight: lighter;
 
         }
+        li img {
+            width: 40px;
+            margin-left: 40px;
+        }
 
+        
+        .ulmenu {
+            list-style: none;
+
+        }
+
+        .lihover {
+            transition: transform 0.3s ease;
+        }
+ .lihover:hover {
+            transform: scale(1.05);
+
+        }
+
+        .ulmenu li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
+        }
+
+        .amenu {
+            text-decoration: none;
+            color: #000F55;
+        }
+
+
+
+
+        
+
+
+        
+        main {
+            transition: margin-left 0.3s;
+        }
+
+       
+
+         header {
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 0.75rem 1.5rem;
+        }
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+        .opcoesUsuario {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+                a:hover {
+            color: #D90368;
+        }
+                a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+                .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+                .menubarra {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffffff;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            padding-top: 60px;
+            transition: 0.3s;
+            z-index: 2;
+            font-family: "Quicksand", sans-serif;
+
+        }
+        .MLogo {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .MHE {
+            color: #000F55;
+            font-family: Quicksand;
+            font-weight: 1000px;
+            font-size: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: lighter;
+
+        }
+
+
+
+
+
+
+
+
+
+        body {
+            margin: 0;
+            padding: 0;
+                        background-color: #ffffffff;
+            font-family: 'Raleway', sans-serif;
+        }
+
+
+
+        .Logo {
+            width: 30px;
+        }
+                .menu {
+            width: 20px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+/*         
         li img {
             width: 40px;
         }
@@ -258,23 +400,17 @@ if ($usuario['ID_acesso'] == 1) {
             color: #000F55;
         }
 
-        main {
-            transition: margin-left 0.3s;
-        }
 
-        .perfiluser {
+
+
+
+ 
+             */
+
+                .perfiluser {
             border-radius: 200px;
             background-color: white;
         }
-
-        .confirmBtn {
-            display: none;
-            margin-top: 70px;
-            margin-left: 300px;
-            font-family: "Raleway", sans-serif;
-            border-radius: 10px;
-        }
-
         .HE {
             color: #000F55;
             font-family: "Quicksand", sans-serif;
@@ -282,21 +418,13 @@ if ($usuario['ID_acesso'] == 1) {
             margin-top: 20px;
             padding: 20px;
         }
-
-        .perfiluser {
+       .perfiluser {
             width: 150px;
             margin-left: 880px;
             margin-top: -50px;
 
         }
 
-        .sair {
-            width: 30px;
-            margin-left: 100px;
-            vertical-align: middle;
-
-
-        }
 
         .lihover {
             margin-left: -37px;
@@ -307,12 +435,13 @@ if ($usuario['ID_acesso'] == 1) {
             transform: scale(1.05);         
             
         }
-
-
-        .sairb {
-            text-align: right;
+        .confirmBtn {
+            display: none;
+            margin-top: 70px;
+            margin-left: 300px;
+            font-family: "Raleway", sans-serif;
+            border-radius: 10px;
         }
-
         form {
             border-radius: 5px;
             width: 500px;
@@ -324,33 +453,14 @@ if ($usuario['ID_acesso'] == 1) {
             background-color: white;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
-        }
+        } 
 
-        .menu {
-            width: 20px;
-            vertical-align: middle;
-            cursor: pointer;
-        }
-
-        .Logo {
-            width: 30px;
-            margin-left: 300px;
-            vertical-align: middle;
-        }
-
-        .calendario {
-            width: 60px;
-            margin-left: 400px;
-            vertical-align: middle;
-        }
 
 
 
         .user {
             width: 40px;
-            margin-left: 600px;
-            vertical-align: middle;
-        }
+        } 
 
 
         label {
@@ -362,7 +472,7 @@ if ($usuario['ID_acesso'] == 1) {
 
         }
 
-        input {
+         input {
             height: 40px;
             width: 300px;
             border-radius: 8px;
@@ -386,9 +496,20 @@ if ($usuario['ID_acesso'] == 1) {
             border-color: black;
             margin-top: 10px;
         }
+                .btn {
+                    display: none;
+            height: 40px;
+            width: 300px;
+            border-radius: 8px;
+            border-style: none;
+            background-color: #000F55;
+            color: white;
+            margin-top: 30px;
+        }
 
-        button {
+        .btn1 {
             height: 33px;
+            width: 30px;
             border-radius: 20px;
             border-style: none;
             background-color: #000F55;

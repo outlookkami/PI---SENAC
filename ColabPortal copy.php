@@ -12,9 +12,9 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+// $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
-$result = $connection -> query($sql);
+// $result = $connection->query($sql);
 
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
@@ -50,44 +50,61 @@ $result = $stmt->get_result();
 
     <!-- https://replit.com/@kamillyt/TeamConnect -->
 </head>
-
 <body>
     <header>
         <div class="logo-container">
-            <button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button>
-            <button class="logo"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
+            <a href="Sobrenos.php"><button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></a>
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
         </div>
-        
-        <nav>
-            <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a>
-            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
-            <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a>
-        </nav>
 
+        <nav class="menunav">
+            <!-- <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a> -->
+            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <!-- <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
+        </nav>
         <div class="opcoesUsuario">
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
             <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
         </div>
-            <nav class="menubarra" id="menubarra">
-                <ul>
-                    <li><a href="<?php
-                                if ($usuario['ID_acesso'] == 1) {
-                                    echo 'admPortal.php';
-                                } elseif ($usuario['ID_acesso'] == 2) {
-                                    echo 'ColabPortal.php';
-                                } else {
-                                    echo 'HeyEvent.php';
-                                }
-                                ?>">Início</a>
-                    </li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Contato</a></li>
-            </ul>
-
-            </nav>
-        </header>
-
+    </header>
+<nav class="menubarra" id="menubarra">
+    <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
+    <p class="MHE">HeyEvent</p>
+    <ul class="ulmenu">
+        <div class="lihover">
+            <li><img src="assets\home.png" alt=""><a class="amenu" href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>">Início</a>
+            </li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\info a.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+        </div>
+        <div class="lihover">
+            <li>
+                <img src="assets\prox.png" alt=""></i><a class="amenu" href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>">Próximos eventos</a>
+            </li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        </div>
+    </ul>
+    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+</nav>
     <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
         <div class="Dashboard">
@@ -118,7 +135,7 @@ $result = $stmt->get_result();
             </div>
 
             <!-- <div> Prêmios Disponíveis -->
-                <!-- <table class="TableDashboard Prêmios">
+            <!-- <table class="TableDashboard Prêmios">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                         <td>Prêmios Disponíveis</td>
@@ -130,7 +147,7 @@ $result = $stmt->get_result();
             <!-- </div> -->
 
             <!-- <div> Pontos Acumulados -->
-                <!-- <table class="TableDashboard Pontos">
+            <!-- <table class="TableDashboard Pontos">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                         <td>Pontos Acumulados</td>
@@ -275,18 +292,8 @@ $result = $stmt->get_result();
         }
 
         /* HEADER */
-        header {
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            background-repeat: no-repeat;
-            width: 100%;
-            min-height: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            padding: 0.75rem 1.5rem;
-        }
 
+/* menu */
         .menubarra {
             position: fixed;
             top: 0;
@@ -299,29 +306,100 @@ $result = $stmt->get_result();
             transition: 0.3s;
             z-index: 2;
             font-family: "Quicksand", sans-serif;
-        }  
+
+        }
+
+        .MLogo {
+            width: 100px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .MHE {
+            color: #000F55;
+            font-family: Quicksand;
+            font-weight: 1000px;
+            font-size: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: lighter;
+
+        }
+                li img {
+            width: 40px;
+        }
+
         
-        .logo-container{
+        .ulmenu {
+            list-style: none;
+
+        }
+
+        .lihover {
+            transition: transform 0.3s ease;
+        }
+        
+
+
+
+        .lihover:hover {
+            transform: scale(1.05);
+
+        }
+
+        .ulmenu li {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            margin-top: 40px;
+
         }
 
-        .logo{
-            font-size: 1.5rem;
-            background-color: transparent;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .amenu {
+            text-decoration: none;
+            color: #000F55;
         }
+        /* menu */
 
-        nav {
-          display: flex;
-          justify-content: center;
-          gap: 1.5rem;  
+
+        main {
+            transition: margin-left 0.3s;
         }
+/* 
+        menunav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        } */
 
-        a{
+/* header */
+        header {
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 0.75rem 1.5rem;
+        }
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+        .opcoesUsuario {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+                a:hover {
+            color: #D90368;
+        }
+                a {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -329,64 +407,22 @@ $result = $stmt->get_result();
             color: white;
             transition: color 0.3s;
         }
-
-        a:hover{
-            color: #D90368;
-        }
-
-        .opcoesUsuario{
+                .logo-container {
             display: flex;
-            gap: 1rem;
-            justify-content: space-between;
             align-items: center;
+            gap: 0.75rem;
         }
 
-        @media (max-width: 768px) {
-            nav, .opcoesUsuario{
-                display: flex;
-                flex-direction: row;
-                position: relative;
-                top: 100%;
-                width: 100%;
-                gap: 1rem; 
-            }
-
-            .opcoesUsuario{
-                display: flex;
-                justify-content: flex-end;
-                gap: 1rem;
-            }
-
-            .logo-container{
-                display: flex;
-                margin-right: 1rem;
-                justify-content: flex-start;
-            }
-
-            header{
-                display: flex;
-                flex-direction: row;
-                position: relative;
-                justify-content: space-between;  
-                align-content: center;    
-                gap: 1rem;
-            }
-
-            nav img{
-                display: none;
-            }
-
-            .opcoesUsuario img{
-                display: none;
-            }
-            
-            .TableEventos{
-                max-width: 180px;
-                justify-content: center;
-
-            }
-
+        .logo {
+            font-size: 1.5rem;
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
+/* header */
+
+
 
         main {
             transition: margin-left 0.3s;
@@ -425,13 +461,6 @@ $result = $stmt->get_result();
             border-left: 4px solid #77A0A9;
         }
 
-        .Prêmios {
-            border-left: 4px solid #D90368;
-        }
-
-        .Pontos {
-            border-left: 4px solid #4e598c;
-        }
 
         /* ícones */
         .IconesDashboard {
@@ -459,7 +488,7 @@ $result = $stmt->get_result();
             gap: 40px;
             justify-content: center;
             align-items: flex-start;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             min-width: 400px;
         }
 
@@ -479,11 +508,11 @@ $result = $stmt->get_result();
             display: block;
             width: 100%;
             object-fit: cover;
-            max-height: 800px; 
+            max-height: 800px;
             border-radius: 8px;
         }
 
-        .tdInfo{
+        .tdInfo {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -550,14 +579,6 @@ $result = $stmt->get_result();
             width: 30px;
         }
 
-        .sair {
-            width: 30px;
-        }
-
-        .notificaçoes {
-            width: 30px;
-        }
-
         .user {
             width: 40px;
         }
@@ -575,87 +596,6 @@ $result = $stmt->get_result();
             text-align: center;
             margin: 40px;
             display: block;
-        }
-
-        @media (max-width: 768px) {
-           nav {
-            align-items: flex-start;
-           }
-
-           .inícioHeader button {
-            display: block;
-            }
-
-            .meioHeader {
-            display: block; 
-            }
-
-            .fimHeader {
-            margin-top: 10px
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-
-            nav li {
-                margin: 10px 0;
-            }
-
-            .ProximosEventos {
-                flex-direction: column;
-                align-items: center;
-                justify-content:center;
-            }
-
-            .Dashboard {
-                flex-direction: column;
-                align-items: center;
-                justify-content:center;
-            }
-        }
-
-        @media (max-width: 1200px) {
-           nav {
-            align-items: flex-start;
-           }
-
-           .inícioHeader button {
-            display: block;
-            }
-
-            .meioHeader {
-            display: block; 
-            }
-
-            .fimHeader {
-            margin-top: 10px
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-
-            nav li {
-                margin: 10px 0;
-            }
-
-            .ProximosEventos {
-                flex-direction: column;
-                align-items: center;
-                justify-content:center;
-            }
-
-            .Dashboard {
-                display: flex;
-                align-self: center;
-                align-content: center;
-                justify-content:center;
-            }
         }
     </style>
 
