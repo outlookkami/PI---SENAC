@@ -12,6 +12,10 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
+$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+
+$result = $connection -> query($sql);
+
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
         FROM tabela_de_eventos e
