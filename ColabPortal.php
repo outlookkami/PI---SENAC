@@ -1,64 +1,6 @@
-<!-- PHP - Conexão banco de dados e seleção dos dados por data -->
-
-<?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "teste_eventos";
-
-
-$connection = new mysqli($host, $username, $password, $database);
-
-
-
-$connection = new mysqli($host, $username, $password, $database);
-
-
-// $host = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "eventos";
-
-
-
-if ($connection -> connect_error){
-    die("Erro de conexão: " . $connection -> connect_error);
-}
-
-$sql = "SELECT titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento FROM tabela_eventos ORDER BY data_evento ASC";
-
-$result = $connection -> query($sql);
-
-
-
-// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-
-
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "banco_teste";
-
-
-$connection = new mysqli($host, $username, $password, $database);
-
-$result = $connection -> query($sql);
-
-
-if ($connection->connect_error) {
-    die("Erro de conexão: " . $connection->connect_error);
-}
-// $sql = "SELECT * FROM tabela_eventos ORDER BY data_evento ASC";
-$result = $connection->query($sql);
-
-
-
-?>
-
-
 <!-- HTML - Portal do Colaborador -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -77,58 +19,41 @@ $result = $connection->query($sql);
 
 <body>
     <header>
-
+        <div class="logo-container">
+            <button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button>
+            <button class="logo"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button>
+        </div>
+        
         <nav>
-            <div class="inícioHeader">
-                <ul>
-                    <li class="paginas"><button class="paginas"><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></button></li>
-                    <li><button class="paginas"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></li>
-                </ul>
-            </div>
-            <div class="meioHeader">
-                <ul>
-                    <li class="paginas"><a href="">Dashboard</a></li>
-                    <li><a href="">Eventos</a></li>
-                    <li><a href=""><img class="calendario" src="assets\Calendario.png" alt=""> Calendário</a></li>
-                    <li><a href="">Prêmios</a></li>
-                </ul>
-            </div>
-            <div class="fimHeader">
-                <ul>
-                    <li><a href="Perfil.php"><img class="user" src="assets\user.png" alt="perfil">Perfil</a></li>
-                    <li><a href=""><img class="sair" src="assets\sair.png" alt="">Sair</a></li>
-                </ul>
-            </div>
+            <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a>
+            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a>
         </nav>
 
+        <div class="opcoesUsuario">
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
+            <a href=""><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+        </div>
+   
+            <nav class="menubarra" id="menubarra">
+                <ul>
+                    <li><a href="<?php
+                                if ($usuario['ID_acesso'] == 1) {
+                                    echo 'admPortal.php';
+                                } elseif ($usuario['ID_acesso'] == 2) {
+                                    echo 'ColabPortal.php';
+                                } else {
+                                    echo 'HeyEvent.php';
+                                }
+                                ?>">Início</a>
+                    </li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Contato</a></li>
+            </ul>
 
-
-        <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-        <a href="Sobrenos.php"><img class="Logo" src="assets/Logo HeyEvent Ofc.png" alt="logo">Sobre Nós</a>
-        <a href="Calendario.php"><img class="calendario" src="assets/Calendario.png" alt="">Calendário</a>
-        <a href="Perfil.php"><img class="user" src="assets/user.png" alt="perfil">Seu Perfil</a>
-        <a href="logout.php"><img src="assets/sair.png" class="sair" alt="sair">Sair</a>
-
-    </header>
-    <nav class="menubarra" id="menubarra">
-        <ul>
-            <li><a href="<?php
-                            if ($usuario['ID_acesso'] == 1) {
-                                echo 'admPortal.php';
-                            } elseif ($usuario['ID_acesso'] == 2) {
-                                echo 'ColabPortal.php';
-                            } else {
-                                echo 'HeyEvent.php';
-                            }
-                            ?>">Início</a>
-            </li>
-            <li><a href="Sobrenos.php">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
-
-    </nav>
-
+            </nav>
+        </header>
 
     <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
@@ -159,8 +84,8 @@ $result = $connection->query($sql);
                 </table>
             </div>
 
-            <div> <!-- Prêmios Disponíveis -->
-                <table class="TableDashboard Prêmios">
+            <!-- <div> Prêmios Disponíveis -->
+                <!-- <table class="TableDashboard Prêmios">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
                         <td>Prêmios Disponíveis</td>
@@ -168,11 +93,11 @@ $result = $connection->query($sql);
                     <tr>
                         <td class="valor"><b>4</b></td>
                     </tr>
-                </table>
-            </div>
+                </table> -->
+            <!-- </div> -->
 
-            <div> <!-- Pontos Acumulados -->
-                <table class="TableDashboard Pontos">
+            <!-- <div> Pontos Acumulados -->
+                <!-- <table class="TableDashboard Pontos">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
                         <td>Pontos Acumulados</td>
@@ -180,13 +105,13 @@ $result = $connection->query($sql);
                     <tr>
                         <td class="valor"><b>2.450</b></td>
                     </tr>
-                </table>
-            </div>
+                </table> -->
+            <!-- </div>  -->
         </div>
 
         <br><br><br><br><br>
 
-        <h2 class="tituloProxEven">Próximos Eventos</h2>
+                <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
         <div class="ProximosEventos">
             <table class="TableEventos">
@@ -197,7 +122,7 @@ $result = $connection->query($sql);
                     <td>
                         <h4 id="tituloEvento">Reunião Estratégica Q4</h4>
                     </td>
-                    <td class="tag" id="tagEvento">Reunião</td>
+                    <td class="tagEvento" id="tagEvento">Reunião</td>
                 </tr>
                 <tr>
                     <td>
@@ -229,7 +154,7 @@ $result = $connection->query($sql);
                     <td>
                         <h4>Workshop de inovação</h4>
                     </td>
-                    <td class="tag" id="tagEvento">Workshop</td>
+                    <td class="tagEvento" id="tagEvento">Workshop</td>
                 </tr>
                 <tr>
                     <td>
@@ -261,7 +186,7 @@ $result = $connection->query($sql);
                     <td>
                         <h4>Festa de fim de ano</h4>
                     </td>
-                    <td class="tag">Social</td>
+                    <td class="tagEvento">Social</td>
                 </tr>
                 <tr>
                     <td>
@@ -281,49 +206,9 @@ $result = $connection->query($sql);
                     <td> 87 confirmados</td>
                 </tr>
                 <tr>
-                    <td><button class="PresençaConfirmada">Presença Confirmada</button></td>
+                    <td><button class="clicado">Presença Confirmada</button></td>
                 </tr>
             </table>
-
-
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <table class="TableEventos">
-                        <tr>
-                            <td><?= $row,['id_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td><?= $row,['imagem_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4><?= $row,['titulo_evento'] ?></h4>
-                            </td>
-                            <td><?= $row,['tag_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p><?= $row,['descricao_evento'] ?></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?= ['d/m/Y', ($row['data_evento'])] ?></td>
-                        </tr>
-                        <tr>
-                            <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?= $row,['horario_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?= $row,['local_evento'] ?></td>
-                        </tr>
-                        <tr>
-                            <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-                        </tr>
-                    </table>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>Nenhum evento encontrado.</p>
-            <?php endif; ?>
-        </div>
 
         <br><br>
 
@@ -356,6 +241,39 @@ $result = $connection->query($sql);
                 main.style.marginLeft = "0";
             }
         });
+
+
+        function confPresenca(botao) {
+            const idEvento = botao.getAttribute('data-evento');
+            const acao = botao.classList.contains('clicado') ? "desconfirmar" : "confirmar";
+
+            if (!confirm(`Deseja realmente ${acao} sua presença neste evento?`)) {
+                return;
+            }
+
+            fetch('confirmar.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `id_evento=${idEvento}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        if (data.confirmado) {
+                            botao.classList.add('clicado');
+                            botao.textContent = 'Confirmado';
+                        } else {
+                            botao.classList.remove('clicado');
+                            botao.textContent = 'Confirmar Presença';
+                        }
+                    } else {
+                        alert(data.msg);
+                    }
+                })
+                .catch(err => console.error(err));
+        }
     </script>
     <!-- CSS -->
     <style>
@@ -374,61 +292,16 @@ $result = $connection->query($sql);
 
         /* HEADER */
         header {
-            display: flex;
-            align-items: center;
-            height: 100px;
-            gap: 8px;
-            background: none;
-            border: none;
-            color: white;
-            font-family: "Quicksand", sans-serif;
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            vertical-align: middle;
-
+            background-repeat: no-repeat;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 0.75rem 1.5rem;
         }
-
-        header a {
-            text-decoration: none;
-            color: white;
-
-        }
-
-        .sair {
-            width: 30px;
-            margin-left: 100px;
-            vertical-align: middle;
-
-
-        }
-
-        .sairb {
-            text-align: right;
-        }
-
-        .menu {
-            width: 20px;
-            vertical-align: middle;
-            cursor: pointer;
-        }
-
-        .Logo {
-            width: 30px;
-            margin-left: 300px;
-            vertical-align: middle;
-        }
-
-        .calendario {
-            width: 60px;
-            margin-left: 400px;
-            vertical-align: middle;
-        }
-
-        .user {
-            width: 40px;
-            margin-left: 600px;
-            vertical-align: middle;
-        }
-
 
         .menubarra {
             position: fixed;
@@ -442,80 +315,97 @@ $result = $connection->query($sql);
             transition: 0.3s;
             z-index: 2;
             font-family: "Quicksand", sans-serif;
+        }  
+        
+        .logo-container{
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        main {
-            transition: margin-left 0.3s;
+        .logo{
+            font-size: 1.5rem;
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
 
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-
-        ul {
-            list-style: none;
-
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        li{
-            margin-left: 20px;
-
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;  
         }
 
         a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
             text-decoration: none;
             color: white;
-            display:flex;
-            text-align: center;
+            transition: color 0.3s;
+        }
+
+        a:hover{
+            color: #D90368;
+        }
+
+        .opcoesUsuario{
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
             align-items: center;
         }
 
         @media (max-width: 768px) {
-            nav ul {
+            nav, .opcoesUsuario{
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 position: relative;
-                top: 20px; 
-                justify-content: space-between;
-                align-items: flex-start;
+                top: 100%;
+                width: 100%;
+                gap: 1rem; 
             }
 
-            nav ul li {
-                margin-left: 0;
-                margin-bottom: 10px;
+            .opcoesUsuario{
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
             }
-        }
 
-        .inícioHeader {
-            gap: 40px;
-        }
+            .logo-container{
+                display: flex;
+                margin-right: 1rem;
+                justify-content: flex-start;
+            }
 
-        /* .meioHeader {
+            header{
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                justify-content: space-between;  
+                align-content: center;    
+                gap: 1rem;
+            }
+
+            nav img{
+                display: none;
+            }
+
+            .opcoesUsuario img{
+                display: none;
+            }
             
+            .TableEventos{
+                max-width: 180px;
+                justify-content: center;
+
+            }
+
         }
 
-        .fimHeader {
-            
-        } */
-
-        .paginas {
-            background-color: transparent;
-            color: white;
-            border: none;
-            place-content: space-between;
-        }
-
-        .paginas:hover {
-            color: #D90368;
-            cursor: pointer;
+        main {
+            transition: margin-left 0.3s;
         }
 
         /* DASHBOARD */
@@ -529,6 +419,8 @@ $result = $connection->query($sql);
             display: flex;
             gap: 40px;
             justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         /* Elementos tabelas */
@@ -582,6 +474,9 @@ $result = $connection->query($sql);
             display: flex;
             gap: 40px;
             justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap; 
+            min-width: 400px;
         }
 
         /* Elementos das tabelas */
@@ -591,13 +486,23 @@ $result = $connection->query($sql);
             padding: 20px;
             border-spacing: 15px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-            display: block;
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
         }
 
         .imagensIlustrativasEventos {
-            width: fit-content;
-            height: 300px;
-            border-radius: 12px;
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            max-height: 800px; 
+            border-radius: 8px;
+        }
+
+        .tdInfo{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* ícones */
@@ -611,17 +516,20 @@ $result = $connection->query($sql);
             align-items: center;
         }
 
-        .tag {
+        .tagEvento {
+            display: flex;
             background-color: #000F55;
             color: white;
             border-radius: 16px;
             padding: 7px 11px;
             font-size: 14px;
-            text-align: center;
+            align-items: end;
+            justify-content: end;
         }
 
         /* Botões Eventos */
         .ConfirmarPresença {
+            display: flex;
             background-color: #D90368;
             color: white;
             border: none;
@@ -629,10 +537,13 @@ $result = $connection->query($sql);
             border-radius: 8px;
             width: 100%;
             text-align: center;
+            align-items: center;
             cursor: pointer;
+            justify-content: center;
         }
 
-        .PresençaConfirmada {
+
+        .clicado {
             background-color: #77A0A9;
             color: white;
             border: none;
@@ -655,10 +566,6 @@ $result = $connection->query($sql);
             width: 30px;
         }
 
-        .calendario {
-            width: 60px;
-        }
-
         .sair {
             width: 30px;
         }
@@ -679,61 +586,95 @@ $result = $connection->query($sql);
         .calendariop {
             width: 25px;
         }
+
+        footer {
+            text-align: center;
+            margin: 40px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+           nav {
+            align-items: flex-start;
+           }
+
+           .inícioHeader button {
+            display: block;
+            }
+
+            .meioHeader {
+            display: block; 
+            }
+
+            .fimHeader {
+            margin-top: 10px
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .ProximosEventos {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+        }
+
+        @media (max-width: 1200px) {
+           nav {
+            align-items: flex-start;
+           }
+
+           .inícioHeader button {
+            display: block;
+            }
+
+            .meioHeader {
+            display: block; 
+            }
+
+            .fimHeader {
+            margin-top: 10px
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .ProximosEventos {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            .Dashboard {
+                display: flex;
+                align-self: center;
+                align-content: center;
+                justify-content:center;
+            }
+        }
     </style>
 
-    <!-- JavaScript
-    <script>
-        function postarEvento(){
-            imagem = document.getElementById('imagemEvento').innerHTML;
-            titulo = document.getElementById('tituloEvento').innerHTML;
-            tag = document.getElementById('tagEvento').innerHTML;
-            descricao = document.getElementById('descricaoEvento').innerHTML;
-            data_inicio = document.getElementById('dataEvento').innerHTML;
-            horario = document.getElementById('horarioEvento').innerHTML;
-            local = document.getElementById('localEvento').innerHTML;
-            categoria = document.getElementById('categoria_evento').innerHTML;
-
-            var tabela = document.getElementById('TableEventos');
-        }
-    </script> -->
 </body>
 
 </html>
-<!-- PHP - Encerramento -->
-
-<?php
-$connection->close();
-?>
-
-    <table class="TableEventos">
-        <tr>
-            <td><img id="imagem_evento" class="imagensIlustrativasEventos" src="" width="400" alt=""></td>
-        </tr>
-        <tr class="tituloTag">
-            <td>
-                <h4 id="titulo_evento">Workshop de inovação</h4>
-            </td>
-            <td class="tag" id="tag_evento">Workshop</td>
-        </tr>
-        <tr>
-            <td>
-                <p id="descricao_evento">Metodologias ágeis e design thinking para projetos inovadores.</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário">18 de Dezembro, 2025</td>
-        </tr>
-        <tr>
-            <td id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"> 14:00 - 16:00</td>
-        </tr>
-        <tr>
-            <td id="local_evento"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa">Auditório Principal</td>
-        </tr>
-        <tr>
-            <td> +12 confirmados</td>
-        </tr>
-        <tr>
-            <td><button class="ConfirmarPresença">Confirmar Presença</button></td>
-        </tr>
-    </table>
-
