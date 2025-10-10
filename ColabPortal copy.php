@@ -21,6 +21,7 @@ $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, 
         FROM tabela_de_eventos e
         LEFT JOIN clientes_eventos c 
         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
+        where  E.DATA_EVENTO >= curdate()
         ORDER BY e.data_evento ASC
         LIMIT 3";
 
@@ -360,12 +361,20 @@ $result = $stmt->get_result();
             text-decoration: none;
             color: #000F55;
         }
+
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+                main {
+            transition: margin-left 0.3s;
+        }
+
+
         /* menu */
 
 
-        main {
-            transition: margin-left 0.3s;
-        }
 /* 
         menunav {
             display: flex;
@@ -384,11 +393,6 @@ $result = $stmt->get_result();
             align-items: center;
             position: relative;
             padding: 0.75rem 1.5rem;
-        }
-        .footermenu {
-            text-align: center;
-            margin-top: 300px;
-            color: #000F55;
         }
         .opcoesUsuario {
             display: flex;
@@ -424,9 +428,9 @@ $result = $stmt->get_result();
 
 
 
-        main {
+        /* main {
             transition: margin-left 0.3s;
-        }
+        } */
 
         /* DASHBOARD */
         .TituloDashboard {

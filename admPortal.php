@@ -96,17 +96,17 @@ $connection -> close();
 <body>
     <header>
         <div class="logo-container">
-            <a href=""><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
-            <a href=""><img class="menu" src="assets\menu.png" alt="barrinhas de menu"></a>
+            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
         </div>
 
         <nav>
             <a href="Sobrenos.php"><img class="sobre" src="assets\sobreNos.png" alt="Sobre Nós" width="28px">Sobre Nós</a>
-            <!-- <a><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
-            <!-- <a><img class="notificaçoes" src="assets\notificacoes.png" alt="Notificações" width="28px">Notificações</a> -->
         </nav>
 
-        <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
+               <div class="opcoesUsuario">
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
+            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+        </div>
     </header>
 
     <main>
@@ -173,7 +173,7 @@ $connection -> close();
     <!-- Formulário de criação de eventos -->
 
     <div class="CriarEventoForm" id="formCriarEvento" style="display: none;">
-        <form method="post" action="admPortal.php" enctype="multipart/form-data"" class="CriarEventoForm">
+        <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm">
 
     <div class="CriarEventoForm" id="formCriarEvento">
         <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm">
@@ -271,6 +271,12 @@ $connection -> close();
             align-items: center;
             position: relative;
             padding: 0.75rem 1.5rem;
+        }
+                .opcoesUsuario {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .menubarra {

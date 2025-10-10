@@ -57,7 +57,15 @@ if ($usuario['ID_acesso'] == 1) {
 
         <nav class="menunav">
             <!-- <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a> -->
-            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <a href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
             <!-- <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
         </nav>
         <div class="opcoesUsuario">
@@ -106,10 +114,9 @@ if ($usuario['ID_acesso'] == 1) {
 
     <main id="main">
 
-        <p class="HE"> Olá <?php echo $primeiroNome; ?>!</p>
+        <h2 class="HE">Olá <?php echo $primeiroNome; ?>!</h2> 
 
-        <img src="" class="perfiluser" id="preview" alt="" width="150" height="150">
-        <button class="btn1" type="file" onclick="document.getElementById('fotoInput').click()"><img src="assets\editar.png" alt=""></button>
+        
         <br>
         <form action="" method="$_GET">
             <div class="conteudo">
@@ -137,27 +144,7 @@ if ($usuario['ID_acesso'] == 1) {
     </main>
 
     <script>
-        const input = document.getElementById('fotoInput');
-        const preview = document.getElementById('preview');
 
-        input.addEventListener('change', () => {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    preview.src = e.target.result;
-                    preview.style.display = "block";
-                    confirmBtn.style.display = "inline-block";
-                };
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.style.display = "none";
-                confirmBtn.style.display = "none";
-            }
-        });
-        confirmBtn.addEventListener('click', () => {
-            confirmBtn.style.display = "none";
-
-        });
         const menu = document.getElementById('menu');
         const menubarra = document.getElementById('menubarra');
         const main = document.getElementById('main');
@@ -412,8 +399,8 @@ if ($usuario['ID_acesso'] == 1) {
             background-color: white;
         }
         .HE {
-            color: #000F55;
-            font-family: "Quicksand", sans-serif;
+            color: #000000ff;
+            
             font-size: 30px;
             margin-top: 20px;
             padding: 20px;
@@ -444,12 +431,12 @@ if ($usuario['ID_acesso'] == 1) {
         }
         form {
             border-radius: 5px;
-            width: 500px;
-            height: 600px;
+            width: 450px;
+            height: 450px;
             padding: 10px;
             text-align: left;
-            margin-left: 690px;
-            margin-top: -100px;
+            margin-left: 700px;
+            margin-top: 100px;
             background-color: white;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
 
@@ -474,7 +461,7 @@ if ($usuario['ID_acesso'] == 1) {
 
          input {
             height: 40px;
-            width: 300px;
+            width: 310px;
             border-radius: 8px;
             border-style: solid;
             border-color: black;
@@ -484,8 +471,8 @@ if ($usuario['ID_acesso'] == 1) {
         }
 
         .conteudo {
-            margin-top: 150px;
-            margin-left: 100px;
+            margin-top: 60px;
+            margin-left: 60px;
         }
 
         select {

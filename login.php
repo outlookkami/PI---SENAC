@@ -1,6 +1,7 @@
 <?php
 include("conexao.php");
 session_start();
+$_SESSION['fotos_perfil'] = $usuario['fotos_perfil'];
 if ($_POST) {
     $email = $_POST['email_user'];
     $senha = $_POST['senha_user'];
