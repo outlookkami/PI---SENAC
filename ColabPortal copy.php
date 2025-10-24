@@ -522,6 +522,8 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             object-fit: cover;
             max-height: 800px;
             border-radius: 8px;
+            width: 300px;
+            height: 250px;
         }
 
         .tdInfo {
