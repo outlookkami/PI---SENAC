@@ -82,33 +82,65 @@ $connection -> close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Administrativo</title>
-    <!-- <link rel="stylesheet" href="AdmPortal.css"> -->
     <link rel="shortcut icon" href="assets\Icone.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
     <!-- https://replit.com/@kamillyt/TeamConnect -->
 </head>
 
 <body>
-    <header>
+  <header>
         <div class="logo-container">
-            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu" >
+            
         </div>
 
-        <nav>
-            <a href="Sobrenos.php"><img class="sobre" src="assets\sobreNos.png" alt="Sobre Nós" width="28px">Sobre Nós</a>
+        <nav class="menunav">
+            <a href="Sobrenos.php"><img src="assets\info.png" alt="inicio" width="28px">Sobre nós</a>
         </nav>
-
-               <div class="opcoesUsuario">
-            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
-            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+        <div class="opcoesUsuario">
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
         </div>
     </header>
+<nav class="menubarra" id="menubarra">
+    <ul class="ulmenu">
+        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
+        <p class="hemenu">HeyEvent</p>
+        <div class="lihover">
+            <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        </div>
+         <div class="lihover">
+            <li><img src="assets\menuheimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
+        </div>
+    </ul>
+    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+</nav>
 
+<div id="conteudomain">
     <main>
         <div class="conteudoPrincipal" id="conteudoPrincipal">
             <h2 class="TituloDashboard">Dashboard</h2>
@@ -169,6 +201,7 @@ $connection -> close();
             <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
         </div>
     </main>
+</div>
     
     <!-- Formulário de criação de eventos -->
 
@@ -245,7 +278,25 @@ $connection -> close();
             document.getElementById("formCriarEvento").style.display = "none";
             document.getElementById("conteudoPrincipal").classList.remove("blur");
         }
+        const menu = document.getElementById('menu');
+        const menubarra = document.getElementById('menubarra');
+        const conteudomain = document.getElementById('conteudomain');
 
+        menu.addEventListener('click', () => {
+            if (menubarra.style.left === "0px") {
+                menubarra.style.left = "-250px";
+                conteudomain.style.marginLeft = "0";
+            } else {
+                menubarra.style.left = "0px";
+                conteudomain.style.marginLeft = "250px";
+            }
+        });
+        conteudomain.addEventListener('click', () => {
+            if (menubarra.style.left === "0px") {
+                menubarra.style.left = "-250px";
+                conteudomain.style.marginLeft = "0";
+            }
+        });
     </script>
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
@@ -272,6 +323,12 @@ $connection -> close();
             position: relative;
             padding: 0.75rem 1.5rem;
         }
+        .TituloDashboard{
+                        margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;
+        }
                 .opcoesUsuario {
             display: flex;
             gap: 1rem;
@@ -293,6 +350,15 @@ $connection -> close();
             font-family: "Quicksand", sans-serif;
 
         }
+        .menu{
+            cursor: pointer;
+        }
+        .menunav {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        } 
 
         .MLogo {
             width: 100px;
@@ -313,8 +379,9 @@ $connection -> close();
 
         }
 
-        li img {
-            width: 40px;
+        .lihover img{
+        width: 30px;
+        margin-left: 10px;
         }
 
 
@@ -350,9 +417,11 @@ $connection -> close();
             color: #000F55;
         }
 
-        main {
-            transition: margin-left 0.3s;
-        }
+#conteudomain {
+    transition: margin-left 0.3s ease;
+}
+
+
 
         menunav {
             display: flex;
@@ -439,9 +508,7 @@ $connection -> close();
             height: 80px;
         }
 
-        main {
-            transition: margin-left 0.3s;
-        }
+
 
         /* DASHBOARD */
         .TituloDashboard{
@@ -508,7 +575,7 @@ $connection -> close();
         }
 
         .criarEvento{
-            background-color: #4e598c;
+            background-color: #000F55;
             color: white;
             border: none;
             padding: 10px;

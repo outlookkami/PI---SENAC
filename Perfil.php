@@ -200,10 +200,7 @@ if ($usuario['ID_acesso'] == 1) {
             font-weight: lighter;
 
         }
-        li img {
-            width: 40px;
-            margin-left: 50px;
-        }
+
         .lihover img{
         width: 30px;
         margin-left: 47px;
