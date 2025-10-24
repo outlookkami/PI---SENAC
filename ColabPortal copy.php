@@ -7,6 +7,12 @@ $password = "";
 $database = "hey_event";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
+$idUser = $_SESSION['ID_USER'];
+
+if (!isset($_SESSION['ID_USER'])) {
+    header("Location: login.php");
+    exit;
+}
 
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
@@ -19,12 +25,25 @@ $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, 
         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
         where  E.DATA_EVENTO >= curdate()
         ORDER BY e.data_evento ASC
-        LIMIT 3";
+        LIMIT 4";
 
 $stmt = $connection->prepare($sql);
-$stmt->bind_param("i", $_SESSION['ID_USER']);
+$stmt->bind_param("i", $idUser);
 $stmt->execute();
 $result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+$sql1 = "SELECT COUNT(*) AS confirmados 
+         FROM clientes_eventos 
+         WHERE ID_USER = ? AND confirmado = 1";
+
+$stmt1 = $connection->prepare($sql1);
+$stmt1->bind_param("i", $idUser);
+$stmt1->execute();
+$result1 = $stmt1->get_result();
+$row1 = $result1->fetch_assoc();
+$confirmados = $row1 ? $row1['confirmados'] : 0;
+
 
 ?>
 
@@ -103,7 +122,7 @@ $result = $stmt->get_result();
                         <td class="titulosdash">Eventos Confirmados</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0</b></td>
+                        <td class="valor"><b><?php echo $confirmados; ?></b></td>
                     </tr>
                 </table>
             </div>
@@ -115,7 +134,7 @@ $result = $stmt->get_result();
                         <td class="titulosdash">Presença Total</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0%</b></td>
+                        <td class="valor"><b>0</b></td>
                     </tr>
                 </table>
             </div>
@@ -123,9 +142,11 @@ $result = $stmt->get_result();
 
         <br><br><br><br><br>
 
-        <h2 class="tituloProxEven">Próximos Eventos</h2>
+      <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
-    <?php if ($result->num_rows > 0): ?>
+        <div class="ProximosEventos">
+
+            <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="ProximosEventos">
                         <table class="TableEventos">
@@ -167,14 +188,13 @@ $result = $stmt->get_result();
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p class="nenhumevento">Nenhum evento encontrado.</p>
+                <p>Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
 
-
         <br><br>
 
-        <h2 class="tituloCalen">Calendário de Eventos</h2>
+        <h2>Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
 <footer>
