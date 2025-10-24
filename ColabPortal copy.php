@@ -65,28 +65,28 @@ $result = $stmt->get_result();
     </header>
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
-        <img src="assets\Logo HeyEvent Ofc.png" width="100px" alt="">
+        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
         <p class="hemenu">HeyEvent</p>
         <div class="lihover">
-            <li><img src="assets\usermenu.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
+            <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\seguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\infomenu.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\cadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
         </div>
          <div class="lihover">
-            <li><img src="assets\heimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+            <li><img src="assets\menuheimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\sairmenu.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
+            <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
@@ -268,24 +268,7 @@ $result = $stmt->get_result();
             transition: 0.3s;
             z-index: 2;
 
-
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-
-            
- 
-            
-
         }
-        .titulosdash{
-        font-family: "Montserrat", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;           
-        }
-
         .MLogo {
             width: 100px;
             display: block;
@@ -317,18 +300,16 @@ $result = $stmt->get_result();
 
         }
         .hemenu{
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings:
-        "wdth" 100;
+        color: #000000ff;
+        font-family: Quicksand;
         font-size: 35px;
         margin-left: 15px;
         }
 
         .lihover {
-            transition: transform 0.3s ease;
+        transition: transform 0.3s ease;
+        font-family: Quicksand;
+        font-size: 18px;
         }
         
         .lihover img{
@@ -432,6 +413,8 @@ $result = $stmt->get_result();
         .TituloDashboard {
             margin: 20px;
             color: black;
+            color: #000000ff;
+            font-family: Quicksand;
         }
 
         /* Grupo das Tabelas */
@@ -480,9 +463,15 @@ $result = $stmt->get_result();
         /* PRÓXIMOS EVENTOS:  */
         .tituloProxEven {
             margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;
         }
         .tituloCalen{
             margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;  
         }
 
         /* Grupo das tabelas */
