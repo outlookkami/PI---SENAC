@@ -75,11 +75,18 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
         </div>
 
         <nav class="menunav">
-            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <a href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
         </nav>
         <div class="opcoesUsuario">
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
-            <!-- <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a> -->
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
@@ -310,9 +317,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             font-weight: lighter;
 
         }
-                li img {
-            width: 40px;
-        }
+
 
         
         .ulmenu {
@@ -570,19 +575,19 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
         }
 
 
-        .clicado {
-            background-color: #77A0A9;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            width: 100%;
-            text-align: center;
-            cursor: pointer;
-        }
+.clicado {
+    background-color: #77A0A9;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer; 
+}
 
         body {
-            font-family: "Raleway", sans-serif;
+            font-family: Quicksand;  
         }
 
         .menu {
