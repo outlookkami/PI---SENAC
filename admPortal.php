@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "hey_event";
+$database = "teste_eventos";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
 
@@ -12,19 +12,36 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
-        IF(c.ID_USER IS NULL, 0, 1) AS confirmado
-        FROM tabela_de_eventos e
-        LEFT JOIN clientes_eventos c 
-        ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
-        where  E.DATA_EVENTO >= curdate()
-        ORDER BY e.data_evento ASC
-        LIMIT 3";
+$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
-$stmt = $connection->prepare($sql);
-$stmt->bind_param("i", $_SESSION['ID_USER']);
-$stmt->execute();
-$result = $stmt->get_result();
+$result = $connection->query($sql);
+
+// $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
+//         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
+//         FROM tabela_de_eventos e
+//         LEFT JOIN clientes_eventos c 
+//         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
+//         where  E.DATA_EVENTO >= curdate()
+//         ORDER BY e.data_evento ASC
+//         LIMIT 3";
+
+// $stmt = $connection->prepare($sql);
+// $stmt->bind_param("i", $_SESSION['ID_USER']);
+// $stmt->execute();
+// $result = $stmt->get_result();
+
+
+    // Consultas para obter os dados do dashboard
+
+    $sql = "SELECT COUNT(id_evento) AS eventos_futuros FROM tabela_de_eventos WHERE data_evento >= CURDATE()"; 
+    $resultFut = $connection -> query($sql);
+    $row = $resultFut -> fetch_assoc();
+    $eventosFuturos = $row['eventos_futuros'];
+
+    $sql = "SELECT COUNT(id_evento) AS total_eventos FROM tabela_de_eventos";
+    $resultTot = $connection -> query($sql);
+    $row = $resultTot -> fetch_assoc();
+    $totalEventos = $row['total_eventos'];
 
 ?>
 
@@ -51,8 +68,7 @@ $result = $stmt->get_result();
 <body>
     <header>
         <div class="logo-container">
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-            
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
         </div>
 
         <nav class="menunav">
@@ -100,10 +116,10 @@ $result = $stmt->get_result();
 
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                        <td class="titulosdash">Eventos Confirmados</td>
+                        <td class="titulosdash">Eventos Futuros</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0</b></td>
+                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
                     </tr>
                 </table>
             </div>
@@ -112,10 +128,10 @@ $result = $stmt->get_result();
                 <table class="TableDashboard Presença">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                        <td class="titulosdash">Presença Total</td>
+                        <td class="titulosdash">Total de Eventos</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0%</b></td>
+                        <td class="valor"><b><?php echo $totalEventos;?></b></td>
                     </tr>
                 </table>
             </div>
@@ -176,7 +192,11 @@ $result = $stmt->get_result();
 
         <h2 class="tituloCalen">Calendário de Eventos</h2>
         <br><br>
+
+        <div class="Calendario">
         <!-- Inserir calendário de eventos com a API -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
+        </div>
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
@@ -272,13 +292,9 @@ $result = $stmt->get_result();
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal;
-
-            
- 
-            
-
+  font-style: normal;         
         }
+
         .titulosdash{
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -322,7 +338,7 @@ $result = $stmt->get_result();
         font-weight: 400;
         font-style: normal;
         font-variation-settings:
-        "wdth" 100;
+        "width" 100;
         font-size: 35px;
         margin-left: 15px;
         }
@@ -376,6 +392,9 @@ $result = $stmt->get_result();
         font-optical-sizing: auto;
         font-weight: 500;
         font-style: normal;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
         } 
 
 /* header */
@@ -390,16 +409,25 @@ $result = $stmt->get_result();
             position: relative;
             padding: 0.75rem 1.5rem;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; 
+        }
+
         .opcoesUsuario {
             display: flex;
             gap: 1rem;
             justify-content: space-between;
             align-items: center;
         }
-                a:hover {
+
+        a:hover {
             color: #D90368;
         }
-                a {
+
+        a {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -407,7 +435,8 @@ $result = $stmt->get_result();
             color: white;
             transition: color 0.3s;
         }
-                .logo-container {
+
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -596,11 +625,53 @@ $result = $stmt->get_result();
             width: 25px;
         }
 
+        .Calendario {
+            display:flex;
+            justify-content: center;
+        }
+
+        iframe {
+            width: 90%;
+            height: 600px;
+        }
+
         footer {
             text-align: center;
             margin: 40px;
             display: block;
         }
+
+        @media screen and (max-width: 839px) {
+           nav {
+            align-items: flex-start;
+           }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            #CriarEventoForm{
+                width: 90%;
+                padding: 20px;
+            }
+
+        #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
+        font-size: 14px;
+        padding: 8px;
+    }
+        
     </style>
 
 </body>
