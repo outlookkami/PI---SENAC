@@ -12,10 +12,6 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-// $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
-
-// $result = $connection->query($sql);
-
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
         FROM tabela_de_eventos e
@@ -32,8 +28,6 @@ $result = $stmt->get_result();
 
 ?>
 
-
-<!-- HTML - Portal do Colaborador -->
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -41,67 +35,58 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Colaborador</title>
-    <!-- <link rel="stylesheet" href="colabPortal.css"> -->
     <link rel="shortcut icon" href="assets\Icone.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-
-    <!-- https://replit.com/@kamillyt/TeamConnect -->
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <a href="Sobrenos.php"><button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></a>
             <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+            
         </div>
 
         <nav class="menunav">
-            <!-- <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a> -->
             <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
-            <!-- <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
-            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
+            <!-- <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a> -->
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
-    <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
-    <p class="MHE">HeyEvent</p>
     <ul class="ulmenu">
+        <img src="assets\Logo HeyEvent Ofc.png" width="100px" alt="">
+        <p class="hemenu">HeyEvent</p>
         <div class="lihover">
-            <li><img src="assets\home.png" alt=""><a class="amenu" href="<?php
-                if ($usuario['ID_acesso'] == 1) {
-                echo 'admPortal.php';
-                } elseif ($usuario['ID_acesso'] == 2) {
-                echo 'ColabPortal copy.php';
-                } else {
-                echo 'HeyEvent.php';
-                }
-                ?>">Início</a>
-            </li>
+            <li><img src="assets\usermenu.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\info a.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+            <li><img src="assets\seguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li>
-                <img src="assets\prox.png" alt=""></i><a class="amenu" href="<?php
-                if ($usuario['ID_acesso'] == 1) {
-                echo 'admPortal.php';
-                } elseif ($usuario['ID_acesso'] == 2) {
-                echo 'ColabPortal copy.php';
-                } else {
-                echo 'HeyEvent.php';
-                }
-                ?>">Próximos eventos</a>
-            </li>
+            <li><img src="assets\infomenu.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\cadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
         <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        </div>
+         <div class="lihover">
+            <li><img src="assets\heimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\sairmenu.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
@@ -115,7 +100,7 @@ $result = $stmt->get_result();
 
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                        <td>Eventos Confirmados</td>
+                        <td class="titulosdash">Eventos Confirmados</td>
                     </tr>
                     <tr>
                         <td class="valor"><b>0</b></td>
@@ -127,46 +112,20 @@ $result = $stmt->get_result();
                 <table class="TableDashboard Presença">
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                        <td>Presença Total</td>
+                        <td class="titulosdash">Presença Total</td>
                     </tr>
                     <tr>
                         <td class="valor"><b>0%</b></td>
                     </tr>
                 </table>
             </div>
-
-            <!-- <div> Prêmios Disponíveis -->
-            <!-- <table class="TableDashboard Prêmios">
-                    <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
-                        <td>Prêmios Disponíveis</td>
-                    </tr>
-                    <tr>
-                        <td class="valor"><b>4</b></td>
-                    </tr>
-                </table> -->
-            <!-- </div> -->
-
-            <!-- <div> Pontos Acumulados -->
-            <!-- <table class="TableDashboard Pontos">
-                    <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
-                        <td>Pontos Acumulados</td>
-                    </tr>
-                    <tr>
-                        <td class="valor"><b>2.450</b></td>
-                    </tr>
-                </table> -->
-            <!-- </div>  -->
         </div>
 
         <br><br><br><br><br>
 
         <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
-        <div class="ProximosEventos">
-
-            <?php if ($result->num_rows > 0): ?>
+    <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="ProximosEventos">
                         <table class="TableEventos">
@@ -208,21 +167,23 @@ $result = $stmt->get_result();
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p>Nenhum evento encontrado.</p>
+                <p class="nenhumevento">Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
 
+
         <br><br>
 
-        <h2>Calendário de Eventos</h2>
+        <h2 class="tituloCalen">Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
-
+<footer>
+<p>© 2024 HeyEvent. Todos os direitos reservados.</p>
+</footer>
     </main>
 
-    <footer>
-        <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
-    </footer>
+
+
     <script>
         const menu = document.getElementById('menu');
         const menubarra = document.getElementById('menubarra');
@@ -277,7 +238,7 @@ $result = $stmt->get_result();
                 .catch(err => console.error(err));
         }
     </script>
-    <!-- CSS -->
+   
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
 
@@ -306,8 +267,23 @@ $result = $stmt->get_result();
             padding-top: 60px;
             transition: 0.3s;
             z-index: 2;
-            font-family: "Quicksand", sans-serif;
 
+
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+
+            
+ 
+            
+
+        }
+        .titulosdash{
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;           
         }
 
         .MLogo {
@@ -316,6 +292,9 @@ $result = $stmt->get_result();
             margin: 0 auto;
             max-width: 100%;
             height: auto;
+        }
+        .nenhumevento{
+            text-align: center;
         }
 
         .MHE {
@@ -337,12 +316,25 @@ $result = $stmt->get_result();
             list-style: none;
 
         }
+        .hemenu{
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings:
+        "wdth" 100;
+        font-size: 35px;
+        margin-left: 15px;
+        }
 
         .lihover {
             transition: transform 0.3s ease;
         }
         
-
+        .lihover img{
+        width: 30px;
+        margin-left: 10px;
+        }
 
 
         .lihover:hover {
@@ -359,28 +351,32 @@ $result = $stmt->get_result();
 
         .amenu {
             text-decoration: none;
-            color: #000F55;
+            color: #000000ff;
+            padding: 10px;
         }
 
         .footermenu {
             text-align: center;
-            margin-top: 300px;
-            color: #000F55;
+            margin-top: 50px;
+            color: #000000ff;
+
         }
-                main {
+         main {
             transition: margin-left 0.3s;
         }
+
 
 
         /* menu */
 
 
-/* 
-        menunav {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        } */
+
+        .menunav {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        } 
 
 /* header */
         header {
@@ -485,6 +481,9 @@ $result = $stmt->get_result();
         .tituloProxEven {
             margin-left: 20px;
         }
+        .tituloCalen{
+            margin-left: 20px;
+        }
 
         /* Grupo das tabelas */
         .ProximosEventos {
@@ -577,6 +576,7 @@ $result = $stmt->get_result();
 
         .menu {
             width: 20px;
+            cursor: pointer;
         }
 
         .Logo {
@@ -607,7 +607,6 @@ $result = $stmt->get_result();
 
 </html>
 <!-- PHP - Encerramento -->
-
 <?php
 $connection->close();
 ?>

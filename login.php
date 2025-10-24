@@ -44,6 +44,8 @@ if ($_POST) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets\Icone.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
 </head>
 
 <body>
@@ -68,7 +70,6 @@ if ($_POST) {
                 <span>Veja todos os detalhes em um só lugar</span>
             </li>
         </ul>
-
     </aside>
     <main>
         <div class="topo">

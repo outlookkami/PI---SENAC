@@ -6,6 +6,7 @@ $resultempresa = $connection->query($sql);
 if (!$resultempresa) {
    die("Erro na consulta: " . $connection->error);
 }
+
 $sql = "SELECT ID, nivel FROM acessos";
 $result = $connection->query($sql);
 
@@ -19,7 +20,6 @@ if ($_POST) {
    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
    $empresa = $_POST['nome_empresa'];
    $nivel = $_POST['nivel'];
-   // $conta = $_POST['nivel'];
 
 
    $sql = "INSERT INTO usuarios (nome_user, email_user, senha_user, ID_empresa, ID_acesso ) VALUES ('$nome', '$email', '$senhaHash', '$empresa','$nivel')";
