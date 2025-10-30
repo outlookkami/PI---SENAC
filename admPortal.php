@@ -76,7 +76,7 @@ $connection -> close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -335,8 +335,7 @@ $connection -> close();
             justify-content: space-between;
             align-items: center;
         }
-        
-        .menubarra {
+                .menubarra {
             position: fixed;
             top: 0;
             left: -250px;
@@ -347,12 +346,37 @@ $connection -> close();
             padding-top: 60px;
             transition: 0.3s;
             z-index: 2;
-            font-family: "Quicksand", sans-serif;
 
         }
+                
+        .ulmenu {
+            list-style: none;
+
+        }
+                .ulmenu li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
+        }
+
+
+
+
+
+
+
         .menu{
             cursor: pointer;
         }
+                .hemenu{
+        color: #000000ff;
+        font-family: Quicksand;
+        font-size: 35px;
+        margin-left: -90px;
+        }
+        
+
         .menunav {
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -379,51 +403,15 @@ $connection -> close();
 
         }
 
-        .lihover img{
-        width: 30px;
-        margin-left: 10px;
+ 
+
+        #conteudomain {
+            transition: margin-left 0.3s ease;
         }
 
 
-        .ulmenu {
-            list-style: none;
 
-        }
-
-        .lihover {
-            transition: transform 0.3s ease;
-        }
-
-        .lihover:hover {
-            transform: scale(1.05);
-
-        }
-
-        .ulmenu li {
-            display: flex;
-            align-items: center;
-            margin-top: 40px;
-
-        }
-
-        .amenu {
-            text-decoration: none;
-            color: #000F55;
-        }
-
-        .footermenu {
-            text-align: center;
-            margin-top: 300px;
-            color: #000F55;
-        }
-
-#conteudomain {
-    transition: margin-left 0.3s ease;
-}
-
-
-
-        menunav {
+        .menunav {
             display: flex;
             justify-content: center;
             gap: 1.5rem;

@@ -328,7 +328,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
         color: #000000ff;
         font-family: Quicksand;
         font-size: 35px;
-        margin-left: 15px;
+        margin-left: 20px;
         }
 
         .lihover {
