@@ -225,7 +225,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p>Nenhum evento encontrado.</p>
+                <p >Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
 <<<<<<< HEAD
@@ -235,7 +235,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
 >>>>>>> 985f01a4065c8dacbf564eaa23a84e5ace6727dc
         <br><br>
 
-        <h2>Calendário de Eventos</h2>
+        <h2 class="tituloProxEven" >Calendário de Eventos</h2>
         <br><br>
 
         <div class="Calendario">
