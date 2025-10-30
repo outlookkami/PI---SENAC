@@ -7,20 +7,20 @@ $password = "";
 $database = "hey_event";
 session_start();
 
-// $connection = new mysqli($host, $username, $password, $database);
+$connection = new mysqli($host, $username, $password, $database);
 
-// if ($connection -> connect_error){
-//     die("Erro de conexão" . $connection -> connect_error);}
+if ($connection -> connect_error){
+    die("Erro de conexão" . $connection -> connect_error);}
 
-// $sql = "SELECT * FROM tabela_de_eventos";
+$sql = "SELECT * FROM tabela_de_eventos";
 
-// $result = $connection -> query($sql);
+$result = $connection -> query($sql);
 
-// $sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
+$sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
 
-// if(!$result){
-//     die("Erro ao acessar dados." . $connection -> error);
-// }
+if(!$result){
+    die("Erro ao acessar dados." . $connection -> error);
+}
 
 // $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
 
@@ -149,15 +149,6 @@ $connection -> close();
         </div>
     </header>
 
-                    <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                        <td class="titulosdash">Eventos Futuros</td>
-                    </tr>
-                    <tr>
-                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
-                    </tr>
-                </table>
-
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
         <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
@@ -193,57 +184,17 @@ $connection -> close();
             <h2 class="TituloDashboard">Dashboard</h2>
             <div class="Dashboard">
                 <br>
-
-                <div> <!-- Eventos Confirmados -->
-                    <table class="TableDashboard Eventos">
-
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                            <td>Eventos Confirmados</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>0</b></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div> <!-- Presença Total -->
-                    <table class="TableDashboard Presença">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                            <td>Presença Total</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>0%</b></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- <div> Prêmios Disponíveis -->
-                    <!-- <table class="TableDashboard Prêmios">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
-                            <td>Prêmios Disponíveis</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>4</b></td>
-                        </tr>
-                    </table> -->
-                <!-- </div> -->
-
-                <!-- <div> Pontos Acumulados -->
-                    <!-- <table class="TableDashboard Pontos">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
-                            <td>Pontos Acumulados</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>2.450</b></td>
-                        </tr>
-                    </table> -->
-                <!-- </div> --> 
+            <div>
+                <table class ="TableDashboard Eventos">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
+                        <td class="titulosdash">Eventos Futuros</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
+                    </tr>
+                </table>
             </div>
-            <br><br>
 
             <div> <!-- Presença Total -->
                 <table class="TableDashboard Presença">
@@ -256,6 +207,20 @@ $connection -> close();
                     </tr>
                 </table>
             </div>
+
+            <!-- <div> Presença Total -->
+                <!-- <table class="TableDashboard Presença">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
+                        <td>Presença Total</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0%</b></td>
+                    </tr>
+                </table>
+            </div> -->
+            </div>
+            <br><br>
         </div>
 
         <br><br><br><br><br>
@@ -320,7 +285,6 @@ $connection -> close();
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
-
             <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
         </div>
     </main>
