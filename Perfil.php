@@ -37,26 +37,29 @@ if ($usuario['ID_acesso'] == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
-    <link rel="stylesheet" href="cadastro.css">
-    <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="assets\Icone.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="shortcut icon" href="assets\Icone.png">
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
    <header>
         <div class="logo-container">
-            <a href="Sobrenos.php"><button class="logo"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></button></a>
             <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+            
         </div>
 
         <nav class="menunav">
-            <!-- <a href="#Dashboard"><img src="assets\dashboards.png" alt="Dashboard" width="28px">Dashboard</a> -->
             <a href="<?php
                 if ($usuario['ID_acesso'] == 1) {
                 echo 'admPortal.php';
@@ -65,48 +68,36 @@ if ($usuario['ID_acesso'] == 1) {
                 } else {
                 echo 'HeyEvent.php';
                 }
-                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
-            <!-- <a href="#Calendario"><img class="calendario" src="assets\calendar (3).png" alt="Calendário" width="28px">Calendário</a> -->
+                ?>"><img src="assets\confetti.png" alt="inicio" width="28px">Inicio</a>
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px">Perfil</a>
-            <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a>
+            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
-    <img class="MLogo" src="assets\Logo HeyEvent Ofc.png" alt=""> <br>
-    <p class="MHE">HeyEvent</p>
     <ul class="ulmenu">
+        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
+        <p class="hemenu">HeyEvent</p>
         <div class="lihover">
-            <li><img src="assets\home.png" alt=""><a class="amenu" href="<?php
-                if ($usuario['ID_acesso'] == 1) {
-                echo 'admPortal.php';
-                } elseif ($usuario['ID_acesso'] == 2) {
-                echo 'ColabPortal copy.php';
-                } else {
-                echo 'HeyEvent.php';
-                }
-                ?>">Início</a>
-            </li>
+            <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\info a.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li>
-                <img src="assets\prox.png" alt=""></i><a class="amenu" href="<?php
-                if ($usuario['ID_acesso'] == 1) {
-                echo 'admPortal.php';
-                } elseif ($usuario['ID_acesso'] == 2) {
-                echo 'ColabPortal copy.php';
-                } else {
-                echo 'HeyEvent.php';
-                }
-                ?>">Próximos eventos</a>
-            </li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+        </div>
+        <div class="lihover">
+        <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        </div>
+         <div class="lihover">
+            <li><img src="assets\menuheimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+        </div>
+        <div class="lihover">
+            <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
@@ -114,7 +105,7 @@ if ($usuario['ID_acesso'] == 1) {
 
     <main id="main">
 
-        <h2 class="HE">Olá <?php echo $primeiroNome; ?>!</h2> 
+        <h2 class="olanome">Olá <?php echo $primeiroNome; ?>!</h2> 
 
         
         <br>
@@ -211,7 +202,11 @@ if ($usuario['ID_acesso'] == 1) {
         }
         li img {
             width: 40px;
-            margin-left: 40px;
+            margin-left: 50px;
+        }
+        .lihover img{
+        width: 30px;
+        margin-left: 47px;
         }
 
         
@@ -239,6 +234,23 @@ if ($usuario['ID_acesso'] == 1) {
             text-decoration: none;
             color: #000F55;
         }
+        
+        .footermenu {
+            text-align: center;
+            margin-top: 50px;
+            color: #000000ff;
+
+        }
+         .amenu {
+            text-decoration: none;
+            color: #000000ff;
+            padding: 10px;
+        }
+                .lihover {
+        transition: transform 0.3s ease;
+        font-family: Quicksand;
+        font-size: 18px;
+        }
 
 
 
@@ -264,11 +276,19 @@ if ($usuario['ID_acesso'] == 1) {
             position: relative;
             padding: 0.75rem 1.5rem;
         }
-        .footermenu {
-            text-align: center;
-            margin-top: 300px;
-            color: #000F55;
+        .menunav{
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
         }
+        .hemenu{
+
+         color: #000000ff;
+        font-family: Quicksand;
+        font-size: 35px;
+        margin-left: 15px;
+        } 
         .opcoesUsuario {
             display: flex;
             gap: 1rem;
@@ -398,13 +418,15 @@ if ($usuario['ID_acesso'] == 1) {
             border-radius: 200px;
             background-color: white;
         }
-        .HE {
-            color: #000000ff;
-            
+        .olanome {
+            color: #000000ff; 
             font-size: 30px;
             margin-top: 20px;
             padding: 20px;
+            font-family: Quicksand;
         }
+
+        
        .perfiluser {
             width: 150px;
             margin-left: 880px;

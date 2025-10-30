@@ -33,6 +33,12 @@ $password = "";
 $database = "teste_eventos";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
+$idUser = $_SESSION['ID_USER'];
+
+if (!isset($_SESSION['ID_USER'])) {
+    header("Location: login.php");
+    exit;
+}
 
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
@@ -42,6 +48,32 @@ $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_even
 LIMIT 3";
 
 $result = $connection->query($sql);
+
+$sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
+        IF(c.ID_USER IS NULL, 0, 1) AS confirmado
+        FROM tabela_de_eventos e
+        LEFT JOIN clientes_eventos c 
+        ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
+        where  E.DATA_EVENTO >= curdate()
+        ORDER BY e.data_evento ASC
+        LIMIT 4";
+
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $idUser);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+$sql1 = "SELECT COUNT(*) AS confirmados 
+         FROM clientes_eventos 
+         WHERE ID_USER = ? AND confirmado = 1";
+
+$stmt1 = $connection->prepare($sql1);
+$stmt1->bind_param("i", $idUser);
+$stmt1->execute();
+$result1 = $stmt1->get_result();
+$row1 = $result1->fetch_assoc();
+$confirmados = $row1 ? $row1['confirmados'] : 0;
 
 ?>
 
@@ -73,37 +105,44 @@ $result = $connection->query($sql);
         </div>
 
         <nav class="menunav">
-            <a href="#ProximosEventos"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+            <a href="<?php
+                if ($usuario['ID_acesso'] == 1) {
+                echo 'admPortal.php';
+                } elseif ($usuario['ID_acesso'] == 2) {
+                echo 'ColabPortal copy.php';
+                } else {
+                echo 'HeyEvent.php';
+                }
+                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
         </nav>
         <div class="opcoesUsuario">
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
-            <!-- <a href="logout.php"><img class="sair" src="assets\sair.png" alt="Sair" width="28px">Sair</a> -->
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
-        <img src="assets\Logo HeyEvent Ofc.png" width="100px" alt="">
+        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
         <p class="hemenu">HeyEvent</p>
         <div class="lihover">
-            <li><img src="assets\usermenu.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
+            <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\seguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\infomenu.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\cadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
-        <li><img src="assets\contato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
+        <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
         </div>
          <div class="lihover">
-            <li><img src="assets\heimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
+            <li><img src="assets\menuheimg.png" alt=""><a class="amenu" href="Sobrenos.php">Sobre nós</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\sairmenu.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
+            <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
@@ -120,7 +159,7 @@ $result = $connection->query($sql);
                         <td class="titulosdash">Eventos Confirmados</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0</b></td>
+                        <td class="valor"><b><?php echo $confirmados; ?></b></td>
                     </tr>
                 </table>
             </div>
@@ -132,7 +171,7 @@ $result = $connection->query($sql);
                         <td class="titulosdash">Presença Total</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0%</b></td>
+                        <td class="valor"><b>0</b></td>
                     </tr>
                 </table>
             </div>
@@ -140,9 +179,11 @@ $result = $connection->query($sql);
 
         <br><br><br><br><br>
 
-        <h2 class="tituloProxEven">Próximos Eventos</h2>
+      <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
-    <?php if ($result->num_rows > 0): ?>
+        <div class="ProximosEventos">
+
+            <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="ProximosEventos">
                         <table class="TableEventos">
@@ -184,13 +225,17 @@ $result = $connection->query($sql);
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p class="nenhumevento">Nenhum evento encontrado.</p>
+                <p>Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 985f01a4065c8dacbf564eaa23a84e5ace6727dc
         <br><br>
 
-        <h2 class="tituloCalen">Calendário de Eventos</h2>
+        <h2>Calendário de Eventos</h2>
         <br><br>
 
         <div class="Calendario">
@@ -286,24 +331,7 @@ $result = $connection->query($sql);
             transition: 0.3s;
             z-index: 2;
 
-
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-
-            
- 
-            
-
         }
-        .titulosdash{
-        font-family: "Montserrat", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;           
-        }
-
         .MLogo {
             width: 100px;
             display: block;
@@ -325,9 +353,7 @@ $result = $connection->query($sql);
             font-weight: lighter;
 
         }
-                li img {
-            width: 40px;
-        }
+
 
         
         .ulmenu {
@@ -335,18 +361,16 @@ $result = $connection->query($sql);
 
         }
         .hemenu{
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings:
-        "wdth" 100;
+        color: #000000ff;
+        font-family: Quicksand;
         font-size: 35px;
         margin-left: 15px;
         }
 
         .lihover {
-            transition: transform 0.3s ease;
+        transition: transform 0.3s ease;
+        font-family: Quicksand;
+        font-size: 18px;
         }
         
         .lihover img{
@@ -450,6 +474,8 @@ $result = $connection->query($sql);
         .TituloDashboard {
             margin: 20px;
             color: black;
+            color: #000000ff;
+            font-family: Quicksand;
         }
 
         /* Grupo das Tabelas */
@@ -498,9 +524,15 @@ $result = $connection->query($sql);
         /* PRÓXIMOS EVENTOS:  */
         .tituloProxEven {
             margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;
         }
         .tituloCalen{
             margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;  
         }
 
         /* Grupo das tabelas */
@@ -531,6 +563,8 @@ $result = $connection->query($sql);
             object-fit: cover;
             max-height: 800px;
             border-radius: 8px;
+            width: 300px;
+            height: 250px;
         }
 
         .tdInfo {
@@ -577,19 +611,19 @@ $result = $connection->query($sql);
         }
 
 
-        .clicado {
-            background-color: #77A0A9;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            width: 100%;
-            text-align: center;
-            cursor: pointer;
-        }
+.clicado {
+    background-color: #77A0A9;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer; 
+}
 
         body {
-            font-family: "Raleway", sans-serif;
+            font-family: Quicksand;  
         }
 
         .menu {
