@@ -195,13 +195,13 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <p>Nenhum evento encontrado.</p>
+                <p >Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
 
         <br><br>
 
-        <h2>Calendário de Eventos</h2>
+        <h2 class="tituloProxEven" >Calendário de Eventos</h2>
         <br><br>
         <!-- Inserir calendário de eventos com a API -->
 <footer>
