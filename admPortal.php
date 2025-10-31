@@ -132,12 +132,7 @@ $connection -> close();
 <body>
   <header>
         <div class="logo-container">
-
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
-
-            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
-
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu" >
             
         </div>
 
@@ -148,16 +143,6 @@ $connection -> close();
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
         </div>
     </header>
-
-                    <tr>
-                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                        <td class="titulosdash">Eventos Futuros</td>
-                    </tr>
-                    <tr>
-                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
-                    </tr>
-                </table>
-
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
         <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
@@ -187,63 +172,24 @@ $connection -> close();
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
 </nav>
 
+
 <div id="conteudomain">
     <main>
         <div class="conteudoPrincipal" id="conteudoPrincipal">
             <h2 class="TituloDashboard">Dashboard</h2>
             <div class="Dashboard">
                 <br>
-
-                <div> <!-- Eventos Confirmados -->
-                    <table class="TableDashboard Eventos">
-
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
-                            <td>Eventos Confirmados</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>0</b></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div> <!-- Presença Total -->
-                    <table class="TableDashboard Presença">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                            <td>Presença Total</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>0%</b></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- <div> Prêmios Disponíveis -->
-                    <!-- <table class="TableDashboard Prêmios">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/gift.png" alt="presente"></td>
-                            <td>Prêmios Disponíveis</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>4</b></td>
-                        </tr>
-                    </table> -->
-                <!-- </div> -->
-
-                <!-- <div> Pontos Acumulados -->
-                    <!-- <table class="TableDashboard Pontos">
-                        <tr>
-                            <td rowspan="2"><img class="IconesDashboard" src="assets/star.png" alt="estrela"></td>
-                            <td>Pontos Acumulados</td>
-                        </tr>
-                        <tr>
-                            <td class="valor"><b>2.450</b></td>
-                        </tr>
-                    </table> -->
-                <!-- </div> --> 
+            <div>
+                <table class ="TableDashboard Eventos">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
+                        <td class="titulosdash">Eventos Futuros</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
+                    </tr>
+                </table>
             </div>
-            <br><br>
 
             <div> <!-- Presença Total -->
                 <table class="TableDashboard Presença">
@@ -256,8 +202,22 @@ $connection -> close();
                     </tr>
                 </table>
             </div>
-        </div>
 
+            <!-- <div> Presença Total -->
+                <!-- <table class="TableDashboard Presença">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
+                        <td>Presença Total</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b>0%</b></td>
+                    </tr>
+                </table>
+            </div> -->
+            </div>
+            <br><br>
+        </div>
+ <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
         <br><br><br><br><br>
 
         <h2 class="tituloProxEven">Próximos Eventos</h2>
@@ -320,8 +280,7 @@ $connection -> close();
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
-
-            <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
+           
         </div>
     </main>
 </div>
@@ -458,6 +417,10 @@ $connection -> close();
             justify-content: space-between;
             align-items: center;
         }
+                .relogio {
+
+            width: 18px;
+        }
         
         .menubarra {
             position: fixed;
@@ -487,6 +450,78 @@ $connection -> close();
         }
         .menu{
             cursor: pointer;
+        }
+          .tituloProxEven {
+            margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;
+        }
+        .tituloCalen{
+            margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;  
+        }
+
+        /* Grupo das tabelas */
+        .ProximosEventos {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            min-width: 400px;
+        }
+
+        /* Elementos das tabelas */
+        .TableEventos {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            border-spacing: 15px;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .imagensIlustrativasEventos {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            max-height: 800px;
+            border-radius: 8px;
+            width: 300px;
+            height: 250px;
+        }
+
+        .tdInfo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ícones */
+        .IconesEventos {
+            width: 20px;
+        }
+
+        .tituloTag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tagEvento {
+            display: flex;
+            background-color: #000F55;
+            color: white;
+            border-radius: 16px;
+            padding: 7px 11px;
+            font-size: 14px;
+            align-items: end;
+            justify-content: end;
         }
         .menunav {
         font-family: "Montserrat", sans-serif;

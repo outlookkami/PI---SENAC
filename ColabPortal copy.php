@@ -1,4 +1,3 @@
-<!-- PHP - Conexão banco de dados e seleção dos dados por data -->
 
 <?php
 
@@ -102,13 +101,13 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="privacidade_seguranca.php">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="contato.php">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="termos_privacidade.php">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
         <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
@@ -120,7 +119,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
     </ul>
-    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+    <p class="footermenu">Todos os direitos reservados. <br>© 2025 HeyEvent.</p>
 </nav>
     <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
@@ -213,7 +212,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
         </div>
 <footer>
-<p>© 2024 HeyEvent. Todos os direitos reservados.</p>
+<p>© 2025 HeyEvent. Todos os direitos reservados.</p>
 </footer>
     </main>
 
