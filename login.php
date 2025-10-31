@@ -38,7 +38,7 @@ if ($_POST) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login | HeyEvent</title>
     <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,6 +177,12 @@ if ($_POST) {
             text-align: center;
             margin-left: 250px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
         }
 
         .topo {
@@ -217,14 +223,23 @@ if ($_POST) {
 
         }
 
-        input {
-            height: 40px;
-            width: 300px;
-            border-radius: 8px;
-            border-style: solid;
-            font-family: "Raleway", sans-serif;
-        }
+      input {
+         height: 40px;
+         width: 300px;
+         border-radius: 8px;
+         border-style: solid;
+         border-color: black;
+         border-width: 1px;
+         font-family: "Raleway", sans-serif;
+         transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
 
+
+        input:focus {
+            outline: none;
+            border-color: #6C0034;
+            box-shadow: 0 0 5px #6C0034;
+        }
         .senha {
             margin-top: 30px;
         }
@@ -261,6 +276,14 @@ if ($_POST) {
             border-style: none;
             background-color: #000F55;
             color: white;
+         transition: background 0.3s ease, transform 0.2s ease;
+         cursor: pointer;
+      }
+   
+
+        button:hover {
+            background-color: #6C0034;
+            transform: translateY(-2px);
         }
     </style>
 

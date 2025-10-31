@@ -40,7 +40,7 @@ if ($_POST) {
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Cadastre-se</title>
+   <title>Cadastro | HeyEvent</title>
    <link rel="stylesheet" href="cadastro.css">
    <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -217,8 +217,14 @@ if ($_POST) {
          text-align: center;
          margin-left: 250px;
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-      }
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
 
       .possuicnt {
          color: black;
@@ -251,6 +257,23 @@ if ($_POST) {
          margin-top: -10px;
       }
 
+      
+            select {
+               height: 43px;
+               width: 310px;
+               border-radius: 8px;
+               margin-top: 30px;
+               color: rgb(128, 128, 128);
+               border-color: black;
+               font-family: "Raleway", sans-serif;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                
+            }
+            select:focus{
+                       outline: none;
+            border-color: #6C0034;
+            box-shadow: 0 0 5px #6C0034;  
+            }
       input {
          height: 40px;
          width: 300px;
@@ -259,11 +282,17 @@ if ($_POST) {
          border-color: black;
          border-width: 1px;
          font-family: "Raleway", sans-serif;
+         transition: border-color 0.3s ease, box-shadow 0.3s ease;
       }
 
-      select {
-         font-family: "Raleway", sans-serif;
-      }
+
+        input:focus {
+            outline: none;
+            border-color: #6C0034;
+            box-shadow: 0 0 5px #6C0034;
+        }
+
+
 
       .email {
          margin-top: 30px;
@@ -277,18 +306,6 @@ if ($_POST) {
          width: 190px;
       }
 
-      button {
-         margin-top: 20px;
-      }
-
-      select {
-         height: 43px;
-         width: 310px;
-         border-radius: 8px;
-         margin-top: 30px;
-         color: rgb(128, 128, 128);
-         border-color: black;
-      }
 
       a {
          text-decoration: none;
@@ -303,7 +320,16 @@ if ($_POST) {
          border-style: none;
          background-color: #000F55;
          color: white;
+         margin-top: 20px;
+         transition: background 0.3s ease, transform 0.2s ease;
+         cursor: pointer;
       }
+   
+
+        button:hover {
+            background-color: #6C0034;
+            transform: translateY(-2px);
+        }
    </style>
 </body>
 
