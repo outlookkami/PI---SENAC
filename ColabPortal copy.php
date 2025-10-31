@@ -104,7 +104,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="privacidade_seguranca.php">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="contato.php">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="central_de_ajuda.php">Central de ajuda</a></li>
         </div>
         <div class="lihover">
             <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="termos_privacidade.php">Termos de uso e política de privacidade</a></li>
