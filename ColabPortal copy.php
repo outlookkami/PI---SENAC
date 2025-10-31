@@ -1,6 +1,7 @@
 <!-- PHP - Conexão banco de dados e seleção dos dados por data -->
 
 <?php
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -17,6 +18,11 @@ if (!isset($_SESSION['ID_USER'])) {
 if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
+
+$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento, horario_inicio_evento FROM tabela_de_eventos ORDER BY data_evento ASC, horario_inicio_evento ASC
+LIMIT 3";
+
+$result = $connection->query($sql);
 
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
@@ -43,7 +49,6 @@ $stmt1->execute();
 $result1 = $stmt1->get_result();
 $row1 = $result1->fetch_assoc();
 $confirmados = $row1 ? $row1['confirmados'] : 0;
-
 
 ?>
 
@@ -198,18 +203,19 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
                 <p >Nenhum evento encontrado.</p>
             <?php endif; ?>
         </div>
-
         <br><br>
 
         <h2 class="tituloProxEven" >Calendário de Eventos</h2>
         <br><br>
+
+        <div class="Calendario">
         <!-- Inserir calendário de eventos com a API -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
+        </div>
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
     </main>
-
-
 
     <script>
         const menu = document.getElementById('menu');
@@ -612,11 +618,43 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             width: 25px;
         }
 
+        .Calendario {
+            display:flex;
+            justify-content: center;
+        }
+
+        iframe {
+            width: 90%;
+            height: 600px;
+        }
+
         footer {
             text-align: center;
             margin: 40px;
             display: block;
         }
+
+        @media screen and (max-width: 839px) {
+            nav {
+            align-items: flex-start;
+           }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
     </style>
 
 </body>

@@ -5,6 +5,7 @@ $host = "localhost";
 $username = "root";
 $password = "";
 $database = "hey_event";
+session_start();
 
 $connection = new mysqli($host, $username, $password, $database);
 
@@ -20,6 +21,36 @@ $sql = "SELECT * FROM tabela_de_eventos ORDER BY data_evento ASC";
 if(!$result){
     die("Erro ao acessar dados." . $connection -> error);
 }
+
+// $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
+
+// $result = $connection->query($sql);
+
+$sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
+        IF(c.ID_USER IS NULL, 0, 1) AS confirmado
+        FROM tabela_de_eventos e
+        LEFT JOIN clientes_eventos c 
+        ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
+        where  E.DATA_EVENTO >= curdate()
+        ORDER BY data_evento ASC, horario_inicio_evento ASC
+        LIMIT 3";
+
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $_SESSION['ID_USER']);
+$stmt->execute();
+$result = $stmt->get_result();
+
+    // Consultas para obter os dados do dashboard
+
+    $sql = "SELECT COUNT(id_evento) AS eventos_futuros FROM tabela_de_eventos WHERE data_evento >= CURDATE()"; 
+    $resultFut = $connection -> query($sql);
+    $row = $resultFut -> fetch_assoc();
+    $eventosFuturos = $row['eventos_futuros'];
+
+    $sql = "SELECT COUNT(id_evento) AS total_eventos FROM tabela_de_eventos";
+    $resultTot = $connection -> query($sql);
+    $row = $resultTot -> fetch_assoc();
+    $totalEventos = $row['total_eventos'];
 
 if (isset($_POST['submit'])) {
     $titulo_evento = $_POST['titulo_evento'];
@@ -73,10 +104,11 @@ if (isset($_POST['submit'])) {
   
 $connection -> close();
 
+
 ?>
 
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -100,7 +132,12 @@ $connection -> close();
 <body>
   <header>
         <div class="logo-container">
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu" >
+
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
+
+            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
+
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
             
         </div>
 
@@ -111,6 +148,16 @@ $connection -> close();
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
         </div>
     </header>
+
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
+                        <td class="titulosdash">Eventos Futuros</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
+                    </tr>
+                </table>
+
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
         <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
@@ -197,6 +244,82 @@ $connection -> close();
                 <!-- </div> --> 
             </div>
             <br><br>
+
+            <div> <!-- Presença Total -->
+                <table class="TableDashboard Presença">
+                    <tr>
+                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
+                        <td class="titulosdash">Total de Eventos</td>
+                    </tr>
+                    <tr>
+                        <td class="valor"><b><?php echo $totalEventos;?></b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <br><br><br><br><br>
+
+        <h2 class="tituloProxEven">Próximos Eventos</h2>
+        <br><br>
+    <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="ProximosEventos">
+                        <table class="TableEventos">
+                            <tr>
+                                <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
+                            </tr>
+                            <tr class="tituloTag">
+                                <td id="tituloEvento">
+                                    <h4><?php echo $row["titulo_evento"] ?></h4>
+                                </td>
+                                <td id="tagEvento" class="tagEvento"><?php echo $row["tag_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="descricao_evento">
+                                    <p class="descricaoEvento"><?php echo $row["descricao_evento"] ?></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" class="IconesEventos" id="data_evento"><img class="calendariop" src="assets/calendariop.png" alt="ícone calendário"><?php echo date("d/m/y", strtotime($row["data_evento"])) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" colspan="2" id="horario_evento"><img class="relogio" src="assets/relogio.png" alt="ícone relógio"><?php echo $row["horario_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td class="tdInfo" id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button
+                                        class="ConfirmarPresença <?php echo ($row['confirmado'] ? 'clicado' : ''); ?>"
+                                        data-evento="<?php echo $row['id_evento']; ?>"
+                                        data-usuario="<?php echo $_SESSION['ID_USER']; ?>"
+                                        onclick="confPresenca(this)">
+                                        <?php echo ($row['confirmado'] ? 'Confirmado' : 'Confirmar Presença'); ?>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="nenhumevento">Nenhum evento encontrado.</p>
+            <?php endif; ?>
+        </div>
+
+        <br><br>
+
+        <h2 class="tituloCalen">Calendário de Eventos</h2>
+        <br><br>
+
+        <div class="Calendario">
+        <!-- Inserir calendário de eventos com a API -->
+            <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
+        </div>
+<footer>
+<p>© 2024 HeyEvent. Todos os direitos reservados.</p>
+</footer>
 
             <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
         </div>
@@ -335,7 +458,8 @@ $connection -> close();
             justify-content: space-between;
             align-items: center;
         }
-                .menubarra {
+        
+        .menubarra {
             position: fixed;
             top: 0;
             left: -250px;
@@ -346,37 +470,24 @@ $connection -> close();
             padding-top: 60px;
             transition: 0.3s;
             z-index: 2;
+            font-family: "Quicksand", sans-serif;
 
-        }
-                
-        .ulmenu {
-            list-style: none;
-
-        }
-                .ulmenu li {
-            display: flex;
-            align-items: center;
-            margin-top: 40px;
-
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;         
         }
 
+        .titulosdash{
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;           
 
-
-
-
-
-
+        }
         .menu{
             cursor: pointer;
         }
-                .hemenu{
-        color: #000000ff;
-        font-family: Quicksand;
-        font-size: 35px;
-        margin-left: -90px;
-        }
-        
-
         .menunav {
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -403,13 +514,79 @@ $connection -> close();
 
         }
 
- 
-
-        #conteudomain {
-            transition: margin-left 0.3s ease;
+        .lihover img{
+        width: 30px;
+        margin-left: 10px;
         }
 
 
+        .ulmenu {
+            list-style: none;
+
+        }
+
+        .hemenu{
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings:
+        "width" 100;
+        font-size: 35px;
+        margin-left: 15px;
+        }
+
+        .lihover {
+            transition: transform 0.3s ease;
+        }
+
+        .lihover:hover {
+            transform: scale(1.05);
+
+        }
+
+        .ulmenu li {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+
+        }
+
+        .amenu {
+            text-decoration: none;
+            color: #000F55;
+        }
+
+        .footermenu {
+            text-align: center;
+            margin-top: 300px;
+            color: #000F55;
+        }
+
+#conteudomain {
+    transition: margin-left 0.3s ease;
+}
+
+
+
+        /* menu */
+        .menunav {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        } 
+
+    /* header */
+        header {
+            background-image: linear-gradient(to bottom, #000F55, #6C0034);
+            background-repeat: no-repeat;
+            width: 100%;
+            min-height: 60px;
+        }
 
         .menunav {
             display: flex;
@@ -417,12 +594,19 @@ $connection -> close();
             gap: 1.5rem;
         }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; 
+        }
+
+        /* .opcoesUsuario {} */
+
         .logo-container{
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
-        
 
         .logo{
             font-size: 1.5rem;
@@ -447,9 +631,16 @@ $connection -> close();
             transition: color 0.3s;
         }
 
-        a:hover{
+        a:hover {
             color: #D90368;
         }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
 
         @media (max-width: 768px) {
             nav{
@@ -496,7 +687,9 @@ $connection -> close();
             height: 80px;
         }
 
-
+        main{
+            transition: margin-left 0.3s;
+        }
 
         /* DASHBOARD */
         .TituloDashboard{
@@ -635,8 +828,22 @@ $connection -> close();
             width: 40px;
         }
 
-        body{
-            font-family: "Raleway", sans-serif;
+        .calendariop {
+            width: 25px;
+        }
+
+        .Calendario {
+            display:flex;
+            justify-content: center;
+        }
+
+        iframe {
+            width: 90%;
+            height: 600px;
+        }
+
+        footer {
+            text-align: center;
         }
 
         .CriarEventoForm{
@@ -652,6 +859,38 @@ $connection -> close();
             transform: translate(-50%, -50%);  
             margin: 40px;
             padding: 40px;        
+        }
+
+        @media screen and (max-width: 839px) {
+           nav {
+            align-items: flex-start;
+           }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .Dashboard {
+                flex-direction: column;
+                align-items: center;
+                justify-content:center;
+            }
+
+            #CriarEventoForm{
+                width: 90%;
+                padding: 20px;
+            }
+
+            #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
+                font-size: 14px;
+                padding: 8px;
+            }
         }
 
         .horarios{
@@ -724,19 +963,19 @@ $connection -> close();
 
         @media screen and (max-width: 768px) {
            nav {
-            align-items: flex-start;
+                align-items: flex-start;
            }
 
            .inícioHeader button {
-            display: block;
+                display: block;
             }
 
             .meioHeader {
-            display: block; 
+                display: block; 
             }
 
             .fimHeader {
-            margin-top: 10px
+                margin-top: 10px
             }
 
             nav ul {
@@ -760,10 +999,10 @@ $connection -> close();
                 padding: 20px;
             }
 
-        #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
-        font-size: 14px;
-        padding: 8px;
-    }
+            #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
+            font-size: 14px;
+            padding: 8px;
+            }
         }
 
         @media screen and (max-width: 480px) {
