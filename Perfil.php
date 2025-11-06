@@ -49,6 +49,7 @@ if ($usuario['ID_acesso'] == 1) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"/>
 </head>
 
 <body>
@@ -60,7 +61,7 @@ if ($usuario['ID_acesso'] == 1) {
         </div>
 
         <nav class="menunav">
-            <a href="<?php
+            <a class="linkInicio" href="<?php
                 if ($usuario['ID_acesso'] == 1) {
                 echo 'admPortal.php';
                 } elseif ($usuario['ID_acesso'] == 2) {
@@ -68,10 +69,10 @@ if ($usuario['ID_acesso'] == 1) {
                 } else {
                 echo 'HeyEvent.php';
                 }
-                ?>"><img src="assets\confetti.png" alt="inicio" width="28px">Início</a>
+                ?>"><img src="assets\confetti.png" alt="inicio" width="28px" class="iconeConfete">Início</a>
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
+            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user";" ></i></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
@@ -249,13 +250,6 @@ if ($usuario['ID_acesso'] == 1) {
         font-size: 18px;
         }
 
-
-
-
-        
-
-
-        
         main {
             transition: margin-left 0.3s;
         }
@@ -273,6 +267,22 @@ if ($usuario['ID_acesso'] == 1) {
             position: relative;
             padding: 0.75rem 1.5rem;
         }
+
+        .iconePerfil, .iconeConfete{
+            color: #ffffff;
+            transition: color 0.3s ease; 
+            font-size: 28px;
+        }
+
+        .iconePerfil:hover i{
+            color: #D90368;
+        }
+
+        .linkInicio:hover .iconeConfete{
+            transition: color 0.3s ease; 
+            content: url("assets/confetti rosa.png");
+        }
+
         .menunav{
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
@@ -349,14 +359,6 @@ if ($usuario['ID_acesso'] == 1) {
 
         }
 
-
-
-
-
-
-
-
-
         body {
             margin: 0;
             padding: 0;
@@ -369,10 +371,16 @@ if ($usuario['ID_acesso'] == 1) {
         .Logo {
             width: 30px;
         }
-                .menu {
+
+        .menu {
             width: 20px;
             vertical-align: middle;
             cursor: pointer;
+        }
+
+        .menu:hover{
+            width: 22px;
+            content: url('assets/menu rosa.png');
         }
 
 /*         

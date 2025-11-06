@@ -31,13 +31,13 @@ $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, 
         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
         where  E.DATA_EVENTO >= curdate()
         ORDER BY data_evento ASC, horario_inicio_evento ASC
-        LIMIT 4";
+        LIMIT 3";
 
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $idUser);
 $stmt->execute();
 $result = $stmt->get_result();
-// $row = $result->fetch_assoc();
+
 
 $sql1 = "SELECT COUNT(*) AS confirmados 
          FROM clientes_eventos 
@@ -81,16 +81,16 @@ $eventosFuturos = $row['eventos_futuros'];
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
-            
+            <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
         </div>
 
         <nav class="menunav">
-            <a href="<?php
+            <a class="linkEventos" href="<?php
                 if ($usuario['ID_acesso'] == 1) {
                 echo 'admPortal.php';
                 } elseif ($usuario['ID_acesso'] == 2) {
@@ -98,10 +98,11 @@ $eventosFuturos = $row['eventos_futuros'];
                 } else {
                 echo 'HeyEvent.php';
                 }
-                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px">Eventos</a>
+                ?>"><img src="assets\confetti.png" alt="Eventos" width="28px" class="iconeConfete">Eventos</a>
+                
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
+            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user";" ></i></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
@@ -132,6 +133,7 @@ $eventosFuturos = $row['eventos_futuros'];
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
 </nav>
+<br>
     <main id="main">
         <h2 class="TituloDashboard">Dashboard</h2>
         <div class="Dashboard">
@@ -401,6 +403,21 @@ $eventosFuturos = $row['eventos_futuros'];
         font-style: normal;
         } 
 
+        .iconePerfil, .iconeConfete{
+            color: #ffffff;
+            transition: color 0.3s ease; 
+            font-size: 28px;
+        }
+
+        .iconePerfil:hover i{
+            color: #D90368;
+        }
+
+        .linkEventos:hover .iconeConfete{
+            transition: color 0.3s ease; 
+            content: url("assets/confetti rosa.png");
+        }
+
 /* header */
         header {
             background-image: linear-gradient(to bottom, #000F55, #6C0034);
@@ -413,6 +430,7 @@ $eventosFuturos = $row['eventos_futuros'];
             position: relative;
             padding: 0.75rem 1.5rem;
         }
+
         .opcoesUsuario {
             display: flex;
             gap: 1rem;
@@ -428,7 +446,7 @@ $eventosFuturos = $row['eventos_futuros'];
             gap: 8px;
             text-decoration: none;
             color: white;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
                 .logo-container {
             display: flex;
@@ -599,6 +617,11 @@ $eventosFuturos = $row['eventos_futuros'];
         .menu {
             width: 20px;
             cursor: pointer;
+        }
+
+        .menu:hover{
+            width: 22px;
+            content: url('assets/menu rosa.png');
         }
 
         .Logo {
