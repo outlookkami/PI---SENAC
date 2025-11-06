@@ -142,8 +142,6 @@ $connection -> close();
         <div class="logo-container">
 
             <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
-
-            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a> 
             
         </div>
 
@@ -727,6 +725,7 @@ $connection -> close();
             color: black;
             color: #000000;
             font-family: Quicksand;
+            margin-top: 20PX;
         
         }
 
