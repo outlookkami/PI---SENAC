@@ -725,7 +725,7 @@ $connection -> close();
             color: black;
             color: #000000;
             font-family: Quicksand;
-            margin-top: 20PX;
+            margin-top: 20px;
         
         }
 
@@ -1081,6 +1081,3 @@ $connection -> close();
 
 </html>
 
-<?php 
-$connection -> close();
-?>

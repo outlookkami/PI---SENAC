@@ -359,7 +359,12 @@ $eventosFuturos = $row['eventos_futuros'];
         width: 30px;
         margin-left: 10px;
         }
-
+ .titulosdash{
+            font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal; 
+ }
 
         .lihover:hover {
             transform: scale(1.05);
