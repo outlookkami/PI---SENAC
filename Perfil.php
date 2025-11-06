@@ -68,7 +68,7 @@ if ($usuario['ID_acesso'] == 1) {
                 } else {
                 echo 'HeyEvent.php';
                 }
-                ?>"><img src="assets\confetti.png" alt="inicio" width="28px">Inicio</a>
+                ?>"><img src="assets\confetti.png" alt="inicio" width="28px">Início</a>
         </nav>
         <div class="opcoesUsuario">
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>

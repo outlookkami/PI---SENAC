@@ -30,7 +30,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "teste_eventos";
+$database = "hey_event";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
 $idUser = $_SESSION['ID_USER'];
@@ -44,10 +44,10 @@ if ($connection->connect_error) {
     die("Erro de conexão: " . $connection->connect_error);
 }
 
-$sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento, horario_inicio_evento FROM tabela_de_eventos ORDER BY data_evento ASC, horario_inicio_evento ASC
-LIMIT 3";
+// $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento, horario_inicio_evento FROM tabela_de_eventos ORDER BY data_evento ASC, horario_inicio_evento ASC
+// LIMIT 3";
 
-$result = $connection->query($sql);
+// $result = $connection->query($sql);
 
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
@@ -55,7 +55,7 @@ $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, 
         LEFT JOIN clientes_eventos c 
         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
         where  E.DATA_EVENTO >= curdate()
-        ORDER BY e.data_evento ASC
+        ORDER BY data_evento ASC, horario_inicio_evento ASC
         LIMIT 4";
 
 $stmt = $connection->prepare($sql);
@@ -74,6 +74,16 @@ $stmt1->execute();
 $result1 = $stmt1->get_result();
 $row1 = $result1->fetch_assoc();
 $confirmados = $row1 ? $row1['confirmados'] : 0;
+
+$sql = "SELECT COUNT(id_evento) AS eventos_confirmados FROM clientes_eventos WHERE id_user = $idUser AND confirmado = 1"; 
+$resultConf = $connection -> query($sql);
+$row = $resultConf -> fetch_assoc();
+$eventosConfirmados = $row['eventos_confirmados'];
+
+$sql = "SELECT COUNT(id_evento) AS eventos_futuros FROM tabela_de_eventos WHERE data_evento >= CURDATE()"; 
+$resultFut = $connection -> query($sql);
+$row = $resultFut -> fetch_assoc();
+$eventosFuturos = $row['eventos_futuros'];
 
 ?>
 
@@ -153,28 +163,28 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <br>
             <div> <!-- Eventos Confirmados -->
                 <table class="TableDashboard Eventos">
-
                     <tr>
                         <td rowspan="2"><img class="IconesDashboard" src="assets/calendarioAzul.png" alt="calendário"></td>
                         <td class="titulosdash">Eventos Confirmados</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b><?php echo $confirmados; ?></b></td>
+                        <td class="valor"><b><?php echo $eventosConfirmados; ?></b></td>
                     </tr>
                 </table>
             </div>
 
-            <div> <!-- Presença Total -->
-                <table class="TableDashboard Presença">
+            <div> <!-- Eventos Futuros -->
+                <table class ="TableDashboard Presença">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                        <td class="titulosdash">Presença Total</td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/eventos.png" alt="calendário"></td>
+                        <td class="titulosdash">Eventos Futuros</td>
                     </tr>
                     <tr>
-                        <td class="valor"><b>0</b></td>
+                        <td class="valor"><b><?php echo $eventosFuturos;?></b></td>
                     </tr>
                 </table>
             </div>
+
         </div>
 
         <br><br><br><br><br>
@@ -227,25 +237,24 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             <?php else: ?>
                 <p >Nenhum evento encontrado.</p>
             <?php endif; ?>
-        </div>
-<<<<<<< HEAD
- 
-=======
+        </div> 
+    
 
->>>>>>> 985f01a4065c8dacbf564eaa23a84e5ace6727dc
         <br><br>
 
-        <h2 class="tituloProxEven" >Calendário de Eventos</h2>
+        <h2 class="tituloProxEven">Calendário de Eventos</h2>
         <br><br>
 
         <div class="Calendario">
         <!-- Inserir calendário de eventos com a API -->
             <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
         </div>
+    </main>
+<br><br>
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
-    </main>
+<br><br>   
 
     <script>
         const menu = document.getElementById('menu');
@@ -354,14 +363,12 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
 
         }
 
-
-        
         .ulmenu {
             list-style: none;
 
         }
         .hemenu{
-        color: #000000ff;
+        color: #000000;
         font-family: Quicksand;
         font-size: 35px;
         margin-left: 15px;
@@ -393,25 +400,19 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
 
         .amenu {
             text-decoration: none;
-            color: #000000ff;
+            color: #000000;
             padding: 10px;
         }
 
         .footermenu {
             text-align: center;
             margin-top: 50px;
-            color: #000000ff;
+            color: #000000;
 
         }
          main {
             transition: margin-left 0.3s;
         }
-
-
-
-        /* menu */
-
-
 
         .menunav {
         font-family: "Montserrat", sans-serif;
@@ -462,19 +463,12 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             border: none;
             cursor: pointer;
         }
-/* header */
-
-
-
-        /* main {
-            transition: margin-left 0.3s;
-        } */
 
         /* DASHBOARD */
         .TituloDashboard {
             margin: 20px;
             color: black;
-            color: #000000ff;
+            color: #000000;
             font-family: Quicksand;
         }
 
@@ -512,10 +506,6 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             width: 50px;
         }
 
-        .iconeTeam {
-            width: 60px;
-        }
-
         /* Tamanhos de fonte */
         .valor {
             font-size: 25px;
@@ -525,13 +515,13 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
         .tituloProxEven {
             margin-left: 20px;
             color: black;
-            color: #000000ff;
+            color: #000000;
             font-family: Quicksand;
         }
         .tituloCalen{
             margin-left: 20px;
             color: black;
-            color: #000000ff;
+            color: #000000;
             font-family: Quicksand;  
         }
 
@@ -563,7 +553,7 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
             object-fit: cover;
             max-height: 800px;
             border-radius: 8px;
-            width: 300px;
+            width: 400px;
             height: 250px;
         }
 
@@ -640,7 +630,6 @@ $confirmados = $row1 ? $row1['confirmados'] : 0;
         }
 
         .relogio {
-
             width: 18px;
         }
 

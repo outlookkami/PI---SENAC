@@ -33,12 +33,19 @@ $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, 
         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
         where  E.DATA_EVENTO >= curdate()
         ORDER BY data_evento ASC, horario_inicio_evento ASC
-        LIMIT 3";
+        LIMIT 4";
 
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $_SESSION['ID_USER']);
 $stmt->execute();
 $result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+// $id_evento = $row['id_evento'];
+// $sql = "SELECT COUNT(id_user) AS usuarios_confirmados FROM clientes_eventos WHERE ID_EVENTO = $id_evento AND confirmado = 1";
+// $resultConf = $connection->query($sql);
+// $rowConf = $resultConf->fetch_assoc();
+// $usuariosConfirmados = $rowConf['usuarios_confirmados'];
 
     // Consultas para obter os dados do dashboard
 
@@ -51,6 +58,7 @@ $result = $stmt->get_result();
     $resultTot = $connection -> query($sql);
     $row = $resultTot -> fetch_assoc();
     $totalEventos = $row['total_eventos'];
+
 
 if (isset($_POST['submit'])) {
     $titulo_evento = $_POST['titulo_evento'];
@@ -130,14 +138,13 @@ $connection -> close();
 </head>
 
 <body>
-  <header>
+
+    <header>
         <div class="logo-container">
 
             <img class="menu" src="assets/menu.png" alt="menu" id="menu">  
 
-            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a>
-
-            <img class="menu" src="assets/menu.png" alt="menu" id="menu">
+            <a href="Sobrenos.php"><img class="Logo" src="assets\Logo HeyEvent Ofc.png" alt="logo"></a> 
             
         </div>
 
@@ -180,10 +187,9 @@ $connection -> close();
 
 <div id="conteudomain">
     <main>
-        <div class="conteudoPrincipal" id="conteudoPrincipal">
-            <h2 class="TituloDashboard">Dashboard</h2>
-            <div class="Dashboard">
-                <br>
+        <h2 class="TituloDashboard">Dashboard</h2>
+        <div class="Dashboard">
+            <br>
             <div>
                 <table class ="TableDashboard Eventos">
                     <tr>
@@ -196,10 +202,10 @@ $connection -> close();
                 </table>
             </div>
 
-            <div> <!-- Presença Total -->
-                <table class="TableDashboard Presença">
+            <div> <!-- Total de Eventos -->
+                <table class="TableDashboard Total">
                     <tr>
-                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
+                        <td rowspan="2"><img class="IconesDashboard" src="assets/eventos.png " alt="calendário"></td>
                         <td class="titulosdash">Total de Eventos</td>
                     </tr>
                     <tr>
@@ -208,27 +214,21 @@ $connection -> close();
                 </table>
             </div>
 
-            <!-- <div> Presença Total -->
-                <!-- <table class="TableDashboard Presença">
-                    <tr>
-                        <td rowspan="2"><img class="IconesDashboard iconeTeam" src="assets/team.png" alt="pessoas"></td>
-                        <td>Presença Total</td>
-                    </tr>
-                    <tr>
-                        <td class="valor"><b>0%</b></td>
-                    </tr>
-                </table>
-            </div> -->
-            </div>
-            <br><br>
         </div>
 
-        <br><br><br><br><br>
+        <br><br><br><br>
+
+         <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
+       
+
+        <br><br><br>
 
         <h2 class="tituloProxEven">Próximos Eventos</h2>
         <br><br>
-    <?php if ($result->num_rows > 0): ?>
+        <div class="ProximosEventos">
+            <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
+                    
                     <div class="ProximosEventos">
                         <table class="TableEventos">
                             <tr>
@@ -254,17 +254,13 @@ $connection -> close();
                             <tr>
                                 <td class="tdInfo" id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
                             </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <button
-                                        class="ConfirmarPresença <?php echo ($row['confirmado'] ? 'clicado' : ''); ?>"
-                                        data-evento="<?php echo $row['id_evento']; ?>"
-                                        data-usuario="<?php echo $_SESSION['ID_USER']; ?>"
-                                        onclick="confPresenca(this)">
-                                        <?php echo ($row['confirmado'] ? 'Confirmado' : 'Confirmar Presença'); ?>
-                                    </button>
+
+                            <!-- <tr>
+                                <td>
+                                   <img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"> <?php echo $usuariosConfirmados?> 
                                 </td>
-                            </tr>
+                            </tr> -->
+                           
                         </table>
                     </div>
                 <?php endwhile; ?>
@@ -273,29 +269,30 @@ $connection -> close();
             <?php endif; ?>
         </div>
 
-        <br><br>
+            <br><br>
 
-        <h2 class="tituloCalen">Calendário de Eventos</h2>
-        <br><br>
+    <h2 class="tituloCalen">Calendário de Eventos</h2>
+    <br><br>
 
-        <div class="Calendario">
-        <!-- Inserir calendário de eventos com a API -->
-            <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
-        </div>
+    <div class="Calendario">
+    <!-- Inserir calendário de eventos com a API -->
+        <iframe src="https://calendar.google.com/calendar/embed?src=84b6f105d11e6c38135d03de39db4d40e6278ca06aa4ace7ec555ce313545b02%40group.calendar.google.com&ctz=America%2FSao_Paulo" style="border: 0" frameborder="0" scrolling="no"></iframe>
+    </div>
+    </main>
+<br><br><br>
 <footer>
 <p>© 2024 HeyEvent. Todos os direitos reservados.</p>
 </footer>
-            <button class="criarEvento" type="button" onclick="mostraForm()">&#43 Criar evento</button>
-        </div>
-    </main>
+<br><br><br>
+         
 </div>
     
     <!-- Formulário de criação de eventos -->
 
-    <div class="CriarEventoForm" id="formCriarEvento" style="display: none;">
-        <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm">
+    <!-- <div class="CriarEventoForm" id="formCriarEvento" style="display: none;">
+        <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm"> -->
 
-    <div class="CriarEventoForm" id="formCriarEvento">
+    <div class="CriarEventoForm" id="formCriarEvento" style="display: none;">
         <form method="post" action="admPortal.php" enctype="multipart/form-data" class="CriarEventoForm">
 
             <h2 class="CNE">Criar Novo Evento</h2><br>
@@ -345,25 +342,26 @@ $connection -> close();
             </div>
 
     </form>
-    </div>
-
+    <!-- </div>
             <button class="botaoCancelar" type="button" onclick="escondeForm()">Cancelar</button>
 
             <button class="botaoCriar" type="submit" name="submit" onclick="escondeForm(); limparFormulario()">Criar Evento</button>
 
             <button class="botaoCriar" type="submit" onclick="escondeForm()">Criar Evento</button>
-    </form>
+    </form> -->
     </div>
 
     <script>
         function mostraForm() {
             document.getElementById("formCriarEvento").style.display = "flex";
-            document.getElementById("conteudoPrincipal").classList.add("blur");
+            // document.getElementById("conteudoPrincipal").classList.add("blur");
+            document.getElementById("conteudomain").classList.add("blur");
+            document.getElementsByTagName("nav")[1].style.overflow = "hidden";
         }
    
         function escondeForm() {
             document.getElementById("formCriarEvento").style.display = "none";
-            document.getElementById("conteudoPrincipal").classList.remove("blur");
+            document.getElementById("conteudomain").classList.remove("blur");
         }
         const menu = document.getElementById('menu');
         const menubarra = document.getElementById('menubarra');
@@ -410,13 +408,8 @@ $connection -> close();
             position: relative;
             padding: 0.75rem 1.5rem;
         }
-        .TituloDashboard{
-                        margin-left: 20px;
-            color: black;
-            color: #000000ff;
-            font-family: Quicksand;
-        }
-                .opcoesUsuario {
+
+        .opcoesUsuario {
             display: flex;
             gap: 1rem;
             justify-content: space-between;
@@ -467,6 +460,10 @@ $connection -> close();
             height: auto;
         }
 
+        .nenhumevento{
+            text-align: center;
+        }
+
         .MHE {
             color: #000F55;
             font-family: Quicksand;
@@ -479,17 +476,16 @@ $connection -> close();
         }
 
         .lihover img{
-        width: 30px;
-        margin-left: 10px;
+            width: 30px;
+            margin-left: 10px;
         }
 
 
         .ulmenu {
             list-style: none;
-
         }
 
-        .hemenu{
+        /* .hemenu{
         font-family: "Bricolage Grotesque", sans-serif;
         font-optical-sizing: auto;
         font-weight: 400;
@@ -498,10 +494,19 @@ $connection -> close();
         "width" 100;
         font-size: 35px;
         margin-left: 15px;
+        } */
+
+        .hemenu{
+        color: #000000;
+        font-family: Quicksand;
+        font-size: 35px;
+        margin-left: 15px;
         }
 
         .lihover {
             transition: transform 0.3s ease;
+            font-family: Quicksand;
+            font-size: 18px;
         }
 
         .lihover:hover {
@@ -519,11 +524,12 @@ $connection -> close();
         .amenu {
             text-decoration: none;
             color: #000F55;
+            padding: 10px;
         }
 
         .footermenu {
             text-align: center;
-            margin-top: 300px;
+            margin-top: 50px;
             color: #000F55;
         }
 
@@ -531,10 +537,8 @@ $connection -> close();
     transition: margin-left 0.3s ease;
 }
 
-
-
         /* menu */
-        .menunav {
+        /* .menunav {
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
@@ -542,15 +546,13 @@ $connection -> close();
         display: flex;
         justify-content: center;
         gap: 1.5rem;
+        }  */
+        .menunav {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
         } 
-
-    /* header */
-        header {
-            background-image: linear-gradient(to bottom, #000F55, #6C0034);
-            background-repeat: no-repeat;
-            width: 100%;
-            min-height: 60px;
-        }
 
         .menunav {
             display: flex;
@@ -606,7 +608,7 @@ $connection -> close();
         }
         
 
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             nav{
                 display: flex;
                 flex-direction: row;
@@ -635,7 +637,7 @@ $connection -> close();
                 display: none;
             }
 
-        }
+        } */
 
         .TituloTabela{
             margin: 20px;
@@ -657,14 +659,18 @@ $connection -> close();
 
         /* DASHBOARD */
         .TituloDashboard{
-            margin: 20px;
+            margin-left: 20px;
             color: black;
+            color: #000000;
+            font-family: Quicksand;
+        
         }
 
         /* Grupo das Tabelas */
         .Dashboard{
             display: flex;
             gap: 40px;
+            margin: 20px;
             justify-content: center;
             flex-wrap: wrap;
             align-items: center;
@@ -684,7 +690,7 @@ $connection -> close();
             border-left: 4px solid #4e598c;
         }
 
-        .Presença{
+        .Total{
             border-left: 4px solid #77A0A9;
         }
 
@@ -692,10 +698,6 @@ $connection -> close();
         .IconesDashboard{
             margin-left: 20px;
             width: 50px;
-        }
-
-        .iconeTeam{
-            width: 60px;
         }
 
         /* Tamanhos de fonte */
@@ -778,6 +780,7 @@ $connection -> close();
 
         .menu{
             width: 20px;
+            cursor: pointer;
         }
 
         .Logo{
@@ -790,6 +793,10 @@ $connection -> close();
 
         .user{
             width: 40px;
+        }
+
+        .relogio {
+            width: 18px;
         }
 
         .calendariop {
@@ -823,6 +830,66 @@ $connection -> close();
             transform: translate(-50%, -50%);  
             margin: 40px;
             padding: 40px;        
+        }
+
+        /* Eventos */
+        .ProximosEventos {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            min-width: 400px;
+        }
+
+        /* Elementos das tabelas */
+        .TableEventos {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            border-spacing: 15px;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .imagensIlustrativasEventos {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            max-height: 800px;
+            border-radius: 8px;
+            width: 400px;
+            height: 250px;
+        }
+
+        .tdInfo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ícones */
+        .IconesEventos {
+            width: 20px;
+        }
+
+        .tituloTag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tagEvento {
+            display: flex;
+            background-color: #000F55;
+            color: white;
+            border-radius: 16px;
+            padding: 7px 11px;
+            font-size: 14px;
+            align-items: end;
+            justify-content: end;
         }
 
         @media screen and (max-width: 839px) {
@@ -925,51 +992,7 @@ $connection -> close();
             color: #000F55;
         }
 
-        @media screen and (max-width: 768px) {
-           nav {
-                align-items: flex-start;
-           }
-
-           .inícioHeader button {
-                display: block;
-            }
-
-            .meioHeader {
-                display: block; 
-            }
-
-            .fimHeader {
-                margin-top: 10px
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-
-            nav li {
-                margin: 10px 0;
-            }
-
-            .Dashboard {
-                flex-direction: column;
-                align-items: center;
-                justify-content:center;
-            }
-
-            #CriarEventoForm{
-                width: 90%;
-                padding: 20px;
-            }
-
-            #CriarEventoForm input, #CriarEventoForm select, #CriarEventoForm button {
-            font-size: 14px;
-            padding: 8px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
+        /* @media screen and (max-width: 480px) {
             .horarios {
                 flex-direction: column;
                 align-items: center;
@@ -987,10 +1010,14 @@ $connection -> close();
                 width: 100%;
                 padding: 10px;
             }
-        }
+        } */
 
     </style>
     
 </body>
 
 </html>
+
+<?php 
+$connection -> close();
+?>
