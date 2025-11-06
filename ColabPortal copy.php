@@ -37,7 +37,7 @@ $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $idUser);
 $stmt->execute();
 $result = $stmt->get_result();
-$row = $result->fetch_assoc();
+// $row = $result->fetch_assoc();
 
 $sql1 = "SELECT COUNT(*) AS confirmados 
          FROM clientes_eventos 
@@ -297,7 +297,7 @@ $eventosFuturos = $row['eventos_futuros'];
 
         body {
             background-color: #ffffffff;
-            font-family: 'Raleway', sans-serif;
+            font-family: quicksand;
         }
 
         /* HEADER */

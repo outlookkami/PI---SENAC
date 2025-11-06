@@ -39,7 +39,7 @@ $stmt = $connection->prepare($sql);
 $stmt->bind_param("i", $_SESSION['ID_USER']);
 $stmt->execute();
 $result = $stmt->get_result();
-$row = $result->fetch_assoc();
+// $row = $result->fetch_assoc();
 
 // $id_evento = $row['id_evento'];
 // $sql = "SELECT COUNT(id_user) AS usuarios_confirmados FROM clientes_eventos WHERE ID_EVENTO = $id_evento AND confirmado = 1";
@@ -134,7 +134,6 @@ $connection -> close();
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap" rel="stylesheet">
-    <!-- https://replit.com/@kamillyt/TeamConnect -->
 </head>
 
 <body>
@@ -163,13 +162,13 @@ $connection -> close();
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="privacidade_seguranca.php">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="central_de_ajuda.php">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="termos_privacidade.php">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
         <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
@@ -180,8 +179,8 @@ $connection -> close();
         <div class="lihover">
             <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
+        <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
     </ul>
-    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
 </nav>
 
 
@@ -393,7 +392,7 @@ $connection -> close();
 
         body{
             background-color: #ffffffff;
-            font-family: 'Raleway', sans-serif;
+            font-family: quicksand;
         }
 
         /* HEADER */
@@ -431,12 +430,23 @@ $connection -> close();
             padding-top: 60px;
             transition: 0.3s;
             z-index: 2;
-            font-family: "Quicksand", sans-serif;
 
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;         
+        }
+                .lihover {
+        transition: transform 0.3s ease;
+        font-family: Quicksand;
+        font-size: 18px;
+        }
+        
+        .lihover img{
+        width: 30px;
+        margin-left: 10px;
+        }
+
+
+        .lihover:hover {
+            transform: scale(1.05);
+
         }
 
         .titulosdash{
@@ -551,44 +561,22 @@ $connection -> close();
 
         }
 
-        .lihover img{
-            width: 30px;
-            margin-left: 10px;
-        }
+
 
 
         .ulmenu {
             list-style: none;
         }
 
-        /* .hemenu{
-        font-family: "Bricolage Grotesque", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings:
-        "width" 100;
-        font-size: 35px;
-        margin-left: 15px;
-        } */
-
         .hemenu{
         color: #000000;
         font-family: Quicksand;
         font-size: 35px;
-        margin-left: 15px;
+        margin-left: 20px;
+        font-weight: 400;
         }
 
-        .lihover {
-            transition: transform 0.3s ease;
-            font-family: Quicksand;
-            font-size: 18px;
-        }
 
-        .lihover:hover {
-            transform: scale(1.05);
-
-        }
 
         .ulmenu li {
             display: flex;
@@ -596,17 +584,17 @@ $connection -> close();
             margin-top: 40px;
 
         }
-
         .amenu {
             text-decoration: none;
-            color: #000F55;
+            color: #000000;
             padding: 10px;
         }
 
         .footermenu {
             text-align: center;
             margin-top: 50px;
-            color: #000F55;
+            color: #000000;
+
         }
 
 #conteudomain {
