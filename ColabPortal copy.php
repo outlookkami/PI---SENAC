@@ -1,35 +1,10 @@
-<!-- PHP - Conexão banco de dados e seleção dos dados por data -->
 
 <?php
-// $host = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "hey_event";
-// session_start();
-// $connection = new mysqli($host, $username, $password, $database);
-
-// if ($connection->connect_error) {
-//     die("Erro de conexão: " . $connection->connect_error);
-// }
-
-// $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento, e.horario_inicio_evento
-//         IF(c.ID_USER IS NULL, 0, 1) AS confirmado
-//         FROM tabela_de_eventos e
-//         LEFT JOIN clientes_eventos c 
-//         ON e.id_evento = c.ID_EVENTO AND c.ID_USER = ?
-//         where  E.DATA_EVENTO >= curdate()
-//         ORDER BY e.data_evento ASC, e.horario_inicio_evento ASC
-//         LIMIT 3";
-
-// $stmt = $connection->prepare($sql);
-// $stmt->bind_param("i", $_SESSION['ID_USER']);
-// $stmt->execute();
-// $result = $stmt->get_result();
-
 
 $host = "localhost";
 $username = "root";
 $password = "";
+$database = "hey_event";
 $database = "hey_event";
 session_start();
 $connection = new mysqli($host, $username, $password, $database);
@@ -137,13 +112,13 @@ $eventosFuturos = $row['eventos_futuros'];
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="privacidade_seguranca.php">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="central_de_ajuda.php">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="termos_privacidade.php">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
         <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
@@ -371,7 +346,7 @@ $eventosFuturos = $row['eventos_futuros'];
         color: #000000;
         font-family: Quicksand;
         font-size: 35px;
-        margin-left: 15px;
+        margin-left: 20px;
         }
 
         .lihover {

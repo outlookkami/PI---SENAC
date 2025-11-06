@@ -155,7 +155,6 @@ $connection -> close();
             <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a>
         </div>
     </header>
-
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
         <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
@@ -184,6 +183,7 @@ $connection -> close();
     </ul>
     <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
 </nav>
+
 
 <div id="conteudomain">
     <main>
@@ -415,6 +415,10 @@ $connection -> close();
             justify-content: space-between;
             align-items: center;
         }
+                .relogio {
+
+            width: 18px;
+        }
         
         .menubarra {
             position: fixed;
@@ -444,6 +448,78 @@ $connection -> close();
         }
         .menu{
             cursor: pointer;
+        }
+          .tituloProxEven {
+            margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;
+        }
+        .tituloCalen{
+            margin-left: 20px;
+            color: black;
+            color: #000000ff;
+            font-family: Quicksand;  
+        }
+
+        /* Grupo das tabelas */
+        .ProximosEventos {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            min-width: 400px;
+        }
+
+        /* Elementos das tabelas */
+        .TableEventos {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            border-spacing: 15px;
+            box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+        }
+
+        .imagensIlustrativasEventos {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            max-height: 800px;
+            border-radius: 8px;
+            width: 300px;
+            height: 250px;
+        }
+
+        .tdInfo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ícones */
+        .IconesEventos {
+            width: 20px;
+        }
+
+        .tituloTag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tagEvento {
+            display: flex;
+            background-color: #000F55;
+            color: white;
+            border-radius: 16px;
+            padding: 7px 11px;
+            font-size: 14px;
+            align-items: end;
+            justify-content: end;
         }
         .menunav {
         font-family: "Montserrat", sans-serif;
