@@ -1,117 +1,318 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós | HeyEvent</title>
-    <link rel="shortcut icon" href="assets/Icone.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:wght@400;600&display=swap"
-        rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós | HeyEvent</title>
+  <link rel="shortcut icon" href="assets/Icone.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent" class="logo-site">
-        <p class="nome-site">HeyEvent</p>
-    </header>
+  <header>
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent">
+        <h1 class="logo">HeyEvent</h1>
+      </div>
+      <nav>
+        <a href="pagina_inicial.php">Início</a>
+        <a href="Sobrenos.php">Sobre</a>
+        <a href="contato.php">Contato</a>
+        <a href="Login.php"><button>Entrar</button></a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <p class="texto-sobre">
-            A HeyEvent nasceu com o propósito de transformar a forma como as empresas organizam seus eventos internos.
-            Nosso objetivo é oferecer uma solução simples, eficiente e especializada, que facilite a comunicação, a
-            organização e a execução de eventos corporativos, garantindo mais engajamento e praticidade para todos os
-            colaboradores.
-            <br><br>
-            Com a HeyEvent, os funcionários podem visualizar eventos em um calendário integrado, confirmar presença,
-            acompanhar descrições, datas e locais, além de acessar banners e imagens que tornam a experiência mais
-            dinâmica. Já os administradores têm total controle para cadastrar, editar e gerenciar eventos de forma
-            rápida e organizada.
-            <br><br>
-            A HeyEvent é conduzida por Gabrielle e Kamilly, que acreditam que a tecnologia pode ser uma grande aliada na
-            criação de experiências corporativas mais conectadas, organizadas e memoráveis.
-        </p>
-    </main>
-    <footer>
-        <p>Todos os direitos reservados.</p>
-        <p>© 2025 HeyEvent.</p>
-    </footer>
-        <style>
-        body {
-            margin: 0;
-            font-family: "Raleway", sans-serif;
-            font-size: 18px;
-            line-height: 1.7;
-            background-color: #f8f9fc;
-            color: #222;
-        }
+  <section class="hero-sobre container">
+    <div class="texto-hero">
+      <h1>Sobre a HeyEvent</h1>
+      <p>Somos uma equipe apaixonada por transformar a forma como empresas organizam e vivenciam seus eventos. 
+      Unimos tecnologia, design e estratégia para criar experiências corporativas eficientes e memoráveis.</p>
+    </div>
+    <div class="imagem-hero">
+      <img src="assets\equipe.png" alt="Equipe trabalhando">
+    </div>
+  </section>
 
-        header {
-            text-align: center;
-            background: linear-gradient(90deg, #000F55, #6C0034);
-            color: white;
-            padding: 40px 20px;
-            border-bottom-left-radius: 50% 100px;
-            border-bottom-right-radius: 50% 100px;
-        }
+  <section class="missao">
+    <div class="container">
+      <h2>Nosso Propósito</h2>
+      <div class="cards-mvv">
+        <div class="card-mvv">
+          <img src="assets/missao.png" alt="Missão">
+          <h3>Missão</h3>
+          <p>Facilitar a organização de eventos corporativos por meio de soluções digitais intuitivas e eficientes.</p>
+        </div>
+        <div class="card-mvv">
+          <img src="assets/visao.png" alt="Visão">
+          <h3>Visão</h3>
+          <p>Ser referência em tecnologia para eventos empresariais, promovendo inovação e integração entre pessoas e negócios.</p>
+        </div>
+        <div class="card-mvv">
+          <img src="assets/valores.png" alt="Valores">
+          <h3>Valores</h3>
+          <p>Inovação, colaboração, transparência e compromisso com a experiência do cliente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        .logo-site {
-            width: 150px;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
+  <section class="equipe">
+    <div class="container">
+      <h2>Nosso Time</h2>
+      <div class="equipe-lista">
+        <div class="membro">
+          <img src="assets/" alt="Membro 1">
+          <h4>Gabrielle</h4>
+          <p>Desenvolvedora</p>
+        </div>
+        <div class="membro">
+          <img src="assets/" alt="Membro 2">
+          <h4>Kamily</h4>
+          <p>Desenvolvedora</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        .nome-site {
-            font-family: "Quicksand", sans-serif;
-            font-size: 48px;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
+  <footer>
+    <div class="container">
+      <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
+      <div class="links-footer">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </footer>
+ <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        main {
-            max-width: 900px;
-            margin: 60px auto;
-            background-color: white;
-            border-radius: 16px;
-            padding: 40px 50px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
+    body {
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
 
-        .texto-sobre {
-            text-align: justify;
-            color: #333;
-            font-family: "Raleway", sans-serif;
-            font-size: 18px;
-        }
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        footer {
-            text-align: center;
-            background-color: #000F55;
-            color: white;
-            padding: 20px;
-            font-size: 15px;
-            border-top-left-radius: 50% 30px;
-            border-top-right-radius: 50% 30px;
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        @media (max-width: 768px) {
-            .nome-site {
-                font-size: 40px;
-            }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
 
-            main {
-                padding: 30px 25px;
-            }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-            .texto-sobre {
-                font-size: 17px;
-            }
-        }
-    </style>
+    .logo-container img {
+      width: 45px;
+    }
+
+    .logo {
+      font-family: 'Quicksand', sans-serif;
+      color: #050065;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6C63FF;
+    }
+
+    button {
+      background-color: #050065;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .hero-sobre {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 5rem 0;
+    }
+
+    .texto-hero {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .texto-hero h1 {
+      font-size: 2.8rem;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+
+    .texto-hero p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .imagem-hero {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .imagem-hero img {
+      width: 400px;
+      max-width: 100%;
+      border-radius: 20px;
+    }
+
+    .missao {
+      text-align: center;
+      padding: 4rem 0;
+      background-color: #f9faff;
+    }
+
+    .missao h2 {
+      font-size: 2rem;
+      color: #050065;
+      margin-bottom: 2rem;
+    }
+
+    .cards-mvv {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .card-mvv {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+      max-width: 320px;
+      transition: transform 0.3s;
+    }
+
+    .card-mvv:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-mvv img {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .card-mvv h3 {
+      color: #4F46E5;
+      margin-bottom: 0.5rem;
+    }
+
+    .equipe {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .equipe h2 {
+      font-size: 2rem;
+      color: #050065;
+      margin-bottom: 2rem;
+    }
+
+    .equipe-lista {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .membro {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+      max-width: 250px;
+    }
+
+    .membro img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .membro h4 {
+      color: #333;
+      font-weight: 600;
+    }
+
+    .membro p {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .links-footer a {
+      color: #bbb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .links-footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .hero-sobre {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .imagem-hero img {
+        margin-top: 2rem;
+      }
+    }
+
+  </style>
 </body>
-
 </html>
