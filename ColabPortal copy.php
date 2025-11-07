@@ -203,7 +203,7 @@ $eventosFuturos = $row['eventos_futuros'];
                                         class="ConfirmarPresença <?php echo ($row['confirmado'] ? 'clicado' : ''); ?>"
                                         data-evento="<?php echo $row['id_evento']; ?>"
                                         data-usuario="<?php echo $_SESSION['ID_USER']; ?>"
-                                        onclick="confPresenca(this)">
+                                        onclick="confPresenca(this)" >
                                         <?php echo ($row['confirmado'] ? 'Confirmado' : 'Confirmar Presença'); ?>
                                     </button>
                                 </td>
@@ -286,6 +286,9 @@ $eventosFuturos = $row['eventos_futuros'];
                 })
                 .catch(err => console.error(err));
         }
+        function recarregarPagina() {
+    window.location.reload();
+}
     </script>
    
     <style>

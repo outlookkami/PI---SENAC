@@ -255,6 +255,12 @@ $connection -> close();
                             </tr>
                             <tr>
                                 <td class="tdInfo" id="local_evento" colspan="2"><img class="IconesEventos" src="assets/mapa.png" alt="ícone mapa"><?php echo $row["local_evento"] ?></td>
+                            </tr> 
+                            <tr>
+                            <td>
+                            <a href="deletar_evento.php?id_evento=<?php echo $row['id_evento']; ?>" onclick="return confirmarExclusao();"><img class="deletar" src="assets/delete.png" alt="Deletar evento"></a>
+                            </td>
+
                             </tr>
 
                             <!-- <tr>
@@ -385,6 +391,9 @@ $connection -> close();
                 conteudomain.style.marginLeft = "0";
             }
         });
+        function confirmarExclusao() {
+    return confirm("Tem certeza que deseja excluir este evento?");
+}
     </script>
     <style>
         /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
@@ -583,6 +592,9 @@ $connection -> close();
             text-align: center;
             font-weight: lighter;
 
+        }
+        .deletar{
+            width: 30px;
         }
 
         .ulmenu {
