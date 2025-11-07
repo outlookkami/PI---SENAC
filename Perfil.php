@@ -99,7 +99,7 @@ if ($usuario['ID_acesso'] == 1) {
         <div class="lihover">
             <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
-        <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+        <p class="footermenu">Todos os direitos reservados. <br>© 2025 HeyEvent.</p>
     </ul>
 </nav>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,7 +87,7 @@
 
     header {
       background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -142,14 +143,13 @@
       transform: scale(1.05);
     }
 
-    /* ======= CONTEÚDO ======= */
     main.conteudo-principal {
       max-width: 900px;
       margin: 60px auto;
       background: #fff;
       padding: 40px 60px;
       border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     .titulo-secao {
@@ -206,42 +206,11 @@
       color: #fff;
     }
 
-    /* ======= BOTÃO VOLTAR AO TOPO ======= */
-    #botao-topo {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #6C63FF;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 22px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
-      display: none;
-    }
-
     #botao-topo:hover {
       background-color: #050065;
-    }
-
-    @media (max-width: 768px) {
-      main.conteudo-principal {
-        padding: 25px 20px;
-      }
-
-      .titulo-secao {
-        font-size: 1.3rem;
-      }
-
-      .menu a {
-        margin: 0 0.5rem;
-      }
     }
   </style>
 
 </body>
+
 </html>

@@ -130,7 +130,7 @@ if ($_POST) {
             padding: 0;
             margin: 20px 0;
             margin-top: -100px;
-            
+
         }
 
         .imagens li {
@@ -145,10 +145,11 @@ if ($_POST) {
             width: 50px;
             height: auto;
         }
-        .event{
+
+        .event {
             width: 100px;
             height: auto;
-        
+
         }
 
         aside {
@@ -164,9 +165,10 @@ if ($_POST) {
             margin-left: 955px;
             margin-top: -800px;
         }
-        ul{
+
+        ul {
             font-size: 20px;
-            
+
         }
 
         form {
@@ -176,7 +178,7 @@ if ($_POST) {
             text-align: center;
             margin-left: 250px;
             box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
-                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         form:hover {
@@ -222,16 +224,16 @@ if ($_POST) {
 
         }
 
-      input {
-         height: 40px;
-         width: 300px;
-         border-radius: 8px;
-         border-style: solid;
-         border-color: black;
-         border-width: 1px;
-         font-family: "Raleway", sans-serif;
-         transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      }
+        input {
+            height: 40px;
+            width: 300px;
+            border-radius: 8px;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            font-family: "Raleway", sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
 
         input:focus {
@@ -239,6 +241,7 @@ if ($_POST) {
             border-color: #6C0034;
             box-shadow: 0 0 5px #6C0034;
         }
+
         .senha {
             margin-top: 30px;
         }
@@ -275,10 +278,10 @@ if ($_POST) {
             border-style: none;
             background-color: #000F55;
             color: white;
-         transition: background 0.3s ease, transform 0.2s ease;
-         cursor: pointer;
-      }
-   
+            transition: background 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
 
         button:hover {
             background-color: #6C0034;

@@ -217,12 +217,12 @@ if ($_POST) {
          margin-left: 250px;
          box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.108);
          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+      }
 
-        form:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
-        }
+      form:hover {
+         transform: translateY(-5px);
+         box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25);
+      }
 
 
       .possuicnt {
@@ -256,23 +256,25 @@ if ($_POST) {
          margin-top: -10px;
       }
 
-      
-            select {
-               height: 43px;
-               width: 310px;
-               border-radius: 8px;
-               margin-top: 30px;
-               color: rgb(128, 128, 128);
-               border-color: black;
-               font-family: "Raleway", sans-serif;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                
-            }
-            select:focus{
-                       outline: none;
-            border-color: #6C0034;
-            box-shadow: 0 0 5px #6C0034;  
-            }
+
+      select {
+         height: 43px;
+         width: 310px;
+         border-radius: 8px;
+         margin-top: 30px;
+         color: rgb(128, 128, 128);
+         border-color: black;
+         font-family: "Raleway", sans-serif;
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      }
+
+      select:focus {
+         outline: none;
+         border-color: #6C0034;
+         box-shadow: 0 0 5px #6C0034;
+      }
+
       input {
          height: 40px;
          width: 300px;
@@ -285,11 +287,11 @@ if ($_POST) {
       }
 
 
-        input:focus {
-            outline: none;
-            border-color: #6C0034;
-            box-shadow: 0 0 5px #6C0034;
-        }
+      input:focus {
+         outline: none;
+         border-color: #6C0034;
+         box-shadow: 0 0 5px #6C0034;
+      }
 
 
 
@@ -323,12 +325,12 @@ if ($_POST) {
          transition: background 0.3s ease, transform 0.2s ease;
          cursor: pointer;
       }
-   
 
-        button:hover {
-            background-color: #6C0034;
-            transform: translateY(-2px);
-        }
+
+      button:hover {
+         background-color: #6C0034;
+         transform: translateY(-2px);
+      }
    </style>
 </body>
 

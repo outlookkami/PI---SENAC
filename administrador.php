@@ -27,9 +27,6 @@ if (!$result) {
     die("Erro ao acessar dados." . $connection->error);
 }
 
-// $sql = "SELECT id_evento, titulo_evento, data_evento, descricao_evento, tag_evento, local_evento, horario_evento, imagem_evento FROM tabela_de_eventos ORDER BY data_evento ASC LIMIT 3";
-
-// $result = $connection->query($sql);
 
 $sql = "SELECT e.id_evento, e.titulo_evento, e.data_evento, e.descricao_evento, e.tag_evento, e.local_evento, e.horario_evento, e.imagem_evento,
 IF(c.ID_USER IS NULL, 0, 1) AS confirmado
@@ -45,13 +42,6 @@ $stmt->bind_param("i", $_SESSION['ID_USER']);
 $stmt->execute();
 $result = $stmt->get_result();
 // resolução para puxar a quantidade certa de eventos 
-// $row = $result->fetch_assoc();
-
-// $id_evento = $row['id_evento'];
-// $sql = "SELECT COUNT(id_user) AS usuarios_confirmados FROM clientes_eventos WHERE ID_EVENTO = $id_evento AND confirmado = 1";
-// $resultConf = $connection->query($sql);
-// $rowConf = $resultConf->fetch_assoc();
-// $usuariosConfirmados = $rowConf['usuarios_confirmados'];
 
 // Consultas para obter os dados do dashboard
 
@@ -186,7 +176,7 @@ $connection->close();
             <div class="lihover">
                 <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
             </div>
-            <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
+            <p class="footermenu">Todos os direitos reservados. <br>© 2025 HeyEvent.</p>
         </ul>
     </nav>
 
@@ -394,7 +384,7 @@ $connection->close();
         }
     </script>
     <style>
-        /* Paleta de cores: azul #4E598C / rosa escuro #D90368 / verde #77A0A9 / rosa claro #FFEAEE */
+       
         * {
             margin: 0;
             padding: 0;
@@ -640,16 +630,6 @@ $connection->close();
             transition: margin-left 0.3s ease;
         }
 
-        /* menu */
-        /* .menunav {
-font-family: "Montserrat", sans-serif;
-font-optical-sizing: auto;
-font-weight: 500;
-font-style: normal;
-display: flex;
-justify-content: center;
-gap: 1.5rem;
-}  */
         .menunav {
             font-family: "Montserrat", sans-serif;
             font-optical-sizing: auto;
@@ -709,38 +689,6 @@ gap: 1.5rem;
             align-items: center;
             gap: 0.75rem;
         }
-
-
-        /* @media (max-width: 768px) {
-nav{
-display: flex;
-flex-direction: row;
-position: relative;
-top: 100%;
-width: 100%;
-gap: 1rem; 
-}
-
-.logo-container{
-display: flex;
-margin-right: 1rem;
-justify-content: flex-start;
-}
-
-header{
-display: flex;
-flex-direction: row;
-position: relative;
-justify-content: space-between;  
-align-content: center;    
-gap: 1rem;
-}
-
-nav img, .user{
-display: none;
-}
-
-} */
 
         .TituloTabela {
             margin: 20px;
@@ -849,21 +797,6 @@ display: none;
             transition: filter 0.3s ease;
             pointer-events: none;
         }
-
-        /* .CriarEventoForm {
-display: flex;
-background-color: #FFEAEE;
-border-radius: 40px;
-display: none;
-align-items: center;
-flex-direction: column;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-padding: 20px;
-
-} */
 
         .botaoCriar {
             background-color: #4e598c;
