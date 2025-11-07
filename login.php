@@ -19,9 +19,9 @@ if ($_POST) {
             $_SESSION['foto_user'] = $usuario['foto'];
 
             if ($usuario['ID_acesso'] == 1) {
-                header("Location: admPortal.php");
+                header("Location: administrador.php");
             } elseif ($usuario['ID_acesso'] == 2) {
-                header("Location: ColabPortal copy.php");
+                header("Location: colaborador.php");
             }
             exit;
         } else {

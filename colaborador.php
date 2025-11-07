@@ -102,12 +102,12 @@ $eventosFuturos = $row['eventos_futuros'];
                 
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user";" ></i></a>
+            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user"; ></i></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
-        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
+        <a href="pagina_inicial.php"><img src="assets\Logo HeyEvent Ofc.png" width="90px" alt=""></a>
         <p class="hemenu">HeyEvent</p>
         <div class="lihover">
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
@@ -203,7 +203,7 @@ $eventosFuturos = $row['eventos_futuros'];
                                         class="ConfirmarPresença <?php echo ($row['confirmado'] ? 'clicado' : ''); ?>"
                                         data-evento="<?php echo $row['id_evento']; ?>"
                                         data-usuario="<?php echo $_SESSION['ID_USER']; ?>"
-                                        onclick="confPresenca(this)" >
+                                        onclick="confPresenca(this)">
                                         <?php echo ($row['confirmado'] ? 'Confirmado' : 'Confirmar Presença'); ?>
                                     </button>
                                 </td>

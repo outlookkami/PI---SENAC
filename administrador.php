@@ -7,6 +7,11 @@ $password = "";
 $database = "hey_event";
 session_start();
 
+if (!isset($_SESSION['ID_USER'])) {
+    header("Location: login.php");
+    exit();
+}
+
 $connection = new mysqli($host, $username, $password, $database);
 
 if ($connection -> connect_error){
@@ -149,17 +154,16 @@ $connection -> close();
         </div>
 
         <nav class="menunav">
-            <a href="Sobrenos.php" class="linkInfo"><i class="fa-solid fa-circle-info iconeInfo"></i>Sobre nós</a>
+            <a href="sobrenos.php" class="linkInfo"><i class="fa-solid fa-circle-info iconeInfo"></i>Sobre nós</a>
         </nav>
 
         <div class="opcoesUsuario">
-            <!-- <a href="Perfil.php"><img class="user" src="assets\user.png" alt="Perfil" width="28px"></a> -->
-            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user";"></i></a>
+            <a href="perfil.php" class="iconePerfil"><i class="fa-solid fa-user";></i></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
-        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
+        <a href="pagina_inicial.php"><img src="assets\Logo HeyEvent Ofc.png" width="90px" alt=""></a>
         <p class="hemenu">HeyEvent</p>
         <div class="lihover">
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>

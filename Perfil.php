@@ -63,21 +63,21 @@ if ($usuario['ID_acesso'] == 1) {
         <nav class="menunav">
             <a class="linkInicio" href="<?php
                 if ($usuario['ID_acesso'] == 1) {
-                echo 'admPortal.php';
+                echo 'administrador.php';
                 } elseif ($usuario['ID_acesso'] == 2) {
-                echo 'ColabPortal copy.php';
+                echo 'colaborador.php';
                 } else {
                 echo 'HeyEvent.php';
                 }
                 ?>"><img src="assets\confetti.png" alt="inicio" width="28px" class="iconeConfete">Início</a>
         </nav>
         <div class="opcoesUsuario">
-            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user";" ></i></a>
+            <a href="Perfil.php" class="iconePerfil"><i class="fa-solid fa-user"; ></i></a>
         </div>
     </header>
 <nav class="menubarra" id="menubarra">
     <ul class="ulmenu">
-        <img src="assets\Logo HeyEvent Ofc.png" width="90px" alt="">
+        <a href="pagina_inicial.php"><img src="assets\Logo HeyEvent Ofc.png" width="90px" alt=""></a>
         <p class="hemenu">HeyEvent</p>
         <div class="lihover">
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>

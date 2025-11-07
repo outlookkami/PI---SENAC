@@ -3,206 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central de Ajuda | HeyEvent</title>
+  <title>Central De Ajuda | HeyEvent</title>
   <link rel="shortcut icon" href="assets/Icone.png">
-
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent" class="logo-site">
-    <p class="nome-site">HeyEvent</p>
+    <div class="container">
+      <div class="logoheader">
+        <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent">
+        <h1 class="logo">HeyEvent</h1>
+      </div>
+      <nav class="menu">
+        <a href="pagina_inicial.php">Início</a>
+        <a href="Sobrenos.php">Sobre</a>
+        <a href="contato.php">Contato</a>
+        <a class="entrar" href="Login.php"><button>Entrar</button></a>
+      </nav>
+    </div>
   </header>
 
-  <h1 class="titulo-central">Central de Ajuda</h1>
+  <main class="conteudo-principal">
+    <h2 class="titulo-secao">1. Compromisso com a Privacidade</h2>
+    <p class="texto-principal">
+      Para criar uma conta, acesse a página inicial da HeyEvent e clique em “Cadastrar-se”. Em seguida, preencha seus dados e confirme seu e-mail. Após isso, você poderá acessar todos os recursos da plataforma.
+    </p>
+    <h2 class="titulo-secao">2. Esqueci minha senha. O que fazer?</h2>
+    <p class="texto-principal">Clique em “Esqueci minha senha” na tela de login e informe seu e-mail. Você receberá um link para redefinir sua senha de forma rápida e segura.
+    </p>
 
-  <section class="container-ajuda">
+    <h2 class="titulo-secao">3. Como confirmar presença em um evento?</h2>
+    <p class="texto-principal">
+      Ao acessar o evento desejado, clique no botão “Confirmar Presença”. Sua confirmação será registrada automaticamente e o organizador será notificado.
+    </p>
+    <h2 class="titulo-secao">4. Sou administrador. Como posso cadastrar um novo evento?</h2>
+    <p class="texto-principal">
+      No painel do administrador, clique em “Criar Evento”. Insira as informações solicitadas, como título, data, local e descrição. Após salvar, o evento ficará visível para todos os colaboradores.
+    </p>
 
-    <div class="pergunta">
-      <div class="titulo-pergunta">
-        <span>Como posso criar uma conta na HeyEvent?</span>
-        <span class="icone-pergunta">+</span>
-      </div>
-      <div class="conteudo-resposta">
-        <p>Para criar uma conta, acesse a página inicial da HeyEvent e clique em “Cadastrar-se”. Em seguida, preencha seus dados e confirme seu e-mail. Após isso, você poderá acessar todos os recursos da plataforma.</p>
-      </div>
-    </div>
-
-    <div class="pergunta">
-      <div class="titulo-pergunta">
-        <span>Esqueci minha senha. O que fazer?</span>
-        <span class="icone-pergunta">+</span>
-      </div>
-      <div class="conteudo-resposta">
-        <p>Clique em “Esqueci minha senha” na tela de login e informe seu e-mail. Você receberá um link para redefinir sua senha de forma rápida e segura.</p>
-      </div>
-    </div>
-
-    <div class="pergunta">
-      <div class="titulo-pergunta">
-        <span>Como confirmar presença em um evento?</span>
-        <span class="icone-pergunta">+</span>
-      </div>
-      <div class="conteudo-resposta">
-        <p>Ao acessar o evento desejado, clique no botão “Confirmar Presença”. Sua confirmação será registrada automaticamente e o organizador será notificado.</p>
-      </div>
-    </div>
-
-    <div class="pergunta">
-      <div class="titulo-pergunta">
-        <span>Sou administrador. Como posso cadastrar um novo evento?</span>
-        <span class="icone-pergunta">+</span>
-      </div>
-      <div class="conteudo-resposta">
-        <p>No painel do administrador, clique em “Criar Evento”. Insira as informações solicitadas, como título, data, local e descrição. Após salvar, o evento ficará visível para todos os colaboradores.</p>
-      </div>
-    </div>
-
-    <div class="pergunta">
-      <div class="titulo-pergunta">
-        <span>Como entrar em contato com o suporte da HeyEvent?</span>
-        <span class="icone-pergunta">+</span>
-      </div>
-      <div class="conteudo-resposta">
-        <p>Você pode entrar em contato conosco através do e-mail <strong>contato@heyevent.com</strong> ou pela página de “Fale Conosco” disponível no site.</p>
-      </div>
-    </div>
-
-  </section>
+    <h2 class="titulo-secao">5. Contato e Suporte</h2>
+    <p class="texto-principal">
+      Se tiver dúvidas ou quiser saber mais sobre nossas práticas de privacidade e segurança, entre em contato conosco:
+    </p>
+    <ul class="lista-contato">
+      <li>📧 contato@heyevent.com</li>
+      <li>🌐 www.heyevent.com</li>
+    </ul>
+  </main>
 
   <footer>
-    <p>Todos os direitos reservados.</p>
-    <p>© 2025 HeyEvent.</p>
+    <div class="container">
+      <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
+      <div class="links-footer">
+        <a href="privacidade_seguranca.php">Privacidade</a>
+        <a href="termos_privacidade.php">Termos de Uso</a>
+      </div>
+    </div>
   </footer>
+
+
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: "Raleway", sans-serif;
-      background-color: #f9f9fb;
-      color: #222;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333;
       line-height: 1.6;
     }
 
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     header {
-        text-align: center;
-        background: linear-gradient(90deg, #000F55, #6C0034);
-        color: white;
-        padding: 40px 20px;
-        border-bottom-left-radius: 50% 100px;
-        border-bottom-right-radius: 50% 100px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .logo-site {
-      width: 120px;
-      display: block;
-      margin: 0 auto 10px auto;
-    }
-
-    .nome-site {
-      font-family: "Quicksand", sans-serif;
-      font-size: 50px;
-      margin: 0;
-    }
-
-    .titulo-central {
-      text-align: center;
-      font-family: "Montserrat", sans-serif;
-      font-size: 28px;
-      color: #000F55;
-      margin-top: 60px;
-    }
-
-    .container-ajuda {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-      padding: 40px 50px;
-    }
-
-    .pergunta {
-      background-color: #f1f3f9;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      overflow: hidden;
-      transition: 0.3s;
-    }
-
-    .titulo-pergunta {
-      cursor: pointer;
-      padding: 18px 20px;
-      font-weight: 600;
+    header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #000F55;
-      background-color: #eef1f8;
-      transition: background-color 0.3s;
+      padding: 1rem 0;
     }
 
-    .titulo-pergunta:hover {
-      background-color: #e0e3f0;
+    .logoheader {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .icone-pergunta {
-      font-size: 22px;
+    .logoheader img {
+      width: 45px;
+      height: auto;
+    }
+
+    .logo {
+      font-family: "Quicksand", sans-serif;
+      color: #050065ff;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover {
+      color: #6C63FF;
+    }
+
+    button {
+      background: linear-gradient(90deg, rgba(6, 0, 113, 1));
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 25px;
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
 
-    .conteudo-resposta {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      background-color: white;
-      padding: 0 20px;
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    /* ======= CONTEÚDO ======= */
+    main.conteudo-principal {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 40px 60px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .titulo-secao {
+      font-family: "Quicksand", sans-serif;
+      color: #050065ff;
+      font-size: 1.6rem;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      border-left: 5px solid #6C63FF;
+      padding-left: 12px;
+    }
+
+    .texto-principal {
+      text-align: justify;
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    ul.info_ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      color: #444;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    ul.lista-contato {
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 1rem;
       color: #333;
     }
 
-    .conteudo-resposta p {
-      padding: 15px 0;
-      font-size: 17px;
+    ul.lista-contato li {
+      margin-bottom: 8px;
     }
 
-    .pergunta.ativa .conteudo-resposta {
-      max-height: 400px;
-    }
-
-    .pergunta.ativa .icone-pergunta {
-      transform: rotate(45deg);
-    }
-
+    /* ======= FOOTER ======= */
     footer {
+      background-color: #111;
+      color: #fff;
+      padding: 2rem 0;
       text-align: center;
-      background-color: #000F55;
+    }
+
+    .links-footer a {
+      color: #bbb;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .links-footer a:hover {
+      color: #fff;
+    }
+
+    /* ======= BOTÃO VOLTAR AO TOPO ======= */
+    #botao-topo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #6C63FF;
       color: white;
-      padding: 25px;
-      margin-top: 40px;
-      font-size: 15px;
-      border-top-left-radius: 50% 30px;
-      border-top-right-radius: 50% 30px;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      display: none;
+    }
+
+    #botao-topo:hover {
+      background-color: #050065;
     }
 
     @media (max-width: 768px) {
-      .container-ajuda {
-        padding: 30px 25px;
+      main.conteudo-principal {
+        padding: 25px 20px;
       }
 
-      .titulo-central {
-        font-size: 24px;
+      .titulo-secao {
+        font-size: 1.3rem;
+      }
+
+      .menu a {
+        margin: 0 0.5rem;
       }
     }
   </style>
 
-  <script>
-    const perguntas = document.querySelectorAll('.pergunta');
-
-    perguntas.forEach(pergunta => {
-      pergunta.addEventListener('click', () => {
-        pergunta.classList.toggle('ativa');
-      });
-    });
-  </script>
 </body>
 </html>

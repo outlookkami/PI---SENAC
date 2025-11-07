@@ -41,7 +41,6 @@ if ($_POST) {
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Cadastro | HeyEvent</title>
-   <link rel="stylesheet" href="cadastro.css">
    <script src="https://kit.fontawesome.com/715a89f136.js" crossorigin="anonymous"></script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,7 +107,7 @@ if ($_POST) {
          </select>
          <button type="submit">Cadastrar</button>
          <p><a class="possuicnt" href="login.php">Já possui uma conta? Faça o Login aqui</a></p>
-         <p><a class="nencempresa" href="CriarEmpresa.php">Não Encontra sua empresa? Cadastre ela aqui</a></p>
+         <p><a class="nencempresa" href="criar_empresa.php">Não Encontra sua empresa? Cadastre ela aqui</a></p>
       </form>
    </main>
    <script>

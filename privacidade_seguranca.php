@@ -88,7 +88,7 @@
     </div>
   </footer>
 
-  <button id="botao-topo" title="Voltar ao topo">↑</button>
+
 
   <style>
     * {
@@ -269,14 +269,5 @@
     }
   </style>
 
-  <script>
-    const botaoTopo = document.getElementById("botao-topo");
-    window.addEventListener("scroll", () => {
-      botaoTopo.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    botaoTopo.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
 </body>
 </html>
