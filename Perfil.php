@@ -59,7 +59,6 @@ if ($usuario['ID_acesso'] == 1) {
             <img class="menu" src="assets/menu.png" alt="menu" id="menu">
             
         </div>
-
         <nav class="menunav">
             <a class="linkInicio" href="<?php
                 if ($usuario['ID_acesso'] == 1) {
@@ -83,13 +82,13 @@ if ($usuario['ID_acesso'] == 1) {
             <li><img src="assets\menuuser.png" alt=""><a class="amenu" href="Perfil.php">Seu Perfil</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="#">Privacidade e segurança</a></li>
+            <li><img src="assets\menuseguranca.png" alt=""><a class="amenu" href="privacidade_seguranca.php">Privacidade e segurança</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="#">Central de ajuda</a></li>
+            <li><img src="assets\menuinfo.png" alt=""><a class="amenu" href="central_de_ajuda.php">Central de ajuda</a></li>
         </div>
         <div class="lihover">
-            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="">Termos de uso e política de privacidade</a></li>
+            <li><img src="assets\menucadeado.png" alt=""><a class="amenu" href="termos_privacidade.php">Termos de uso e política de privacidade</a></li>
         </div>
         <div class="lihover">
         <li><img src="assets\menucontato.png" alt=""><a class="amenu" href="Contato.php">Contato</a></li>
@@ -100,8 +99,8 @@ if ($usuario['ID_acesso'] == 1) {
         <div class="lihover">
             <li><img src="assets\menusair.png" alt="" width=""><a class="amenu" href="logout.php">Sair</a></li>
         </div>
+        <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
     </ul>
-    <p class="footermenu">Todos os direitos reservados. <br>© 2024 HeyEvent.</p>
 </nav>
 
     <main id="main">

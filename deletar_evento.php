@@ -18,7 +18,7 @@ if (isset($_GET['id_evento'])) {
     $stmt->bind_param("i", $id_evento);
 
     if ($stmt->execute()) {
-        header("Location: admPortal.php?msg=evento_deletado");
+        header("Location: administrador.php?msg=evento_deletado");
         exit;
     } else {
         echo "Erro ao deletar evento: " . $connection->error;
