@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +24,13 @@
     </div>
   </header>
 
-  <section class="hero-sobre container">
-    <div class="texto-hero">
+  <section class="sobre container">
+    <div class="texto">
       <h1>Sobre a HeyEvent</h1>
       <p>Somos uma equipe apaixonada por transformar a forma como empresas organizam e vivenciam seus eventos. 
       Unimos tecnologia, design e estratégia para criar experiências corporativas eficientes e memoráveis.</p>
     </div>
-    <div class="imagem-hero">
+    <div class="imagem">
       <img src="assets\equipe.png" alt="Equipe trabalhando">
     </div>
   </section>
@@ -38,18 +38,18 @@
   <section class="missao">
     <div class="container">
       <h2>Nosso Propósito</h2>
-      <div class="cards-mvv">
-        <div class="card-mvv">
+      <div class="objetivos">
+        <div class="cards">
           <img src="assets/missao.png" alt="Missão">
           <h3>Missão</h3>
           <p>Facilitar a organização de eventos corporativos por meio de soluções digitais intuitivas e eficientes.</p>
         </div>
-        <div class="card-mvv">
+        <div class="cards">
           <img src="assets/visao.png" alt="Visão">
           <h3>Visão</h3>
           <p>Ser referência em tecnologia para eventos empresariais, promovendo inovação e integração entre pessoas e negócios.</p>
         </div>
-        <div class="card-mvv">
+        <div class="cards">
           <img src="assets/valores.png" alt="Valores">
           <h3>Valores</h3>
           <p>Inovação, colaboração, transparência e compromisso com a experiência do cliente.</p>
@@ -63,12 +63,12 @@
       <h2>Nosso Time</h2>
       <div class="equipe-lista">
         <div class="membro">
-          <img src="assets/" alt="Membro 1">
+          <img src="assets/" alt="Membro">
           <h4>Gabrielle</h4>
           <p>Desenvolvedora</p>
         </div>
         <div class="membro">
-          <img src="assets/" alt="Membro 2">
+          <img src="assets/" alt="Membro">
           <h4>Kamily</h4>
           <p>Desenvolvedora</p>
         </div>
@@ -80,8 +80,8 @@
     <div class="container">
       <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
       <div class="links-footer">
-        <a href="#">Privacidade</a>
-        <a href="#">Termos de Uso</a>
+        <a href="privacidade_seguranca.php">Privacidade</a>
+        <a href="termos_privacidade.php">Termos de Uso</a>
       </div>
     </div>
   </footer>
@@ -162,7 +162,7 @@
       transform: scale(1.05);
     }
 
-    .hero-sobre {
+    .sobre {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -170,30 +170,30 @@
       padding: 5rem 0;
     }
 
-    .texto-hero {
+    .texto {
       flex: 1;
       min-width: 300px;
     }
 
-    .texto-hero h1 {
+    .texto  h1 {
       font-size: 2.8rem;
       color: #222;
       margin-bottom: 1rem;
     }
 
-    .texto-hero p {
+    .texto  p {
       font-size: 1.1rem;
       color: #555;
       margin-bottom: 2rem;
     }
 
-    .imagem-hero {
+    .imagem {
       flex: 1;
       display: flex;
       justify-content: center;
     }
 
-    .imagem-hero img {
+    .imagem  img {
       width: 400px;
       max-width: 100%;
       border-radius: 20px;
@@ -211,14 +211,14 @@
       margin-bottom: 2rem;
     }
 
-    .cards-mvv {
+    .objetivos {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
     }
 
-    .card-mvv {
+    .cards {
       background-color: #fff;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
@@ -227,16 +227,16 @@
       transition: transform 0.3s;
     }
 
-    .card-mvv:hover {
+    .cards:hover {
       transform: translateY(-8px);
     }
 
-    .card-mvv img {
+    .cards img {
       width: 60px;
       margin-bottom: 1rem;
     }
 
-    .card-mvv h3 {
+    .cards h3 {
       color: #4F46E5;
       margin-bottom: 0.5rem;
     }
@@ -303,12 +303,12 @@
     }
 
     @media (max-width: 768px) {
-      .hero-sobre {
+      .sobre {
         flex-direction: column;
         text-align: center;
       }
 
-      .imagem-hero img {
+      .imagem img {
         margin-top: 2rem;
       }
     }

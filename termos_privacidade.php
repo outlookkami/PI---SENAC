@@ -11,7 +11,7 @@
 
 <body>
   <header>
-    <div class="container header-container">
+    <div class="container header">
       <div class="logo-container">
         <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent">
         <h1 class="logo">HeyEvent</h1>
@@ -107,8 +107,8 @@
     <div class="container">
       <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
       <div class="links-footer">
-        <a href="#">Privacidade</a>
-        <a href="#">Termos de Uso</a>
+        <a href="privacidade_seguranca.php">Privacidade</a>
+        <a href="termos_privacidade.php">Termos de Uso</a>
       </div>
     </div>
   </footer>
@@ -143,7 +143,7 @@
       margin: 0 auto;
     }
 
-    .header-container {
+    .header {
       display: flex;
       justify-content: space-between;
       align-items: center;

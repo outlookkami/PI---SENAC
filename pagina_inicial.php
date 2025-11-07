@@ -21,7 +21,6 @@
       <h1 class="logo">HeyEvent</h1>
     </div>
     <nav class="menu">
-
       <a href="Sobrenos.php">Sobre</a>
       <a href="contato.php">Contato</a>
       <a class="entrar" href="Login.php"><button>Entrar</button></a>
@@ -29,14 +28,14 @@
   </div>
 </header>
 
-  <section class="hero">
-    <div class="container hero-conteudo">
-      <div class="texto-hero">
+  <section>
+    <div class="container conteudo">
+      <div class="texto">
         <h2>Transforme a forma como sua empresa organiza eventos.</h2>
         <p>Na HeyEvent, combinamos tecnologia e inovação para facilitar a organização e a comunicação em eventos empresariais.</p>
         <a href="cadastro.php"><button>Começar Agora</button></a>
       </div>
-      <img src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif" alt="Tecnologia" class="imagem-hero">
+      <img src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif" alt="Tecnologia" >
     </div>
   </section>
 
@@ -79,8 +78,8 @@
     <div class="container">
       <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
       <div class="links-footer">
-        <a href="#">Privacidade</a>
-        <a href="#">Termos de Uso</a>
+        <a href="privacidade_seguranca.php">Privacidade</a>
+        <a href="termos_privacidade.php">Termos de Uso</a>
       </div>
     </div>
   </footer>
@@ -126,12 +125,13 @@ header .container {
   align-items: center;
   gap: 10px;
 }
-
-.logo_heyevent {
+.logo-container img {
   width: 45px;
   height: auto;
   margin-left: 0;
 }
+
+
 
 .logo {
   font-family: "Quicksand", sans-serif;
@@ -165,42 +165,34 @@ button{
 button:hover {
   transform: scale(1.05);
 }
- 
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 0;
-  
-}
 
-.hero-conteudo {
+.conteudo {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 }
+.conteudo img{
+  width: 450px;
+  max-width: 100%;  
+}
 
-.texto-hero {
+.texto {
   flex: 1;
 }
 
-.texto-hero h2 {
+.texto h2 {
   font-size: 2.5rem;
   color: #222;
   margin-bottom: 1rem;
 }
 
-.texto-hero p {
+.texto p {
   font-size: 1rem;
   margin-bottom: 1.5rem;
   color: #555;
 }
 
-.imagem-hero {
-  width: 450px;
-  max-width: 100%;
-}
 
 .servicos {
   padding: 4rem 0;
@@ -287,7 +279,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .hero-conteudo {
+  .conteudo {
     flex-direction: column;
     text-align: center;
   }

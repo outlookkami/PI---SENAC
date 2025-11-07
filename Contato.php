@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 
 <head>
   <meta charset="UTF-8">
@@ -11,8 +11,8 @@
 
 <body>
   <header>
-    <div class="container header-container">
-      <div class="logo-container">
+    <div class="container header">
+      <div class="logoheader">
         <img src="assets/Logo HeyEvent Ofc.png" alt="Logo HeyEvent">
         <h1 class="logo">HeyEvent</h1>
       </div>
@@ -54,8 +54,8 @@
     <div class="container">
       <p>© 2025 HeyEvent. Todos os direitos reservados.</p>
       <div class="links-footer">
-        <a href="#">Privacidade</a>
-        <a href="#">Termos de Uso</a>
+        <a href="privacidade_seguranca.php">Privacidade</a>
+        <a href="termos_privacidade.php">Termos de Uso</a>
       </div>
     </div>
   </footer>
@@ -74,7 +74,7 @@
       line-height: 1.6;
     }
 
-    /* HEADER */
+   
     header {
       background-color: #fff;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -89,20 +89,20 @@
       margin: 0 auto;
     }
 
-    .header-container {
+    .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 0;
     }
 
-    .logo-container {
+    .logoheader {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .logo-container img {
+    .logoheader img {
       width: 45px;
     }
 
@@ -138,7 +138,7 @@
       transform: scale(1.05);
     }
 
-    /* CONTEÚDO PRINCIPAL */
+    
     .contato {
       text-align: center;
       padding: 5rem 0;
@@ -191,7 +191,7 @@
       font-size: 1rem;
     }
 
-    /* FOOTER */
+
     footer {
       
       color: #000000ff;
