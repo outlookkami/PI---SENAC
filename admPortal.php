@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
     $local_evento = $_POST['local_evento'];
     $tag_evento = $_POST['tag_evento'] ?? null;
     $imagem_evento = $_FILES['imagem_evento'];
-     $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
+    $imagem_evento = $_POST[$_FILES['imagem_evento']['name']] ?? null;
 
     $destino = "uploads/";
 
@@ -234,7 +234,7 @@ $connection -> close();
                     <div class="ProximosEventos">
                         <table class="TableEventos">
                             <tr>
-                                <td id="imagem_evento"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
+                                <td id="imagem_evento_td"><img src="<?php echo $row['imagem_evento'] ?>" alt="Imagem do evento" class="imagensIlustrativasEventos"></td>
                             </tr>
                             <tr class="tituloTag">
                                 <td id="tituloEvento">
@@ -333,9 +333,10 @@ $connection -> close();
                 </select>
             <br><br>
             
-            <label for="imagem_evento"><b>Arquivo de imagem (opcional)</b></label><br>
-            <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
-            <label for="imagem_evento" class="estiloFile">Escolher arquivo</label>
+            <label><b>Arquivo de imagem (opcional)</b></label><br>
+            <label for="imagem_evento" class="estiloFile">Escolher arquivo
+                <input class="file" type="file" id="imagem_evento" name="imagem_evento" accept="image/*">
+            </label>
             <br><br>
 
             <div class="botoes">
@@ -823,9 +824,12 @@ $connection -> close();
             color: #D90368;
         }
 
+      
+
         .blur{
             filter: blur(5px);
-            transition: filter 0.3s ease
+            transition: filter 0.3s ease;
+            pointer-events: none;
         }
 
         /* .CriarEventoForm {
@@ -920,7 +924,8 @@ $connection -> close();
             left: 50%;
             transform: translate(-50%, -50%);  
             margin: 40px;
-            padding: 40px;        
+            padding: 40px;   
+            z-index: 9999;     
         }
 
         /* Eventos */
